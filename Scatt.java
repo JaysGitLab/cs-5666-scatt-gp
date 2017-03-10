@@ -17,4 +17,7 @@
  */
 public class Scatt
 {
+    public static void main(String[] args)
+    {
+    }
 }

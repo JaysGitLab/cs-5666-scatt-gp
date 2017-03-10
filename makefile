@@ -20,9 +20,13 @@ compile: Scatt.java ScattTest.java
 	javac -cp .:$(JUNIT_JAR) ScattTest.java
 	javac Scatt.java
 
+jar: Scatt.class ScattTest.class
+	jar -cvmf MANIFEST.MF Scatt.jar Scatt.class ScattTest.class
+
 clean:
 	rm -f Scatt.class
 	rm -f ScattTest.class
+	rm -f Scatt.jar
 
 test: Scatt.class ScattTest.class 
 	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore ScattTest
