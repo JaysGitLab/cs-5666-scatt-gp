@@ -1,4 +1,5 @@
 import org.junit.Test;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -27,7 +28,18 @@ public class ScattTest
     {
         String filename = "File1.sb2";
         Submission fileOne = new Submission(filename);
+        assertNotNull("should not be null", fileOne);
+    }
+    
+    /**
+     * Test getFilename for Submission object.
+     */
+    @Test
+    public void testSubmissionGetFilename()
+    {
+        String filename = "File1.sb2";
+        Submission fileOne = new Submission(filename);
         String actual = fileOne.getFilename();
-        assertEquals(filename, actual);
+        assertEquals("failure - strings are not equal", filename, actual);
     }
 }
