@@ -17,6 +17,11 @@
  */
 public class Scatt
 {
+    /**
+     * Main method for Scatt class.
+     *
+     * @param args 
+     */
     public static void main(String[] args)
     {
     }

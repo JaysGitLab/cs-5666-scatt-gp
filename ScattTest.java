@@ -1,4 +1,5 @@
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 /**
  * ScattTest.java
@@ -18,4 +19,15 @@ import org.junit.Test;
  */
 public class ScattTest
 {
+    /**
+     * Test constructor of Submission object.
+     */
+    @Test
+    public void testSubmissionConstructor()
+    {
+        String filename = "File1.sb2";
+        Submission fileOne = new Submission(filename);
+        String actual = fileOne.getFilename();
+        assertEquals(filename, actual);
+    }
 }
