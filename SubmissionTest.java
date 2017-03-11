@@ -1,5 +1,6 @@
 import org.junit.Test;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -37,6 +38,29 @@ public class SubmissionTest
             submissions[i] = new Submission(sb2s[i]);
         }
         assertNotNull("should not be null", submissions);
+    }
+
+    /**
+     * Test getName.
+     */
+    @Test
+    public void testGetName()
+    {
+        File directory = new File("submissions");
+        File[] sb2s = directory.listFiles();
+        Submission[] submissions = new Submission[sb2s.length];
+        for (int i = 0; i < submissions.length; i++)
+        {
+            submissions[i] = new Submission(sb2s[i]);
+        }
+        String[] expected = new String[sb2s.length];
+        String[] actual = new String[submissions.length];
+        for (int i = 0; i < expected.length; i++)
+        {
+            expected[i] = sb2s[i].getName();
+            actual[i] = submissions[i].getName();
+        }
+        assertArrayEquals("should be same", expected, actual);
     }
 
     /**

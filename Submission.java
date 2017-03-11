@@ -35,6 +35,16 @@ public class Submission
     }
 
     /**
+     * Get filename of submission.
+     *
+     * @return filename
+     */
+    public String getName()
+    {
+        return sb2.getName();
+    }
+
+    /**
      * Check if valid .sb2.
      *
      * @return true if valid .sb2
