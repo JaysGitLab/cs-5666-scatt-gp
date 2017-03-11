@@ -18,25 +18,32 @@ import java.io.File;
  */
 public class Submission
 {
-    private File[] submissions;
+    private File sb2;
+    private File json;
+    private File[] svgs;
+    private File[] pngs;
+    private File[] wavs;
     
     /**
      * Submission constructor.
      *
-     * @param directory  
+     * @param sb2  
      */
-    public Submission(File directory)
+    public Submission(File sb2)
     {
-        submissions = directory.listFiles();
+        this.sb2 = sb2;
     }
 
     /**
-     * Return File array of submission .sb2 files.
+     * Check if valid .sb2.
      *
-     * @return submissions File array
+     * @return true if valid .sb2
      */
-    public File[] getFiles()
+    public boolean isValid()
     {
-        return submissions;
+        String filename = sb2.getName();
+        int len = filename.length();
+        String ext = filename.substring(len - 5);
+        return ext.equals(".sb2") && sb2.isFile();
     }
 }

@@ -1,8 +1,9 @@
 import org.junit.Test;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.util.Arrays;
 
 /**
  * SubmissionTest.java
@@ -29,20 +30,38 @@ public class SubmissionTest
     public void testSubmissionConstructor()
     {
         File directory = new File("submissions");
-        Submission submission = new Submission(directory);
-        assertNotNull("should not be null", submission);
+        File[] sb2s = directory.listFiles();
+        Submission[] submissions = new Submission[sb2s.length];
+        for (int i = 0; i < submissions.length; i++)
+        {
+            submissions[i] = new Submission(sb2s[i]);
+        }
+        assertNotNull("should not be null", submissions);
     }
-    
+
     /**
-     * Test creating File objects for each .sb2.
+     * Test valid .sb2s.
      */
     @Test
-    public void testFileObjects()
+    public void testValid()
     {
         File directory = new File("submissions");
-        Submission submission = new Submission(directory);
-        File[] expected = directory.listFiles();
-        File[] actual = submission.getFiles();
-        assertArrayEquals("failure - File arrays not same", expected, actual);
+        File[] sb2s = directory.listFiles();
+        boolean[] expected = new boolean[sb2s.length];
+        for (int i = 0; i < expected.length; i++)
+        {
+            String filename = sb2s[i].getName();
+            int len = filename.length();
+            String ext = filename.substring(len - 5);
+            expected[i] = ext.equals(".sb2") && sb2s[i].isFile();
+        }
+        Submission[] submissions = new Submission[sb2s.length];
+        boolean[] actual = new boolean[submissions.length];
+        for (int i = 0; i < submissions.length; i++)
+        {
+            submissions[i] = new Submission(sb2s[i]);
+            actual[i] = submissions[i].isValid();
+        }
+        assertTrue("should be same", Arrays.equals(expected, actual));
     }
 }
