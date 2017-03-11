@@ -1,3 +1,5 @@
+import java.io.File;
+
 /**
  * Submission.java
  *
@@ -7,7 +9,7 @@
  */
 
 /**
- * Class for individual Scratch submission.
+ * Class for a Scratch submission.
  *
  * @author Michelle Melton
  * @author Kara Beason
@@ -16,25 +18,25 @@
  */
 public class Submission
 {
-    private String filename;
-
+    private File[] submissions;
+    
     /**
      * Submission constructor.
      *
-     * @param filename 
+     * @param directory  
      */
-    public Submission(String filename)
+    public Submission(File directory)
     {
-        this.filename = filename;
+        submissions = directory.listFiles();
     }
 
     /**
-     * Get filename of submission.
+     * Return File array of submission .sb2 files.
      *
-     * @return filename
+     * @return submissions File array
      */
-    public String getFilename()
+    public File[] getFiles()
     {
-        return filename;
+        return submissions;
     }
 }

@@ -4,7 +4,7 @@
  * @author Kara Beason
  * @author Cydney Caldwell
  * @author Michelle Melton
- * @version Feb 2017
+ * @version Mar 2017
  */
 
 /**
@@ -13,7 +13,7 @@
  * @author Kara Beason
  * @author Cydney Caldwell
  * @author Michelle Melton
- * @version Feb 2017
+ * @version Mar 2017
  */
 public class Scatt
 {
