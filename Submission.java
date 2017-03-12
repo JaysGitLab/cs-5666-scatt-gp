@@ -67,14 +67,21 @@ public class Submission
     public void convertToZip() throws IOException
     {
         File zipDir = new File("zips");
-        zipDir.mkdir();
+        if (!zipDir.exists())
+        {
+            zipDir.mkdir();
+        }
         String sb2name = sb2.getName();
         int len = sb2name.length();
-        if (sb2name.substring(len - 4).equals(".sb2") && sb2.isFile())
+        //if (sb2name.substring(len - 4).equals(".sb2") && sb2.isFile())
+        if (this.isValid())
         {
             String zipname = sb2name.substring(0, len - 4) + ".zip";
             File zip = new File(zipDir, zipname);
-            Files.copy(sb2.toPath(), zip.toPath());
+            if (!zip.exists())
+            {
+                Files.copy(sb2.toPath(), zip.toPath());
+            }
         }
     }
 }

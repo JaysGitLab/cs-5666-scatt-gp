@@ -1,4 +1,6 @@
 import org.junit.Test;
+import org.junit.Before;
+import org.junit.After;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
@@ -26,23 +28,34 @@ import java.io.IOException;
  */
 public class SubmissionTest
 {
+    private File directory;
+    private File[] sb2s;
+    private Submission[] submissions;
+    
+    /**
+     * Set up for tests.
+     */
+    @Before
+    public void setUp()
+    {
+        // Set up expected files.
+        directory = new File("submissions");
+        sb2s = directory.listFiles();
+        
+        // Create actual Submission files.
+        submissions = new Submission[sb2s.length];
+        for (int i = 0; i < submissions.length; i++)
+        {
+            submissions[i] = new Submission(sb2s[i]);
+        }
+    }
+    
     /**
      * Test constructor of Submission object.
      */
     @Test
     public void testSubmissionConstructor()
     {
-        // Set up expected files.
-        File directory = new File("submissions");
-        File[] sb2s = directory.listFiles();
-        
-        // Create actual Submission files.
-        Submission[] submissions = new Submission[sb2s.length];
-        for (int i = 0; i < submissions.length; i++)
-        {
-            submissions[i] = new Submission(sb2s[i]);
-        }
-        
         assertNotNull("should not be null", submissions);
     }
 
@@ -52,17 +65,6 @@ public class SubmissionTest
     @Test
     public void testGetName()
     {
-        // Set up expected files.
-        File directory = new File("submissions");
-        File[] sb2s = directory.listFiles();
-        
-        // Create actual Submission files.
-        Submission[] submissions = new Submission[sb2s.length];
-        for (int i = 0; i < submissions.length; i++)
-        {
-            submissions[i] = new Submission(sb2s[i]);
-        }
-        
         // Set up expected filenames.
         String[] expected = new String[sb2s.length];
         for (int i = 0; i < expected.length; i++)
@@ -86,10 +88,6 @@ public class SubmissionTest
     @Test
     public void testValid()
     {
-        // Set up expected files.
-        File directory = new File("submissions");
-        File[] sb2s = directory.listFiles();
-        
         // Check each expected file validity.
         boolean[] expected = new boolean[sb2s.length];
         for (int i = 0; i < expected.length; i++)
@@ -100,13 +98,10 @@ public class SubmissionTest
             expected[i] = ext.equals(".sb2") && sb2s[i].isFile();
         }
         
-        // Create actual Submission files.
         // Check each actaul file validity.
-        Submission[] submissions = new Submission[sb2s.length];
         boolean[] actual = new boolean[submissions.length];
         for (int i = 0; i < submissions.length; i++)
         {
-            submissions[i] = new Submission(sb2s[i]);
             actual[i] = submissions[i].isValid();
         }
         
@@ -121,22 +116,18 @@ public class SubmissionTest
     @Test
     public void testZip() throws IOException
     {
-        // Set up expected files.
-        File directory = new File("submissions");
-        File[] sb2s = directory.listFiles();
-        
-        // Create actual Submission files.
-        // Convert to .zip.
-        Submission[] submissions = new Submission[sb2s.length];
+        // Copy and convert actual files to .zip.
         for (int i = 0; i < submissions.length; i++)
         {
-            submissions[i] = new Submission(sb2s[i]);
             submissions[i].convertToZip();
         }
         
         // Copy and convert expected files to .zip.
         File expectedDir = new File("expected");
-        expectedDir.mkdir();
+        if (!expectedDir.exists())
+        {
+            expectedDir.mkdir();
+        }
         for (int i = 0; i < sb2s.length; i++)
         {
             String sb2name = sb2s[i].getName();
@@ -145,7 +136,10 @@ public class SubmissionTest
             {
                 String zipname = sb2name.substring(0, len - 4) + ".zip";
                 File copy = new File(expectedDir, zipname);
-                Files.copy(sb2s[i].toPath(), copy.toPath());
+                if (!copy.exists())
+                {
+                    Files.copy(sb2s[i].toPath(), copy.toPath());
+                }
             }
         }
         
@@ -167,5 +161,19 @@ public class SubmissionTest
         }
 
         assertArrayEquals("should be same", expected, actual);
+    }
+
+    /**
+     * Tear down after tests.
+     */
+    @After
+    public void tearDown()
+    {
+        // Delete expected files.
+        directory.delete();
+        
+        // Set arrays to null.
+        sb2s = null;
+        submissions = null;
     }
 }
