@@ -1,4 +1,6 @@
 import java.io.File;
+import java.nio.file.Files;
+import java.io.IOException;
 
 /**
  * Submission.java
@@ -59,8 +61,20 @@ public class Submission
 
     /**
      * Convert .sb2 to .zip.
+     *
+     * @throws IOException 
      */
-    public void convertToZip()
+    public void convertToZip() throws IOException
     {
+        File zipDir = new File("zips");
+        zipDir.mkdir();
+        String sb2name = sb2.getName();
+        int len = sb2name.length();
+        if (sb2name.substring(len - 4).equals(".sb2") && sb2.isFile())
+        {
+            String zipname = sb2name.substring(0, len - 4) + ".zip";
+            File zip = new File(zipDir, zipname);
+            Files.copy(sb2.toPath(), zip.toPath());
+        }
     }
 }

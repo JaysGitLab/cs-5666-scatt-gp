@@ -158,10 +158,12 @@ public class SubmissionTest
         }
         
         // Get actual Submission filenames.
-        String[] actual = new String[submissions.length];
+        File actualDir = new File("zips");
+        File[] actualZips = actualDir.listFiles();
+        String[] actual = new String[actualZips.length];
         for (int i = 0; i < actual.length; i++)
         {
-            actual[i] = submissions[i].getName();
+            actual[i] = actualZips[i].getName();
         }
 
         assertArrayEquals("should be same", expected, actual);
