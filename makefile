@@ -26,6 +26,7 @@ jar: Scatt.class ScattTest.class Submission.class
 clean:
 	rm -f *.class
 	rm -f Scatt.jar
+	rm -rf expected
 
 test: Submission.class SubmissionTest.class
 	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore SubmissionTest

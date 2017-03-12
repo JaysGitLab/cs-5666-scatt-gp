@@ -53,7 +53,14 @@ public class Submission
     {
         String filename = sb2.getName();
         int len = filename.length();
-        String ext = filename.substring(len - 5);
+        String ext = filename.substring(len - 4);
         return ext.equals(".sb2") && sb2.isFile();
+    }
+
+    /**
+     * Convert .sb2 to .zip.
+     */
+    public void convertToZip()
+    {
     }
 }
