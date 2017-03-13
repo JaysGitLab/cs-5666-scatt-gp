@@ -164,6 +164,47 @@ public class SubmissionTest
     }
 
     /**
+     * Test unzip of files.
+     * 
+     * @throws IOException 
+     */
+    @Test
+    public void testUnzip() throws IOException
+    {
+        // Copy and convert actual files to .zip.
+        for (int i = 0; i < submissions.length; i++)
+        {
+            submissions[i].convertToZip();
+        }
+        
+        // Get list of zip files.
+        File zipDir = new File("zips");
+        File[] zips = zipDir.listFiles();
+        
+        // Get list of expected dir names.
+        String[] expected = new String[zips.length]; 
+        for (int i = 0; i < zips.length; i++)
+        {
+            String zipName = zips[i].getName();
+            int len = zipName.length();
+            expected[i] = zipName.substring(0, len - 4);
+        }
+
+        // Make dir for each zip.
+        // Move zip to dir.
+
+        // Get list of new zip dirs.
+        File[] zipDirs = zipDir.listFiles();
+        String[] actual = new String[zipDirs.length];
+        for (int i = 0; i < actual.length; i++)
+        {
+            actual[i] = zipDirs[i].getName();
+        }
+
+        assertArrayEquals("should be same", expected, actual);
+    }
+
+    /**
      * Tear down after tests.
      */
     @After
