@@ -177,23 +177,23 @@ public class SubmissionTest
             submissions[i].convertToZip();
         }
         
-        // Get list of zip files.
-        File zipDir = new File("zips");
-        File[] zips = zipDir.listFiles();
-        
         // Get list of expected dir names.
-        String[] expected = new String[zips.length]; 
-        for (int i = 0; i < zips.length; i++)
+        String[] expected = new String[submissions.length]; 
+        for (int i = 0; i < submissions.length; i++)
         {
-            String zipName = zips[i].getName();
+            String zipName = submissions[i].getName();
             int len = zipName.length();
             expected[i] = zipName.substring(0, len - 4);
         }
-
-        // Make dir for each zip.
-        // Move zip to dir.
+        
+        // Unzip files.
+        for (int i = 0; i < submissions.length; i++)
+        {
+            submissions[i].unZip();
+        }
 
         // Get list of new zip dirs.
+        File zipDir = new File("zips");
         File[] zipDirs = zipDir.listFiles();
         String[] actual = new String[zipDirs.length];
         for (int i = 0; i < actual.length; i++)
