@@ -21,7 +21,7 @@ import java.io.IOException;
 public class Submission
 {
     private File sb2;
-    private File zipDir;
+    private File zipsDir;
     private File json;
     private File[] svgs;
     private File[] pngs;
@@ -35,7 +35,7 @@ public class Submission
     public Submission(File sb2)
     {
         this.sb2 = sb2;
-        zipDir = new File("zips");
+        zipsDir = new File("zips");
     }
 
     /**
@@ -55,9 +55,9 @@ public class Submission
      */
     public boolean isValid()
     {
-        String filename = sb2.getName();
-        int len = filename.length();
-        String ext = filename.substring(len - 4);
+        String sb2Name = sb2.getName();
+        int len = sb2Name.length();
+        String ext = sb2Name.substring(len - 4);
         return ext.equals(".sb2") && sb2.isFile();
     }
 
@@ -68,16 +68,16 @@ public class Submission
      */
     public void convertToZip() throws IOException
     {
-        if (!zipDir.exists())
+        if (!zipsDir.exists())
         {
-            zipDir.mkdir();
+            zipsDir.mkdir();
         }
-        String sb2name = sb2.getName();
-        int len = sb2name.length();
         if (this.isValid())
         {
-            String zipname = this.getZipName();
-            File zip = new File(zipDir, zipname);
+            String sb2Name = sb2.getName();
+            int len = sb2Name.length();
+            String zipName = this.getZipName();
+            File zip = new File(zipsDir, zipName);
             if (!zip.exists())
             {
                 Files.copy(sb2.toPath(), zip.toPath());
@@ -99,15 +99,15 @@ public class Submission
         if (this.isValid())
         {
             String zipName = this.getZipName();
-            int len = sb2.getName().length();
-            String zipDirName = sb2.getName().substring(0, len - 4);
-            File dir = new File(zipDir, zipDirName);
-            dir.mkdir();
+            int len = zipName.length();
+            String zipDirName = zipName.substring(0, len - 4);
+            File zipDir = new File(zipsDir, zipDirName);
+            zipDir.mkdir();
 
             // Move .zip into directory.
-            File zip = new File(zipDir, zipName);
-            File move = new File(dir, zipName);
-            Files.copy(zip.toPath(), move.toPath());
+            File zip = new File(zipsDir, zipName);
+            File copy = new File(zipDir, zipName);
+            Files.copy(zip.toPath(), copy.toPath());
         
             // Unzip file
             //

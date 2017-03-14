@@ -92,15 +92,15 @@ public class SubmissionTest
         boolean[] expected = new boolean[sb2s.length];
         for (int i = 0; i < expected.length; i++)
         {
-            String filename = sb2s[i].getName();
-            int len = filename.length();
-            String ext = filename.substring(len - 4);
+            String sb2Name = sb2s[i].getName();
+            int len = sb2Name.length();
+            String ext = sb2Name.substring(len - 4);
             expected[i] = ext.equals(".sb2") && sb2s[i].isFile();
         }
         
         // Check each actaul file validity.
         boolean[] actual = new boolean[submissions.length];
-        for (int i = 0; i < submissions.length; i++)
+        for (int i = 0; i < actual.length; i++)
         {
             actual[i] = submissions[i].isValid();
         }
@@ -116,12 +116,6 @@ public class SubmissionTest
     @Test
     public void testZip() throws IOException
     {
-        // Copy and convert actual files to .zip.
-        for (int i = 0; i < submissions.length; i++)
-        {
-            submissions[i].convertToZip();
-        }
-        
         // Copy and convert expected files to .zip.
         File expectedDir = new File("expected");
         if (!expectedDir.exists())
@@ -130,17 +124,23 @@ public class SubmissionTest
         }
         for (int i = 0; i < sb2s.length; i++)
         {
-            String sb2name = sb2s[i].getName();
-            int len = sb2name.length();
-            if (sb2name.substring(len - 4).equals(".sb2") && sb2s[i].isFile())
+            String sb2Name = sb2s[i].getName();
+            int len = sb2Name.length();
+            if (sb2Name.substring(len - 4).equals(".sb2") && sb2s[i].isFile())
             {
-                String zipname = sb2name.substring(0, len - 4) + ".zip";
-                File copy = new File(expectedDir, zipname);
+                String zipName = sb2Name.substring(0, len - 4) + ".zip";
+                File copy = new File(expectedDir, zipName);
                 if (!copy.exists())
                 {
                     Files.copy(sb2s[i].toPath(), copy.toPath());
                 }
             }
+        }
+        
+        // Copy and convert actual files to .zip.
+        for (int i = 0; i < submissions.length; i++)
+        {
+            submissions[i].convertToZip();
         }
         
         // Get expected filenames.
@@ -178,10 +178,12 @@ public class SubmissionTest
         }
         
         // Get list of expected dir names.
-        String[] expected = new String[submissions.length]; 
-        for (int i = 0; i < submissions.length; i++)
+        File expectedDir = new File("expected");
+        File[] expectedZips = expectedDir.listFiles(); 
+        String[] expected = new String[expectedZips.length]; 
+        for (int i = 0; i < expected.length; i++)
         {
-            String zipName = submissions[i].getName();
+            String zipName = expectedZips[i].getName();
             int len = zipName.length();
             expected[i] = zipName.substring(0, len - 4);
         }
@@ -193,8 +195,8 @@ public class SubmissionTest
         }
 
         // Get list of new zip dirs.
-        File zipDir = new File("zips");
-        File[] zipDirs = zipDir.listFiles();
+        File zipsDir = new File("zips");
+        File[] zipDirs = zipsDir.listFiles();
         String[] actual = new String[zipDirs.length];
         for (int i = 0; i < actual.length; i++)
         {
