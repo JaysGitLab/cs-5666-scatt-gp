@@ -67,10 +67,9 @@ public class Submission
 
     /**
      * Convert .sb2 to .zip.
-     *
-     * @throws IOException 
+     * Handles valid .sb2 test internally.
      */
-    public void convertToZip() throws IOException
+    public void convertToZip()
     {
         if (!zipsDir.exists())
         {
@@ -84,7 +83,14 @@ public class Submission
             File zip = new File(zipsDir, zipName);
             if (!zip.exists())
             {
-                Files.copy(sb2.toPath(), zip.toPath());
+                try
+                {
+                    Files.copy(sb2.toPath(), zip.toPath());
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -94,10 +100,9 @@ public class Submission
      * Move .zip into directory.
      * Unzip files.
      * Delete original .zip.
-     *
-     * @throws IOException 
+     * Handles valid .sb2 test internally.
      */
-    public void unZip() throws IOException
+    public void unZip()
     {
         // Create zip named directory.
         if (this.isValid())
@@ -111,7 +116,14 @@ public class Submission
             // Move .zip into directory.
             File zip = new File(zipsDir, zipName);
             File copy = new File(zipDir, zipName);
-            Files.copy(zip.toPath(), copy.toPath());
+            try
+            {
+                Files.copy(zip.toPath(), copy.toPath());
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
 
             // Unzip file.
             unZip(copy, zipDir);
