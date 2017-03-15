@@ -200,7 +200,12 @@ public class SubmissionTest
         String[] actual = new String[zipDirs.length];
         for (int i = 0; i < actual.length; i++)
         {
-            actual[i] = zipDirs[i].getName();
+            // Only track directories with more than one file.
+            // Tests more than original .zip file exists (unzip success).
+            if (zipDirs[i].isDirectory() && zipDirs[i].listFiles().length > 1)
+            {
+                actual[i] = zipDirs[i].getName();
+            }
         }
 
         assertArrayEquals("should be same", expected, actual);

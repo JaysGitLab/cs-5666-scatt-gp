@@ -1,6 +1,10 @@
 import java.io.File;
 import java.nio.file.Files;
 import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 /**
  * Submission.java
@@ -108,12 +112,57 @@ public class Submission
             File zip = new File(zipsDir, zipName);
             File copy = new File(zipDir, zipName);
             Files.copy(zip.toPath(), copy.toPath());
-        
-            // Unzip file
-            //
 
-            // Delete original .zip. 
+            // Unzip file.
+            unZip(copy, zipDir);
+            
+            // Delete original and copied .zips. 
             zip.delete();
+            copy.delete();
+        }
+    }
+
+    /**
+     * Unzip utility.
+     * Adapted from Pankaj
+     * http://www.journaldev.com/960/java-unzip-file-example
+     *
+     * @param zip 
+     * @param destDir 
+     */
+    private void unZip(File zip, File destDir)
+    {
+        FileInputStream fis;
+
+        // Buffer for read and write data to file.
+        byte[] buffer = new byte[1024];
+
+        try
+        {
+            fis = new FileInputStream(zip);
+            ZipInputStream zis = new ZipInputStream(fis);
+            ZipEntry ze = zis.getNextEntry();
+            while (ze != null)
+            {
+                String fileName = ze.getName();
+                File newFile = new File(destDir + File.separator + fileName);
+                FileOutputStream fos = new FileOutputStream(newFile);
+                int len;
+                while ((len = zis.read(buffer)) > 0)
+                {
+                    fos.write(buffer, 0, len);
+                }
+                fos.close();
+                zis.closeEntry();
+                ze = zis.getNextEntry();
+            }
+            zis.closeEntry();
+            zis.close();
+            fis.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
         }
     }
 
@@ -122,7 +171,7 @@ public class Submission
      *
      * @return zipName
      */
-    public String getZipName()
+    private String getZipName()
     {
         String sb2name = sb2.getName();
         int len = sb2name.length();
