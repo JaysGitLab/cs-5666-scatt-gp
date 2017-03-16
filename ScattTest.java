@@ -1,4 +1,6 @@
 import org.junit.Test;
+import java.io.File;
+import static org.junit.Assert.assertTrue;
 
 /**
  * ScattTest.java
@@ -18,4 +20,14 @@ import org.junit.Test;
  */
 public class ScattTest
 {
+    /**
+     * Test Valid Folder.
+     */
+    @Test
+    public void testValidFolder()
+    {
+        File dirName = new File("Test");
+        assertTrue(dirName.exists());
+
+    }
 }

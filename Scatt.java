@@ -1,3 +1,6 @@
+import java.lang.String;
+import java.io.*;
+
 /**
  * Scatt.java
  *  
@@ -19,5 +22,26 @@ public class Scatt
 {
     public static void main(String[] args)
     {
+
+    }
+
+    /**
+     * Check to see if folder is valid.
+     *
+     * @return true or false
+     */
+    public static Boolean readValidDirectory(String dirName)
+        throws IOException
+    {
+        File folder = new File(dirName);
+        if (folder.exists() || folder.isDirectory())
+        {
+           String[] files = folder.list();
+           if (files.length > 0)
+           {
+               return true;
+           }
+        }
+        return false;
     }
 }
