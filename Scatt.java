@@ -25,6 +25,7 @@ public class Scatt
         System.out.println("Please enter the folder name: ");
         String folderName = System.console().readLine();
         Boolean isValid = readValidDirectory(folderName);
+        System.out.println(isValid);
     }
 
     /**

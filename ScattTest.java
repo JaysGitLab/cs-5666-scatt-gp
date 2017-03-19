@@ -1,6 +1,9 @@
 import org.junit.Test;
 import java.io.File;
+import java.io.IOException;
 import static org.junit.Assert.assertTrue;
+import org.junit.Rule;
+import org.junit.rules.TemporaryFolder;
 
 /**
  * ScattTest.java
@@ -20,14 +23,24 @@ import static org.junit.Assert.assertTrue;
  */
 public class ScattTest
 {
+    @Rule
+    public TemporaryFolder folder = new TemporaryFolder();
+    private File testDir;
+    private File testFile;
+    public Scatt testScatt;
+
     /**
      * Test Valid Folder.
      */
     @Test
-    public void testValidFolder()
+    public void testValidFolder() throws IOException
     {
-        File dirName = new File("Test");
-        assertTrue(dirName.exists());
-
+        testScatt = new Scatt();
+        testDir = folder.newFolder("testDir");
+        testFile = new File(testDir.getName(), "testFile.txt");
+        assertTrue(testDir.exists());
+        assertTrue(testFile.exists());
+        //assertTrue(testScatt.readValidDirectory(testDir.getName()));
+        
     }
 }
