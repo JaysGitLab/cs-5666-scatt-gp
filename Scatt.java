@@ -22,7 +22,9 @@ public class Scatt
 {
     public static void main(String[] args)
     {
-
+        System.out.println("Please enter the folder name: ");
+        String folderName = System.console().readLine();
+        Boolean isValid = readValidDirectory(folderName);
     }
 
     /**
@@ -31,7 +33,6 @@ public class Scatt
      * @return true or false
      */
     public static Boolean readValidDirectory(String dirName)
-        throws IOException
     {
         File folder = new File(dirName);
         if (folder.exists() || folder.isDirectory())
