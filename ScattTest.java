@@ -37,10 +37,10 @@ public class ScattTest
     {
         testScatt = new Scatt();
         testDir = folder.newFolder("testDir");
-        testFile = new File(testDir.getName(), "testFile.txt");
-        assertTrue(testDir.exists());
-        assertTrue(testFile.exists());
-        //assertTrue(testScatt.readValidDirectory(testDir.getName()));
+        testFile = folder.newFile("testFile.txt");
+        //assertTrue(testDir.exists());
+        //assertTrue(testFile.exists());
+        assertTrue(testScatt.readValidDirectory(testDir.getName()));
         
     }
 }
