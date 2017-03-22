@@ -16,21 +16,22 @@ default:
 	@echo "usage: make target"
 	@echo "available targets: compile, test, clean, check, customcheck"
 
-compile: Scatt.java ScattTest.java
-	javac -cp .:$(JUNIT_JAR) ScattTest.java
-	javac Scatt.java
+compile: Scatt.java ScattTest.java Submission.java SubmissionTest.java
+	javac -cp .:$(JUNIT_JAR) ScattTest.java SubmissionTest.java
+	javac Scatt.java Submission.java
 
-jar: Scatt.class ScattTest.class
-	jar -cvmf MANIFEST.MF Scatt.jar Scatt.class ScattTest.class
+jar: Scatt.class ScattTest.class Submission.class
+	jar -cvmf MANIFEST.MF Scatt.jar Scatt.class ScattTest.class Submission.class SubmissionTest.class
 
 clean:
-	rm -f Scatt.class
-	rm -f ScattTest.class
+	rm -f *.class
 	rm -f Scatt.jar
+	rm -rf expected
+	rm -rf zips 
 
-test: Scatt.class ScattTest.class 
-	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore ScattTest
+test: Submission.class SubmissionTest.class
+	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore SubmissionTest
 
-check: Scatt.java ScattTest.java
-	checkstyle Scatt.java ScattTest.java
+check: Scatt.java ScattTest.java Submission.java SubmissionTest.java
+	checkstyle Scatt.java ScattTest.java Submission.java SubmissionTest.java
 

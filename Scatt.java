@@ -7,7 +7,7 @@ import java.io.*;
  * @author Kara Beason
  * @author Cydney Caldwell
  * @author Michelle Melton
- * @version Feb 2017
+ * @version Mar 2017
  */
 
 /**
@@ -16,10 +16,15 @@ import java.io.*;
  * @author Kara Beason
  * @author Cydney Caldwell
  * @author Michelle Melton
- * @version Feb 2017
+ * @version Mar 2017
  */
 public class Scatt
 {
+    /**
+     * Main method for Scatt class.
+     *
+     * @param args 
+     */
     public static void main(String[] args)
     {
         System.out.println("Please enter the folder name: ");
