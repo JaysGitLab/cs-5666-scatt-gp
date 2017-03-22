@@ -2,8 +2,9 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 import static org.junit.Assert.assertTrue;
-import org.junit.Rule;
-import org.junit.rules.TemporaryFolder;
+import static org.junit.Assert.assertFalse;
+import org.junit.Before;
+import org.junit.After;
 
 /**
  * ScattTest.java
@@ -23,24 +24,54 @@ import org.junit.rules.TemporaryFolder;
  */
 public class ScattTest
 {
-    @Rule
-    public TemporaryFolder folder = new TemporaryFolder();
-    private File testDir;
-    private File testFile;
     public Scatt testScatt;
+    private File testDir;
+
+    /**
+     * Set up before tests.
+     */
+    @Before
+    public void setUp()
+    {
+        testScatt = new Scatt();
+    }
 
     /**
      * Test Valid Folder.
      */
     @Test
-    public void testValidFolder() throws IOException
+    public void testValidFolder()
     {
-        testScatt = new Scatt();
-        testDir = folder.newFolder("testDir");
-        testFile = folder.newFile("testFile.txt");
-        //assertTrue(testDir.exists());
-        //assertTrue(testFile.exists());
-        assertTrue(testScatt.readValidDirectory(testDir.getName()));
-        
+        testDir = new File("submissions");
+        assertTrue(testScatt.readValidDirectory(testDir));
+    }
+
+    /**
+     * Test Invalid Folder - Not Directory.
+     */
+    @Test
+    public void testInvalidFolderNotDirectory()
+    {
+        testDir = new File("test.txt");
+        assertFalse(testScatt.readValidDirectory(testDir));
+    }
+
+    /**
+     * Test Invalid Folder - Empty.
+     */
+    @Test
+    public void testInvalidFolderEmpty()
+    {
+        testDir = new File("empty");
+        assertFalse(testScatt.readValidDirectory(testDir));
+    }
+
+    /**
+     * Tear down after tests.
+     */
+    @After
+    public void tearDown()
+    {
+        testDir.delete();
     }
 }

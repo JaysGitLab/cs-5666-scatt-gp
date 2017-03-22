@@ -29,8 +29,9 @@ clean:
 	rm -rf expected
 	rm -rf zips 
 
-test: Submission.class SubmissionTest.class
+test: Submission.class SubmissionTest.class Scatt.class ScattTest.class
 	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore SubmissionTest
+	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore ScattTest	
 
 check: Scatt.java ScattTest.java Submission.java SubmissionTest.java
 	checkstyle Scatt.java ScattTest.java Submission.java SubmissionTest.java

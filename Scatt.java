@@ -1,5 +1,4 @@
-import java.lang.String;
-import java.io.*;
+import java.io.File;
 
 /**
  * Scatt.java
@@ -28,26 +27,26 @@ public class Scatt
     public static void main(String[] args)
     {
         System.out.println("Please enter the folder name: ");
-        String folderName = System.console().readLine();
-        Boolean isValid = readValidDirectory(folderName);
-        System.out.println(isValid);
+        String dirName = System.console().readLine();
+        File directory = new File(dirName);
+        Boolean isValid = readValidDirectory(directory);
     }
 
     /**
      * Check to see if folder is valid.
      *
+     * @param dir directory file object
      * @return true or false
      */
-    public static Boolean readValidDirectory(String dirName)
+    public static Boolean readValidDirectory(File dir)
     {
-        File folder = new File(dirName);
-        if (folder.exists() || folder.isDirectory())
+        if (dir.exists() || dir.isDirectory())
         {
-           String[] files = folder.list();
-           if (files.length > 0)
-           {
-               return true;
-           }
+            String[] files = dir.list();
+            if (files.length > 0)
+            {
+                return true;
+            }
         }
         return false;
     }
