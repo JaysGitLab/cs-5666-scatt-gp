@@ -40,7 +40,7 @@ public class Scatt
      */
     public static Boolean readValidDirectory(File dir)
     {
-        if (dir.exists() || dir.isDirectory())
+        if (dir.exists() && dir.isDirectory())
         {
             String[] files = dir.list();
             if (files.length > 0)

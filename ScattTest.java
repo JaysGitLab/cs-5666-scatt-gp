@@ -1,6 +1,5 @@
 import org.junit.Test;
 import java.io.File;
-import java.io.IOException;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 import org.junit.Before;
@@ -24,7 +23,7 @@ import org.junit.After;
  */
 public class ScattTest
 {
-    public Scatt testScatt;
+    private Scatt testScatt;
     private File testDir;
 
     /**
@@ -73,5 +72,6 @@ public class ScattTest
     public void tearDown()
     {
         testDir.delete();
+        testScatt = null;
     }
 }
