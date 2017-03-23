@@ -1,1 +1,1 @@
-Main-Class: Scatt
+Main-Class: ScattReport

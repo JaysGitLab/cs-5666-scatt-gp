@@ -4,7 +4,7 @@
  * @author Kara Beason
  * @author Cydney Caldwell
  * @author Michelle Melton
- * @version Feb 2017
+ * @version Mar 2017
  */
 
 /**
@@ -13,11 +13,17 @@
  * @author Kara Beason
  * @author Cydney Caldwell
  * @author Michelle Melton
- * @version Feb 2017
+ * @version Mar 2017
  */
-public class Scatt
+public class ScattReport
 {
+    /**
+     * Main method for ScattReport class.
+     *
+     * @param args 
+     */
     public static void main(String[] args)
     {
+        System.out.println("Report Pass");
     }
 }
