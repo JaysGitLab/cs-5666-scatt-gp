@@ -131,8 +131,7 @@ public class Submission
             // Unzip file.
             unZip(copy, zipDir);
             
-            // Delete original and copied .zips. 
-            zip.delete();
+            // Delete copied .zips. 
             copy.delete();
         }
     }
