@@ -19,21 +19,23 @@ import org.junit.After;
  * @author Kara Beason
  * @author Cydney Caldwell
  * @author Michelle Melton
- * @version Feb 2017
+ * @version Mar 2017
  */
 public class ScattReportTest
 {
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+    private final ByteArrayOutputStream outContent = 
+        new ByteArrayOutputStream();
+    private ScattReport scattReportTests;
 
     /**
      * Set up before tests.
      */
     @Before
-    public void setUpStreams()
+    public void setUp()
     {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
+        scattReportTests = new ScattReport();
     }
     
     /**
@@ -42,19 +44,9 @@ public class ScattReportTest
     @Test
     public void out()
     {
-        System.out.print("Report Pass");
-        assertEquals("Report Pass", outContent.toString());
-    }
-
-    /**
-     * Test for the report failing.
-     */
-    @Test
-    public void err()
-    {
-        System.err.print("Report Fail");
-        assertEquals("Report Fail", errContent.toString());
-    }
+        scattReportTests.makeReport();
+        assertEquals("Report Pass\n", outContent.toString());
+    }    
 
     /**
      * Tear down after tests.
@@ -64,5 +56,6 @@ public class ScattReportTest
     {
         System.setOut(null);
         System.setErr(null);
+        scattReportTests = null;
     }
 }

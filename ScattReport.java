@@ -24,6 +24,13 @@ public class ScattReport
      */
     public static void main(String[] args)
     {
+    }
+
+    /**
+     * Method for makeing the report.
+     */
+    public static void makeReport()
+    {
         System.out.println("Report Pass");
     }
 }
