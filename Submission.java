@@ -26,10 +26,8 @@ public class Submission
 {
     private File sb2;
     private File zipsDir;
+    private File unzipsDir;
     private File json;
-    private File[] svgs;
-    private File[] pngs;
-    private File[] wavs;
     
     /**
      * Submission constructor.
@@ -40,6 +38,7 @@ public class Submission
     {
         this.sb2 = sb2;
         zipsDir = new File("zips");
+        unzipsDir = new File("unzips");
     }
 
     /**
@@ -107,10 +106,14 @@ public class Submission
         // Create zip named directory.
         if (this.isValid())
         {
+            if (!unzipsDir.exists())
+            {
+                unzipsDir.mkdir();
+            }
             String zipName = this.getZipName();
             int len = zipName.length();
             String zipDirName = zipName.substring(0, len - 4);
-            File zipDir = new File(zipsDir, zipDirName);
+            File zipDir = new File(unzipsDir, zipDirName);
             zipDir.mkdir();
 
             // Move .zip into directory.

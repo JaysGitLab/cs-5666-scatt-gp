@@ -195,7 +195,7 @@ public class SubmissionTest
         }
 
         // Get list of new zip dirs.
-        File zipsDir = new File("zips");
+        File zipsDir = new File("unzips");
         File[] zipDirs = zipsDir.listFiles();
         String[] actual = new String[zipDirs.length];
         for (int i = 0; i < actual.length; i++)

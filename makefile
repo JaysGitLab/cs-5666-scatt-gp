@@ -28,6 +28,7 @@ clean:
 	rm -f Scatt.jar
 	rm -rf expected
 	rm -rf zips 
+	rm -rf unzips
 
 test: Submission.class SubmissionTest.class Scatt.class ScattTest.class
 	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore SubmissionTest
