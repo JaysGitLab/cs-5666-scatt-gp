@@ -1,6 +1,7 @@
 import java.io.File;
 import java.nio.file.Files;
 import java.io.IOException;
+import java.lang.IllegalArgumentException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.zip.ZipEntry;
@@ -76,9 +77,7 @@ public class Submission
         }
         if (this.isValid())
         {
-            String sb2Name = sb2.getName();
-            int len = sb2Name.length();
-            String zipName = this.getZipName();
+            String zipName = getBaseName(sb2) + ".zip";
             File zip = new File(zipsDir, zipName);
             if (!zip.exists())
             {
@@ -110,15 +109,14 @@ public class Submission
             {
                 unzipsDir.mkdir();
             }
-            String zipName = this.getZipName();
-            int len = zipName.length();
-            String zipDirName = zipName.substring(0, len - 4);
-            File zipDir = new File(unzipsDir, zipDirName);
-            zipDir.mkdir();
+            String zipName = getBaseName(sb2) + ".zip";
+            String zipDirName = getBaseName(sb2);
+            File unzipDir = new File(unzipsDir, zipDirName);
+            unzipDir.mkdir();
 
             // Move .zip into directory.
             File zip = new File(zipsDir, zipName);
-            File copy = new File(zipDir, zipName);
+            File copy = new File(unzipDir, zipName);
             try
             {
                 Files.copy(zip.toPath(), copy.toPath());
@@ -129,9 +127,9 @@ public class Submission
             }
 
             // Unzip file.
-            unZip(copy, zipDir);
+            unZip(copy, unzipDir);
             
-            // Delete copied .zips. 
+            // Delete copied .zip. 
             copy.delete();
         }
     }
@@ -181,15 +179,24 @@ public class Submission
     }
 
     /**
-     * Get .zip name.
+     * Get filename without extension.
      *
-     * @return zipName
+     * @param file 
+     * @throws IllegalArgumentException
+     * @return base filename
      */
-    private String getZipName()
+    private String getBaseName(File file) throws IllegalArgumentException
     {
-        String sb2name = sb2.getName();
-        int len = sb2name.length();
-        String zipName = sb2name.substring(0, len - 4) + ".zip";
-        return zipName;
+        String filename = file.getName();
+        int len = filename.length();
+        if (filename.charAt(len - 4) == '.')
+        {
+            String basename = filename.substring(0, len - 4);
+            return basename;
+        }
+        else
+        {
+            throw new IllegalArgumentException("Filename does not end in extension");
+        }
     }
 }
