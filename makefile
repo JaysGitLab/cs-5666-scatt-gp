@@ -16,12 +16,12 @@ default:
 	@echo "usage: make target"
 	@echo "available targets: compile, test, clean, check, customcheck"
 
-compile: Scatt.java ScattTest.java Submission.java SubmissionTest.java
-	javac -cp .:$(JUNIT_JAR) ScattTest.java SubmissionTest.java
-	javac Scatt.java Submission.java
+compile: Scatt.java ScattTest.java Submission.java SubmissionTest.java Report.java ReportTest.java
+	javac -cp .:$(JUNIT_JAR) ScattTest.java SubmissionTest.java ReportTest.java
+	javac Scatt.java Report.java Submission.java
 
-jar: Scatt.class ScattTest.class Submission.class
-	jar -cvmf MANIFEST.MF Scatt.jar Scatt.class ScattTest.class Submission.class SubmissionTest.class
+jar: Report.class ReportTest.class
+	jar -cvmf MANIFEST.MF Scatt.jar Scatt.class ScattTest.class Submission.class SubmissionTest.class Report.jar Report.class ReportTest.class
 
 clean:
 	rm -f *.class
@@ -29,11 +29,15 @@ clean:
 	rm -rf expected
 	rm -rf zips 
 	rm -rf unzips
+	rm -f ScattReport.class
+	rm -f ReportTest.class
+	rm -f ScattReport.jar
 
-test: Submission.class SubmissionTest.class Scatt.class ScattTest.class
+test: Report.class Report.class Submission.class SubmissionTest.class
 	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore SubmissionTest
-	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore ScattTest	
+	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore ScattTest
+	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore ReportTest
 
-check: Scatt.java ScattTest.java Submission.java SubmissionTest.java
-	checkstyle Scatt.java ScattTest.java Submission.java SubmissionTest.java
+check: Scatt.java ScattTest.java Submission.java SubmissionTest.java Report.java ReportTest.java
+	checkstyle Scatt.java ScattTest.java Submission.java SubmissionTest.java Report.java ReportTest.java
 
