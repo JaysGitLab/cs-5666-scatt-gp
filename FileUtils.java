@@ -1,7 +1,6 @@
 import java.io.File;
 import java.nio.file.Files;
 import java.io.IOException;
-import java.lang.IllegalArgumentException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.zip.ZipEntry;
@@ -59,18 +58,19 @@ public class FileUtils
      * Unzip files.
      * Delete original .zip.
      *
+     * @param zipsDir 
      * @param unzipsDir 
-     * @param zipFile 
+     * @param sb2 
      */
-    public static void unZip(File unzipsDir, File zipFile)
+    public static void unZip(File zipsDir, File unzipsDir, File sb2)
     {
         // Create zip named directory.
         if (!unzipsDir.exists())
         {
             unzipsDir.mkdir();
         }
-        String zipDirName = getBaseName(zipFile);
-        String zipName = zipFile.getName(); 
+        String zipDirName = getBaseName(sb2);
+        String zipName = zipDirName + ".zip"; 
         File unzipDir = new File(unzipsDir, zipDirName);
         unzipDir.mkdir();
 
@@ -101,7 +101,7 @@ public class FileUtils
      * @param zip 
      * @param destDir 
      */
-    private void unZip(File zip, File destDir)
+    private static void unZip(File zip, File destDir)
     {
         FileInputStream fis;
 
@@ -143,7 +143,7 @@ public class FileUtils
      * @param file 
      * @return base filename
      */
-    private String getBaseName(File file)
+    private static String getBaseName(File file)
     {
         String filename = file.getName();
         int len = filename.length();
