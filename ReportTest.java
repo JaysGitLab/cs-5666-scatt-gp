@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.After;
 
 /**
- * ScattTest.java
+ * ReportTest.java
  *
  * @author Kara Beason
  * @author Cydney Caldwell
@@ -21,11 +21,11 @@ import org.junit.After;
  * @author Michelle Melton
  * @version Mar 2017
  */
-public class ScattReportTest
+public class ReportTest
 {
     private final ByteArrayOutputStream outContent = 
         new ByteArrayOutputStream();
-    private ScattReport scattReportTests;
+    private Report scattReport;
 
     /**
      * Set up before tests.
@@ -34,17 +34,16 @@ public class ScattReportTest
     public void setUp()
     {
         System.setOut(new PrintStream(outContent));
-        System.setErr(new PrintStream(errContent));
-        scattReportTests = new ScattReport();
+        scattReport = new Report();
     }
     
     /**
-    *  Test for the reprot passing.
+    *  Test for the report passing.
     */
     @Test
-    public void out()
+    public void makeReportTest()
     {
-        scattReportTests.makeReport();
+        scattReport.makeReport();
         assertEquals("Report Pass\n", outContent.toString());
     }    
 
@@ -55,7 +54,6 @@ public class ScattReportTest
     public void tearDown()
     {
         System.setOut(null);
-        System.setErr(null);
-        scattReportTests = null;
+        scattReport = null;
     }
 }
