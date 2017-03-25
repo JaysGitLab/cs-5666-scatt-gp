@@ -30,6 +30,20 @@ public class Scatt
         String dirName = System.console().readLine();
         File directory = new File(dirName);
         Boolean isValid = readValidDirectory(directory);
+        if (!isValid)
+        {
+            System.out.println("Invalid folder.");
+            return;
+        }
+        
+        File[] sb2s = directory.listFiles();
+        Submission[] submissions = new Submission[sb2s.length];
+        for (int i = 0; i < submissions.length; i++)
+        {
+            submissions[i] = new Submission(sb2s[i]);
+            submissions[i].convertToZip();
+            submissions[i].unZip();
+        }
     }
 
     /**

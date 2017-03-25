@@ -71,10 +71,7 @@ public class Submission
     }
 
     /**
-     * Make .zip named directory.
-     * Move .zip into directory.
-     * Unzip files.
-     * Delete original .zip.
+     * Unzip file. 
      * Handles valid .sb2 test internally.
      */
     public void unZip()

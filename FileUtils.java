@@ -25,8 +25,8 @@ import java.util.zip.ZipInputStream;
 public class FileUtils 
 {
     /**
+     * Copy file to zips directory to preserve original.
      * Convert file to .zip.
-     * Save in zips directory.
      *
      * @param zipsDir 
      * @param file 
@@ -53,10 +53,10 @@ public class FileUtils
     }
 
     /**
-     * Make .zip named directory.
-     * Move .zip into directory.
+     * Make zip named directory in unzips directory.
+     * Copy zip into .zip named directory.
      * Unzip files.
-     * Delete original .zip.
+     * Delete copied zip.
      *
      * @param zipsDir 
      * @param unzipsDir 
@@ -64,7 +64,6 @@ public class FileUtils
      */
     public static void unZip(File zipsDir, File unzipsDir, File sb2)
     {
-        // Create zip named directory.
         if (!unzipsDir.exists())
         {
             unzipsDir.mkdir();
@@ -74,7 +73,6 @@ public class FileUtils
         File unzipDir = new File(unzipsDir, zipDirName);
         unzipDir.mkdir();
 
-        // Move .zip into directory.
         File zip = new File(zipsDir, zipName);
         File copy = new File(unzipDir, zipName);
         try
@@ -86,10 +84,8 @@ public class FileUtils
             e.printStackTrace();
         }
 
-        // Unzip file.
         unZip(copy, unzipDir);
         
-        // Delete copied .zip. 
         copy.delete();
     }
 
@@ -145,9 +141,9 @@ public class FileUtils
      */
     private static String getBaseName(File file)
     {
-        String filename = file.getName();
-        int len = filename.length();
-        String basename = filename.substring(0, len - 4);
-        return basename;
+        String fileName = file.getName();
+        int len = fileName.length();
+        String baseName = fileName.substring(0, len - 4);
+        return baseName;
     }
 }

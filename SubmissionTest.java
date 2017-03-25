@@ -171,12 +171,6 @@ public class SubmissionTest
     @Test
     public void testUnzip() throws IOException
     {
-        // Copy and convert actual files to .zip.
-        for (int i = 0; i < submissions.length; i++)
-        {
-            submissions[i].convertToZip();
-        }
-        
         // Get list of expected dir names.
         File expectedDir = new File("expected");
         File[] expectedZips = expectedDir.listFiles(); 
@@ -188,9 +182,11 @@ public class SubmissionTest
             expected[i] = zipName.substring(0, len - 4);
         }
         
+        // Copy and convert actual files to .zip.
         // Unzip files.
         for (int i = 0; i < submissions.length; i++)
         {
+            submissions[i].convertToZip();
             submissions[i].unZip();
         }
 
@@ -201,7 +197,7 @@ public class SubmissionTest
         for (int i = 0; i < actual.length; i++)
         {
             // Only track directories with more than one file.
-            // Tests more than original .zip file exists (unzip success).
+            // Tests more than original zip file exists (unzip success).
             if (zipDirs[i].isDirectory() && zipDirs[i].listFiles().length > 1)
             {
                 actual[i] = zipDirs[i].getName();
@@ -217,9 +213,6 @@ public class SubmissionTest
     @After
     public void tearDown()
     {
-        // Delete expected files.
-        directory.delete();
-        
         // Set arrays to null.
         sb2s = null;
         submissions = null;
