@@ -3,8 +3,12 @@ import java.nio.file.Files;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
 
 /**
  * FileUtils.java
@@ -145,5 +149,27 @@ public class FileUtils
         int len = fileName.length();
         String baseName = fileName.substring(0, len - 4);
         return baseName;
+    }
+
+    /** 
+     * Read JSON file.
+     */
+    public static String parseJSONFile(String filePath)
+    {
+        JSONParser parser = new JSONParser();
+        String name = "kara";
+        try
+        {
+            Object obj = parser.parse(new FileReader(filePath));
+            JSONObject jsonObj = (JSONObject) obj;
+            name = (String) jsonObj.get("objName"); 
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return name;
+
+//        return "hi";
     }
 }

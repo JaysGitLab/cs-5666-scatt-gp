@@ -81,4 +81,15 @@ public class Submission
             FileUtils.unZip(zipsDir, unzipsDir, sb2);
         }
     }
+
+    /**
+     * Parse JSON file.
+     *
+     * @param filepath path to JSON file.
+     * @return name
+     */
+    public String parseJSONFile(String filePath)
+    {
+        return FileUtils.parseJSONFile(filePath);
+    }
 }

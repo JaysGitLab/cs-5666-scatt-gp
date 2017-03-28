@@ -4,7 +4,7 @@ import org.junit.After;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.util.Arrays;
 import java.nio.file.Files;
@@ -205,6 +205,15 @@ public class SubmissionTest
         }
 
         assertArrayEquals("should be same", expected, actual);
+    }
+
+    /**
+     * Test parsing valid JSON file.
+     */
+    @Test
+    public void testParseValidJSON()
+    {
+        assertEquals("Stage", submissions[0].parseJSONFile("project.json"));
     }
 
     /**
