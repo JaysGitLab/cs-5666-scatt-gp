@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileNotFoundException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import org.json.simple.JSONObject;
@@ -153,8 +154,13 @@ public class FileUtils
 
     /** 
      * Read JSON file.
+     *
+     * @param filePath - path to JSON file
+     * @returns JSONobj
+     * @throws Exception if file not found
      */
     public static String parseJSONFile(String filePath)
+    throws FileNotFoundException
     {
         JSONParser parser = new JSONParser();
         String name = "kara";
@@ -164,12 +170,14 @@ public class FileUtils
             JSONObject jsonObj = (JSONObject) obj;
             name = (String) jsonObj.get("objName"); 
         }
-        catch (Exception e)
+        catch (FileNotFoundException e)
         {
             e.printStackTrace();
         }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
         return name;
-
-//        return "hi";
     }
 }

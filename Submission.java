@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  * Submission.java
@@ -87,9 +88,21 @@ public class Submission
      *
      * @param filepath path to JSON file.
      * @return name
+     * @throws FileNotFoundException
      */
     public String parseJSONFile(String filePath)
+        throws FileNotFoundException
     {
-        return FileUtils.parseJSONFile(filePath);
+        String returned = "";
+        try
+        {
+            returned = FileUtils.parseJSONFile(filePath);
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+
+        return returned;
     }
 }

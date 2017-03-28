@@ -6,6 +6,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.nio.file.Files;
 import java.io.IOException;
@@ -209,9 +210,11 @@ public class SubmissionTest
 
     /**
      * Test parsing valid JSON file.
+     *
+     * @throws FileNotFoundException
      */
     @Test
-    public void testParseValidJSON()
+    public void testParseValidJSON() throws FileNotFoundException
     {
         assertEquals("Stage", submissions[0].parseJSONFile("project.json"));
     }

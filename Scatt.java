@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  * Scatt.java
@@ -43,6 +44,14 @@ public class Scatt
             submissions[i] = new Submission(sb2s[i]);
             submissions[i].convertToZip();
             submissions[i].unZip();
+        }
+        try
+        {
+            submissions[0].parseJSONFile("project.json");
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
         }
     }
 
