@@ -169,6 +169,7 @@ public class FileUtils
             Object obj = parser.parse(new FileReader(filePath));
             JSONObject jsonObj = (JSONObject) obj;
             name = (String) jsonObj.get("objName"); 
+            System.out.println(jsonObj);
         }
         catch (FileNotFoundException e)
         {
