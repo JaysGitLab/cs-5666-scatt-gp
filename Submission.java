@@ -79,6 +79,9 @@ public class Submission
         if (isValid())
         {
             FileUtils.unZip(zipsDir, unzipsDir, sb2);
+            String zipDir = FileUtils.getBaseName(sb2);
+            json = new File(unzipsDir + File.separator + zipDir 
+                + File.separator, "project.json");
         }
     }
 }

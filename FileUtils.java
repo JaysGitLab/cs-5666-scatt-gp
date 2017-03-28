@@ -84,7 +84,7 @@ public class FileUtils
             e.printStackTrace();
         }
 
-        unZip(copy, unzipDir);
+        unZipUtil(copy, unzipDir);
         
         copy.delete();
     }
@@ -97,7 +97,7 @@ public class FileUtils
      * @param zip 
      * @param destDir 
      */
-    private static void unZip(File zip, File destDir)
+    public static void unZipUtil(File zip, File destDir)
     {
         FileInputStream fis;
 
@@ -139,7 +139,7 @@ public class FileUtils
      * @param file 
      * @return base filename
      */
-    private static String getBaseName(File file)
+    public static String getBaseName(File file)
     {
         String fileName = file.getName();
         int len = fileName.length();
