@@ -20,8 +20,8 @@ compile: Scatt.java ScattTest.java Submission.java SubmissionTest.java FileUtils
 	javac -cp .:$(JUNIT_JAR) ScattTest.java SubmissionTest.java ReportTest.java
 	javac Scatt.java Submission.java FileUtils.java Report.java
 
-jar: Scatt.class Submission.class Report.class
-	jar -cvmf MANIFEST.MF Scatt.jar Scatt.class Submission.class Report.class
+jar: Scatt.class Submission.class FileUtils.class Report.class
+	jar -cvmf MANIFEST.MF Scatt.jar Scatt.class Submission.class FileUtils.class Report.class
 
 clean:
 	rm -f *.class
@@ -37,4 +37,3 @@ test: Submission.class SubmissionTest.class Scatt.class ScattTest.class FileUtil
 
 check: Scatt.java ScattTest.java Submission.java SubmissionTest.java FileUtils.java Report.java ReportTest.java
 	checkstyle Scatt.java ScattTest.java Submission.java SubmissionTest.java FileUtils.java Report.java ReportTest.java
-

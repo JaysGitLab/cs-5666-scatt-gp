@@ -44,7 +44,7 @@ public class Scatt
             submissions[i].convertToZip();
             submissions[i].unZip();
         }
-
+        
         Report report = new Report();
         report.makeReport();
     }
