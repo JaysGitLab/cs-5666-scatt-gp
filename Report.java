@@ -1,5 +1,5 @@
 /**
- * ScattReport.java
+ * Report.java
  *  
  * @author Kara Beason
  * @author Cydney Caldwell
@@ -8,7 +8,7 @@
  */
 
 /**
- * Scratch Code Analysis Tool for Teachers (SCATT). 
+ * Class for Scratch Report. 
  * 
  * @author Kara Beason
  * @author Cydney Caldwell
@@ -18,7 +18,7 @@
 public class Report
 {
     /**
-     * Method for makeing the report.
+     * Method for making the report.
      */
     public void makeReport()
     {

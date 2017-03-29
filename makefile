@@ -20,8 +20,8 @@ compile: Scatt.java ScattTest.java Submission.java SubmissionTest.java Report.ja
 	javac -cp .:$(JUNIT_JAR) ScattTest.java SubmissionTest.java ReportTest.java
 	javac Scatt.java Report.java Submission.java
 
-jar: Report.class ReportTest.class
-	jar -cvmf MANIFEST.MF Scatt.jar Scatt.class ScattTest.class Submission.class SubmissionTest.class Report.jar Report.class ReportTest.class
+jar: Scatt.class Submission.class
+	jar -cvmf MANIFEST.MF Scatt.jar Scatt.class Submission.class Report.class
 
 clean:
 	rm -f *.class
@@ -29,11 +29,8 @@ clean:
 	rm -rf expected
 	rm -rf zips 
 	rm -rf unzips
-	rm -f ScattReport.class
-	rm -f ReportTest.class
-	rm -f ScattReport.jar
 
-test: Report.class Report.class Submission.class SubmissionTest.class
+test: Submission.class SubmissionTest.class SubmissionTest.class Scatt.class ScattTest.class Report.class ReportTest.class
 	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore SubmissionTest
 	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore ScattTest
 	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore ReportTest

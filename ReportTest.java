@@ -14,7 +14,7 @@ import org.junit.After;
  */
 
 /**
- * Class to test Scatt class.
+ * Class to test Report class.
  *
  * @author Kara Beason
  * @author Cydney Caldwell
@@ -57,3 +57,4 @@ public class ReportTest
         scattReport = null;
     }
 }
+
