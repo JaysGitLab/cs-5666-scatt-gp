@@ -282,8 +282,8 @@ public class SubmissionTest
         attribute.put("soundName", "pop"); 
         attribute.put("md5", "83a9787d4cb6f3b7632b4ddfebf74367.wav");
         expectedArr.add(attribute);
-        
-        assertEquals(expectedArr, submissions[2].getJSONArrayAttribute("sounds"));
+        expectedObject.put("sounds", expectedArr);
+        assertEquals(expectedObject.get("sounds").toString(), submissions[2].getJSONArrayAttribute("sounds").toString());
     }
 
 
