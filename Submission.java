@@ -86,7 +86,7 @@ public class Submission
             String zipDir = FileUtils.getBaseName(sb2);
             json = new File(unzipsDir + File.separator + zipDir 
                 + File.separator, "project.json");
-            System.out.println(json.getAbsolutePath());
+            //System.out.println(json.getAbsolutePath());
         }
     }
 
@@ -112,7 +112,7 @@ public class Submission
 
         try
         {
-            //System.out.println(json.getAbsolutePath());
+            System.out.println(json.getAbsolutePath());
             jsonObj = FileUtils.parseJSONFile(json.getAbsolutePath());
         }
         catch (FileNotFoundException e)

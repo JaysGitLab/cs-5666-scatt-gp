@@ -48,6 +48,8 @@ public class Scatt
         try
         {
             submissions[0].parseJSONFile();
+            submissions[1].parseJSONFile();
+            submissions[2].parseJSONFile();
         }
         catch (FileNotFoundException e)
         {

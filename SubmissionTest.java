@@ -218,7 +218,7 @@ public class SubmissionTest
     public void testParseValidJSON() throws FileNotFoundException
     {
         //submissions[0].parseJSONFile();
-        submissions[0].parseJSONFile();
+        submissions[2].parseJSONFile();
         assertNotNull("Should not be null",(Object) submissions[0].getJSONObject());
     }
 
