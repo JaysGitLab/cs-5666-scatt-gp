@@ -125,4 +125,16 @@ public class Submission
             System.out.println("json doesn't exist.");
         }
     }
+
+    /**
+     * Get value of JSON attribute.
+     *
+     * @param name - name of the attribute
+     * @returns value - value of attribute
+     */
+    public String getJSONAtttribute(String name)
+    {
+        String value = "";
+        return value = FileUtils.getJSONAttribute(jsonObj, name);
+    }
 }
