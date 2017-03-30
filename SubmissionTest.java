@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.nio.file.Files;
 import java.io.IOException;
 import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 
 /**
  * SubmissionTest.java
@@ -249,6 +250,42 @@ public class SubmissionTest
 
         assertEquals("Stage", submissions[2].getJSONAttribute("objName"));
     }
+
+    /**
+     * Test getting JSONArray attribute by name.
+     */
+    @Test
+    public void testGettingJSONArrayAttribute() throws FileNotFoundException
+    {
+        File directory = new File("submissions");
+        sb2s = directory.listFiles();
+        submissions = new Submission[sb2s.length];
+        for (int i = 0; i < submissions.length; i++)
+        {
+            submissions[i] = new Submission(sb2s[i]);
+            submissions[i].convertToZip();
+            submissions[i].unZip();
+            submissions[i].parseJSONFile();
+        }
+
+        JSONObject expectedObject = new JSONObject();
+        JSONArray expectedArr = new JSONArray();
+        // This is not just an array of values,
+        //  it contains an object.  So this
+        //  object is for adding to the array.
+        JSONObject attribute = new JSONObject();
+        attribute = new JSONObject();
+        attribute.put("soundID", 1);
+        attribute.put("sampleCount", 258);
+        attribute.put("rate", 11025);
+        attribute.put("format", "");
+        attribute.put("soundName", "pop"); 
+        attribute.put("md5", "83a9787d4cb6f3b7632b4ddfebf74367.wav");
+        expectedArr.add(attribute);
+        
+        assertEquals(expectedArr, submissions[2].getJSONArrayAttribute("sounds"));
+    }
+
 
     /**
      * Tear down after tests.

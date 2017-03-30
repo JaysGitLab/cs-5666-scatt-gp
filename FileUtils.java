@@ -195,4 +195,17 @@ public class FileUtils
         return value = (String) obj.get(name);
     }
 
+    /**
+     * Get JSONArray attribute by name.
+     *
+     * @param obj - JSON Object
+     * @param name - name of Array
+     * @return jsonArr
+     */
+    public static JSONArray getJSONArrayAttribute(JSONObject obj, String name)
+    {
+        JSONArray jsonArr = new JSONArray();
+        return jsonArr = (JSONArray) obj.get(name);
+    }
+
 }

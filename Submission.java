@@ -137,4 +137,15 @@ public class Submission
         String value = "";
         return value = FileUtils.getJSONAttribute(jsonObj, name);
     }
+
+    /** Get JSONArray attribute.
+     *
+     * @param name - name of the attribute
+     * @returns jsonArr - JSONArray
+     */
+    public JSONArray getJSONArrayAttribute(String name)
+    {
+        JSONArray jsonArr = new JSONArray();
+        return jsonArr = FileUtils.getJSONArrayAttribute(jsonObj, name);
+    }
 }

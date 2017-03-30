@@ -52,6 +52,8 @@ public class Scatt
             submissions[2].parseJSONFile();
 
             System.out.println(submissions[2].getJSONAttribute("objName"));
+            System.out.println(submissions[2].getJSONArrayAttribute("sounds"));
+
         }
         catch (FileNotFoundException e)
         {
