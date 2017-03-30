@@ -159,17 +159,17 @@ public class FileUtils
      * @returns JSONobj
      * @throws Exception if file not found
      */
-    public static String parseJSONFile(String filePath)
+    public static JSONObject parseJSONFile(String filePath)
     throws FileNotFoundException
     {
         JSONParser parser = new JSONParser();
-        String name = "kara";
+        JSONObject jsonObj = new JSONObject();
         try
         {
             Object obj = parser.parse(new FileReader(filePath));
-            JSONObject jsonObj = (JSONObject) obj;
-            name = (String) jsonObj.get("objName"); 
-            System.out.println(jsonObj);
+            jsonObj = (JSONObject) obj;
+           // name = (String) jsonObj.get("objName"); 
+           //System.out.println(jsonObj);
         }
         catch (FileNotFoundException e)
         {
@@ -179,6 +179,20 @@ public class FileUtils
         {
             ex.printStackTrace();
         }
-        return name;
+        return jsonObj;
     }
+
+    /**
+     * Get JSON object attribute's by name.
+     *
+     * @param obj - JSON Object
+     * @param name - attribute's name
+     * @return value
+     */
+    public static String getJSONAttribute(JSONObject obj, String name)
+    {
+        String value = "";
+        return value = (String) obj.get(name);
+    }
+
 }

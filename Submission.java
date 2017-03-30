@@ -90,6 +90,7 @@ public class Submission
      * @return name
      * @throws FileNotFoundException
      */
+    /*
     public String parseJSONFile(String filePath)
         throws FileNotFoundException
     {
@@ -104,5 +105,5 @@ public class Submission
         }
 
         return returned;
-    }
+    }*/
 }

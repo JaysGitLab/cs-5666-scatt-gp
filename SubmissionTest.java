@@ -213,11 +213,12 @@ public class SubmissionTest
      *
      * @throws FileNotFoundException
      */
-    @Test
+    /*@Test
     public void testParseValidJSON() throws FileNotFoundException
     {
         assertEquals("Stage", submissions[0].parseJSONFile("project.json"));
     }
+    */
 
     /**
      * Tear down after tests.
