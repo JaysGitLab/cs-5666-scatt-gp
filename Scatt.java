@@ -50,6 +50,8 @@ public class Scatt
             submissions[0].parseJSONFile();
             submissions[1].parseJSONFile();
             submissions[2].parseJSONFile();
+
+            System.out.println(submissions[2].getJSONAttribute("objName"));
         }
         catch (FileNotFoundException e)
         {

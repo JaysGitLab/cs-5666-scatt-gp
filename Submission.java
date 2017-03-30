@@ -132,7 +132,7 @@ public class Submission
      * @param name - name of the attribute
      * @returns value - value of attribute
      */
-    public String getJSONAtttribute(String name)
+    public String getJSONAttribute(String name)
     {
         String value = "";
         return value = FileUtils.getJSONAttribute(jsonObj, name);

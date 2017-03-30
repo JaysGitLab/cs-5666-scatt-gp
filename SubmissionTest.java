@@ -231,6 +231,26 @@ public class SubmissionTest
     }
 
     /**
+     * Test getting JSON attribute by name.
+     */
+    @Test
+    public void testGettingJSONAttribute() throws FileNotFoundException
+    {
+        File directory = new File("submissions");
+        sb2s = directory.listFiles();
+        submissions = new Submission[sb2s.length];
+        for (int i = 0; i < submissions.length; i++)
+        {
+            submissions[i] = new Submission(sb2s[i]);
+            submissions[i].convertToZip();
+            submissions[i].unZip();
+            submissions[i].parseJSONFile();
+        }
+
+        assertEquals("Stage", submissions[2].getJSONAttribute("objName"));
+    }
+
+    /**
      * Tear down after tests.
      */
     @After
