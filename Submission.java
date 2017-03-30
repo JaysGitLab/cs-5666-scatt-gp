@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 
 /**
  * Submission.java
@@ -23,6 +25,7 @@ public class Submission
     private File zipsDir;
     private File unzipsDir;
     private File json;
+    private JSONObject jsonObj;
     
     /**
      * Submission constructor.
@@ -83,7 +86,16 @@ public class Submission
             String zipDir = FileUtils.getBaseName(sb2);
             json = new File(unzipsDir + File.separator + zipDir 
                 + File.separator, "project.json");
+            System.out.println(json.getAbsolutePath());
         }
+    }
+
+    /**
+     * Get JSON object of submission.
+     */
+    public JSONObject getJSONObject()
+    {
+        return this.jsonObj;
     }
 
     /**
@@ -93,20 +105,24 @@ public class Submission
      * @return name
      * @throws FileNotFoundException
      */
-    /*
-    public String parseJSONFile(String filePath)
+    public void  parseJSONFile()
         throws FileNotFoundException
     {
-        String returned = "";
+        if (json != null){
+
         try
         {
-            returned = FileUtils.parseJSONFile(filePath);
+            //System.out.println(json.getAbsolutePath());
+            jsonObj = FileUtils.parseJSONFile(json.getAbsolutePath());
         }
         catch (FileNotFoundException e)
         {
             e.printStackTrace();
         }
-
-        return returned;
-    }*/
+        }
+        else 
+        {
+            System.out.println("json doesn't exist.");
+        }
+    }
 }

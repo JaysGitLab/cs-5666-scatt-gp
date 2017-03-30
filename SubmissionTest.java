@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.nio.file.Files;
 import java.io.IOException;
+import org.json.simple.JSONObject;
 
 /**
  * SubmissionTest.java
@@ -213,12 +214,13 @@ public class SubmissionTest
      *
      * @throws FileNotFoundException
      */
-    /*@Test
+    @Test
     public void testParseValidJSON() throws FileNotFoundException
     {
-        assertEquals("Stage", submissions[0].parseJSONFile("project.json"));
+        //submissions[0].parseJSONFile();
+        submissions[0].parseJSONFile();
+        assertNotNull("Should not be null",(Object) submissions[0].getJSONObject());
     }
-    */
 
     /**
      * Tear down after tests.

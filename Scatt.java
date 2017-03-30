@@ -45,14 +45,14 @@ public class Scatt
             submissions[i].convertToZip();
             submissions[i].unZip();
         }
-        /*try
+        try
         {
-            submissions[0].parseJSONFile("project.json");
+            submissions[0].parseJSONFile();
         }
         catch (FileNotFoundException e)
         {
             e.printStackTrace();
-        }*/
+        }
     }
 
     /**
