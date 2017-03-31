@@ -238,10 +238,6 @@ public class SubmissionTest
      */
     public void testParseInvalidJSON() throws FileNotFoundException
     {
-        File directory = new File("submissions");
-        sb2s = directory.listFiles();
-        submissions = new Submission[sb2s.length];
-        submissions[0] = new Submission(sb2s[0]);
         submissions[0].convertToZip();
         submissions[0].unZip();
         submissions[0].parseJSONFile();
@@ -257,10 +253,6 @@ public class SubmissionTest
     @Test
     public void testGettingJSONAttribute() throws FileNotFoundException
     {
-        File directory = new File("submissions");
-        sb2s = directory.listFiles();
-        submissions = new Submission[sb2s.length];
-        submissions[2] = new Submission(sb2s[2]);
         submissions[2].convertToZip();
         submissions[2].unZip();
         submissions[2].parseJSONFile();
@@ -276,10 +268,6 @@ public class SubmissionTest
     @Test
     public void testGettingJSONArrayAttribute() throws FileNotFoundException
     {
-        File directory = new File("submissions");
-        sb2s = directory.listFiles();
-        submissions = new Submission[sb2s.length];
-        submissions[2] = new Submission(sb2s[2]);
         submissions[2].convertToZip();
         submissions[2].unZip();
         submissions[2].parseJSONFile();
