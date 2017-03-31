@@ -23,6 +23,9 @@ compile: Scatt.java ScattTest.java Submission.java SubmissionTest.java FileUtils
 jar: Scatt.class Submission.class FileUtils.class
 	jar -cvmf MANIFEST.MF Scatt.jar Scatt.class Submission.class FileUtils.class
 
+run: Scatt.jar
+	java -jar Scatt.jar
+
 clean:
 	rm -f *.class
 	rm -f Scatt.jar
