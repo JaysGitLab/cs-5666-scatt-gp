@@ -53,6 +53,9 @@ public class Scatt
         {
             e.printStackTrace();
         }
+        
+        Report report = new Report();
+        report.makeReport();
     }
 
     /**

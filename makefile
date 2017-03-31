@@ -20,8 +20,8 @@ compile: Scatt.java ScattTest.java Submission.java SubmissionTest.java FileUtils
 	javac -cp .:$(JUNIT_JAR):json_simple.jar ScattTest.java SubmissionTest.java
 	javac -cp .:json_simple.jar Scatt.java Submission.java FileUtils.java
 
-jar: Scatt.class Submission.class FileUtils.class
-	jar -cvmf MANIFEST.MF Scatt.jar Scatt.class Submission.class FileUtils.class
+jar: Scatt.class Submission.class FileUtils.class Report.class
+	jar -cvmf MANIFEST.MF Scatt.jar Scatt.class Submission.class FileUtils.class Report.class
 
 run: Scatt.jar
 	java -jar Scatt.jar
@@ -37,6 +37,5 @@ test: Submission.class SubmissionTest.class Scatt.class ScattTest.class FileUtil
 	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR):json_simple.jar org.junit.runner.JUnitCore SubmissionTest
 	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore ScattTest	
 
-check: Scatt.java ScattTest.java Submission.java SubmissionTest.java FileUtils.java
-	checkstyle Scatt.java ScattTest.java Submission.java SubmissionTest.java FileUtils.java
-
+check: Scatt.java ScattTest.java Submission.java SubmissionTest.java FileUtils.java Report.java ReportTest.java
+	checkstyle Scatt.java ScattTest.java Submission.java SubmissionTest.java FileUtils.java Report.java ReportTest.java
