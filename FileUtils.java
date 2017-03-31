@@ -189,8 +189,7 @@ public class FileUtils
      */
     public static String getJSONAttribute(JSONObject obj, String name)
     {
-        String value = "";
-        return value = (String) obj.get(name);
+        return (String) obj.get(name);
     }
 
     /**
@@ -202,8 +201,7 @@ public class FileUtils
      */
     public static JSONArray getJSONArrayAttribute(JSONObject obj, String name)
     {
-        JSONArray jsonArr = new JSONArray();
-        return jsonArr = (JSONArray) obj.get(name);
+        return (JSONArray) obj.get(name);
     }
 
 }
