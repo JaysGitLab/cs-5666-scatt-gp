@@ -132,8 +132,7 @@ public class Submission
      */
     public String getJSONAttribute(String name)
     {
-        String value = "";
-        return value = FileUtils.getJSONAttribute(jsonObj, name);
+        return FileUtils.getJSONAttribute(jsonObj, name);
     }
 
     /** Get JSONArray attribute.
@@ -143,7 +142,6 @@ public class Submission
      */
     public JSONArray getJSONArrayAttribute(String name)
     {
-        JSONArray jsonArr = new JSONArray();
-        return jsonArr = FileUtils.getJSONArrayAttribute(jsonObj, name);
+        return FileUtils.getJSONArrayAttribute(jsonObj, name);
     }
 }

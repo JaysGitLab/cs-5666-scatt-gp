@@ -148,8 +148,7 @@ public class FileUtils
     {
         String fileName = file.getName();
         int len = fileName.length();
-        String baseName = fileName.substring(0, len - 4);
-        return baseName;
+        return fileName.substring(0, len - 4);
     }
 
     /** 
