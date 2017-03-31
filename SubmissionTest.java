@@ -266,6 +266,7 @@ public class SubmissionTest
      * @throws FileNotFoundException ex
      */
     @Test
+    @SuppressWarnings("unchecked")
     public void testGettingJSONArrayAttribute() throws FileNotFoundException
     {
         submissions[2].convertToZip();
