@@ -10,20 +10,29 @@
 
 JUNIT_JAR = /usr/share/java/junit-4.10.jar
 HAMCREST_JAR = /usr/share/java/hamcrest/core-1.1.jar
+JSON_SIMPLE_JAR = json_simple.jar
 CKSTYLE_COMMAND =  -jar /usr/local/checkstyle-5.5/checkstyle-5.5-all.jar
+APP_FILES = Scatt.java Submission.java Report.java FileUtils.java
+TEST_FILES = ScattTest.java SubmissionTest.java ReportTest.java
+CLASS_FILES = Scatt.class Submission.class Report.class FileUtils.class
 
 default: 
 	@echo "usage: make target"
-	@echo "available targets: compile, test, clean, check, customcheck"
+	@echo "available targets: compile, jar, run, scatt, clean, test, check"
 
-compile: Scatt.java ScattTest.java Submission.java SubmissionTest.java FileUtils.java
-	javac -cp .:$(JUNIT_JAR):json_simple.jar ScattTest.java SubmissionTest.java
-	javac -cp .:json_simple.jar Scatt.java Submission.java FileUtils.java
+compile: $(APP_FILES) $(TEST_FILES)
+	javac -cp .:$(JUNIT_JAR):$(JSON_SIMPLE_JAR) $(TEST_FILES)
+	javac -cp .:$(JSON_SIMPLE_JAR) $(APP_FILES)
 
-jar: Scatt.class Submission.class FileUtils.class Report.class
-	jar -cvmf MANIFEST.MF Scatt.jar Scatt.class Submission.class FileUtils.class Report.class
+jar: $(CLASS_FILES)
+	jar -cvmf MANIFEST.MF Scatt.jar $(CLASS_FILES)
 
 run: Scatt.jar
+	java -jar Scatt.jar
+
+scatt: $(APP_FILES)
+	javac -cp .:$(JSON_SIMPLE_JAR) $(APP_FILES)
+	jar -cvmf MANIFEST.MF Scatt.jar $(CLASS_FILES)
 	java -jar Scatt.jar
 
 clean:
@@ -34,8 +43,9 @@ clean:
 	rm -rf unzips
 
 test: Submission.class SubmissionTest.class Scatt.class ScattTest.class FileUtils.class
-	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR):json_simple.jar org.junit.runner.JUnitCore SubmissionTest
+	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR):$(JSON_SIMPLE_JAR) org.junit.runner.JUnitCore SubmissionTest
+	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore ReportTest
 	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore ScattTest	
 
-check: Scatt.java ScattTest.java Submission.java SubmissionTest.java FileUtils.java Report.java ReportTest.java
-	checkstyle Scatt.java ScattTest.java Submission.java SubmissionTest.java FileUtils.java Report.java ReportTest.java
+check: $(APP_FILES) $(TEST_FILES)
+	checkstyle $(APP_FILES) $(TEST_FILES)
