@@ -247,8 +247,7 @@ public class SubmissionTest
         submissions[0].parseJSONFile();
      
         assertNull(submissions[0].getJSONObject());
-    }
-        
+    } 
 
     /**
      * Test getting JSON attribute by name.
