@@ -1,6 +1,7 @@
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
@@ -232,6 +233,23 @@ public class SubmissionTest
     }
 
     /**
+     * Test parsing invalid JSON file.
+     */
+    public void testParseInvalidJSON() throws FileNotFoundException
+    {
+        File directory = new File("submissions");
+        sb2s = directory.listFiles();
+        submissions = new Submission[sb2s.length];
+        submissions[0] = new Submission(sb2s[0]);
+        submissions[0].convertToZip();
+        submissions[0].unZip();
+        submissions[0].parseJSONFile();
+     
+        assertNull(submissions[0].getJSONObject());
+    }
+        
+
+    /**
      * Test getting JSON attribute by name.
      */
     @Test
@@ -240,13 +258,10 @@ public class SubmissionTest
         File directory = new File("submissions");
         sb2s = directory.listFiles();
         submissions = new Submission[sb2s.length];
-        for (int i = 0; i < submissions.length; i++)
-        {
-            submissions[i] = new Submission(sb2s[i]);
-            submissions[i].convertToZip();
-            submissions[i].unZip();
-            submissions[i].parseJSONFile();
-        }
+        submissions[2] = new Submission(sb2s[2]);
+        submissions[2].convertToZip();
+        submissions[2].unZip();
+        submissions[2].parseJSONFile();
 
         assertEquals("Stage", submissions[2].getJSONAttribute("objName"));
     }
@@ -260,14 +275,12 @@ public class SubmissionTest
         File directory = new File("submissions");
         sb2s = directory.listFiles();
         submissions = new Submission[sb2s.length];
-        for (int i = 0; i < submissions.length; i++)
-        {
-            submissions[i] = new Submission(sb2s[i]);
-            submissions[i].convertToZip();
-            submissions[i].unZip();
-            submissions[i].parseJSONFile();
-        }
-
+        submissions[2] = new Submission(sb2s[2]);
+        submissions[2].convertToZip();
+        submissions[2].unZip();
+        submissions[2].parseJSONFile();
+     
+        // Create expected JSONArray.   
         JSONObject expectedObject = new JSONObject();
         JSONArray expectedArr = new JSONArray();
         // This is not just an array of values,
