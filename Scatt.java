@@ -27,13 +27,13 @@ public class Scatt
      */
     public static void main(String[] args)
     {
-        System.out.println("Please enter the folder name: ");
+        System.out.println("Please enter the folder path: ");
         String dirName = System.console().readLine();
         File directory = new File(dirName);
-        Boolean isValid = readValidDirectory(directory);
+        Boolean isValid = FileUtils.readValidDirectory(directory);
         if (!isValid)
         {
-            System.out.println("Invalid folder.");
+            System.out.println("Invalid folder path.");
             return;
         }
         
@@ -56,24 +56,5 @@ public class Scatt
         
         Report report = new Report();
         report.makeReport();
-    }
-
-    /**
-     * Check to see if folder is valid.
-     *
-     * @param dir directory file object
-     * @return true or false
-     */
-    public static Boolean readValidDirectory(File dir)
-    {
-        if (dir.exists() && dir.isDirectory())
-        {
-            String[] files = dir.list();
-            if (files.length > 0)
-            {
-                return true;
-            }
-        }
-        return false;
     }
 }

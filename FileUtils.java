@@ -151,6 +151,25 @@ public class FileUtils
         return fileName.substring(0, len - 4);
     }
 
+    /**
+     * Check to see if folder is valid.
+     *
+     * @param dir directory file object
+     * @return true or false
+     */
+    public static Boolean readValidDirectory(File dir)
+    {
+        if (dir.exists() && dir.isDirectory())
+        {
+            String[] files = dir.list();
+            if (files.length > 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /** 
      * Read JSON file.
      *

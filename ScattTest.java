@@ -42,7 +42,7 @@ public class ScattTest
     public void testValidFolder()
     {
         testDir = new File("submissions");
-        assertTrue(testScatt.readValidDirectory(testDir));
+        assertTrue(FileUtils.readValidDirectory(testDir));
     }
 
     /**
@@ -52,7 +52,7 @@ public class ScattTest
     public void testInvalidFolderNotDirectory()
     {
         testDir = new File("test.txt");
-        assertFalse(testScatt.readValidDirectory(testDir));
+        assertFalse(FileUtils.readValidDirectory(testDir));
     }
 
     /**
@@ -62,7 +62,7 @@ public class ScattTest
     public void testInvalidFolderEmpty()
     {
         testDir = new File("empty");
-        assertFalse(testScatt.readValidDirectory(testDir));
+        assertFalse(FileUtils.readValidDirectory(testDir));
     }
 
     /**
