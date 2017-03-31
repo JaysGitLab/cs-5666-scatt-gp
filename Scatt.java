@@ -39,7 +39,8 @@ public class Scatt
         
         File[] sb2s = directory.listFiles();
         Submission[] submissions = new Submission[sb2s.length];
-        try {
+        try
+        {
             for (int i = 0; i < submissions.length; i++)
             {
                 submissions[i] = new Submission(sb2s[i]);

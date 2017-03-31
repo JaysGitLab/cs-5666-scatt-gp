@@ -214,7 +214,7 @@ public class SubmissionTest
     /**
      * Test parsing valid JSON file.
      *
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException ex
      */
     @Test
     public void testParseValidJSON() throws FileNotFoundException
@@ -222,18 +222,19 @@ public class SubmissionTest
         File directory = new File("submissions");
         sb2s = directory.listFiles();
         submissions = new Submission[sb2s.length];
-        for (int i = 0; i < submissions.length; i++)
-        {
-            submissions[i] = new Submission(sb2s[i]);
-            submissions[i].convertToZip();
-            submissions[i].unZip();
-            submissions[i].parseJSONFile();
-        }
-        assertNotNull("Should not be null",(Object) submissions[2].getJSONObject());
+        submissions[2] = new Submission(sb2s[2]);
+        submissions[2].convertToZip();
+        submissions[2].unZip();
+        submissions[2].parseJSONFile();
+    
+        assertNotNull("Should not be null", 
+            (Object) submissions[2].getJSONObject());
     }
 
     /**
      * Test parsing invalid JSON file.
+     *
+     * @throws FileNotFoundException ex
      */
     public void testParseInvalidJSON() throws FileNotFoundException
     {
@@ -251,6 +252,8 @@ public class SubmissionTest
 
     /**
      * Test getting JSON attribute by name.
+     *
+     * @throws FileNotFoundException ex
      */
     @Test
     public void testGettingJSONAttribute() throws FileNotFoundException
@@ -268,6 +271,8 @@ public class SubmissionTest
 
     /**
      * Test getting JSONArray attribute by name.
+     *
+     * @throws FileNotFoundException ex
      */
     @Test
     public void testGettingJSONArrayAttribute() throws FileNotFoundException
@@ -296,7 +301,9 @@ public class SubmissionTest
         attribute.put("md5", "83a9787d4cb6f3b7632b4ddfebf74367.wav");
         expectedArr.add(attribute);
         expectedObject.put("sounds", expectedArr);
-        assertEquals(expectedObject.get("sounds").toString(), submissions[2].getJSONArrayAttribute("sounds").toString());
+        
+        assertEquals(expectedObject.get("sounds").toString(), 
+            submissions[2].getJSONArrayAttribute("sounds").toString());
     }
 
 

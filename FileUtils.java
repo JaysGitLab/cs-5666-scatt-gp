@@ -156,11 +156,11 @@ public class FileUtils
      * Read JSON file.
      *
      * @param filePath - path to JSON file
-     * @returns JSONobj
-     * @throws Exception if file not found
+     * @return JSONobj
+     * @throws FileNotFoundException e
      */
     public static JSONObject parseJSONFile(String filePath)
-    throws FileNotFoundException
+        throws FileNotFoundException
     {
         JSONParser parser = new JSONParser();
         JSONObject jsonObj = new JSONObject();
@@ -168,8 +168,6 @@ public class FileUtils
         {
             Object obj = parser.parse(new FileReader(filePath));
             jsonObj = (JSONObject) obj;
-           // name = (String) jsonObj.get("objName"); 
-           //System.out.println(jsonObj);
         }
         catch (FileNotFoundException e)
         {
@@ -187,7 +185,7 @@ public class FileUtils
      *
      * @param obj - JSON Object
      * @param name - attribute's name
-     * @return value
+     * @return value of attribute
      */
     public static String getJSONAttribute(JSONObject obj, String name)
     {
@@ -200,7 +198,7 @@ public class FileUtils
      *
      * @param obj - JSON Object
      * @param name - name of Array
-     * @return jsonArr
+     * @return jsonArr JSONArray
      */
     public static JSONArray getJSONArrayAttribute(JSONObject obj, String name)
     {

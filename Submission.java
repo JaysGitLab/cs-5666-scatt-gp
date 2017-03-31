@@ -91,6 +91,8 @@ public class Submission
 
     /**
      * Get JSON object of submission.
+     *
+     * @return jsonObj
      */
     public JSONObject getJSONObject()
     {
@@ -100,12 +102,9 @@ public class Submission
     /**
      * Parse JSON file.
      *
-     * @param filepath path to JSON file.
-     * @return name
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException ex
      */
-    public void  parseJSONFile()
-        throws FileNotFoundException
+    public void  parseJSONFile() throws FileNotFoundException
     {
         if (json != null)
         {
@@ -129,7 +128,7 @@ public class Submission
      * Get value of JSON attribute.
      *
      * @param name - name of the attribute
-     * @returns value - value of attribute
+     * @return value - value of attribute
      */
     public String getJSONAttribute(String name)
     {
@@ -140,7 +139,7 @@ public class Submission
     /** Get JSONArray attribute.
      *
      * @param name - name of the attribute
-     * @returns jsonArr - JSONArray
+     * @return jsonArr - JSONArray
      */
     public JSONArray getJSONArrayAttribute(String name)
     {
