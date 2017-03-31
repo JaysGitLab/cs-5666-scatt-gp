@@ -1,14 +1,18 @@
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.assertEquals;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.nio.file.Files;
 import java.io.IOException;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 
 /**
  * SubmissionTest.java
@@ -206,6 +210,86 @@ public class SubmissionTest
 
         assertArrayEquals("should be same", expected, actual);
     }
+
+    /**
+     * Test parsing valid JSON file.
+     *
+     * @throws FileNotFoundException ex
+     */
+    @Test
+    public void testParseValidJSON() throws FileNotFoundException
+    {
+        submissions[2].convertToZip();
+        submissions[2].unZip();
+        submissions[2].parseJSONFile();
+    
+        assertNotNull("Should not be null", 
+            (Object) submissions[2].getJSONObject());
+    }
+
+    /**
+     * Test parsing invalid JSON file.
+     *
+     * @throws FileNotFoundException ex
+     */
+    public void testParseInvalidJSON() throws FileNotFoundException
+    {
+        submissions[0].convertToZip();
+        submissions[0].unZip();
+        submissions[0].parseJSONFile();
+     
+        assertNull(submissions[0].getJSONObject());
+    } 
+
+    /**
+     * Test getting JSON attribute by name.
+     *
+     * @throws FileNotFoundException ex
+     */
+    @Test
+    public void testGettingJSONAttribute() throws FileNotFoundException
+    {
+        submissions[2].convertToZip();
+        submissions[2].unZip();
+        submissions[2].parseJSONFile();
+
+        assertEquals("Stage", submissions[2].getJSONAttribute("objName"));
+    }
+
+    /**
+     * Test getting JSONArray attribute by name.
+     *
+     * @throws FileNotFoundException ex
+     */
+    @Test
+    // Suppress warning being caused by adding to JSONArray,
+    //  this is only for unit testing purposes.
+    @SuppressWarnings("unchecked")
+    public void testGettingJSONArrayAttribute() throws FileNotFoundException
+    {
+        submissions[2].convertToZip();
+        submissions[2].unZip();
+        submissions[2].parseJSONFile();
+     
+        // Create expected JSONArray.   
+        JSONObject expectedObject = new JSONObject();
+        JSONArray expectedArr = new JSONArray();
+        // Object to add to the array.
+        JSONObject attribute = new JSONObject();
+        attribute = new JSONObject();
+        attribute.put("soundID", 1);
+        attribute.put("sampleCount", 258);
+        attribute.put("rate", 11025);
+        attribute.put("format", "");
+        attribute.put("soundName", "pop"); 
+        attribute.put("md5", "83a9787d4cb6f3b7632b4ddfebf74367.wav");
+        expectedArr.add(attribute);
+        expectedObject.put("sounds", expectedArr);
+        
+        assertEquals(expectedObject.get("sounds").toString(), 
+            submissions[2].getJSONArrayAttribute("sounds").toString());
+    }
+
 
     /**
      * Tear down after tests.

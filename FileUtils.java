@@ -3,8 +3,13 @@ import java.nio.file.Files;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
 
 /**
  * FileUtils.java
@@ -143,7 +148,59 @@ public class FileUtils
     {
         String fileName = file.getName();
         int len = fileName.length();
-        String baseName = fileName.substring(0, len - 4);
-        return baseName;
+        return fileName.substring(0, len - 4);
     }
+
+    /** 
+     * Read JSON file.
+     *
+     * @param filePath - path to JSON file
+     * @return JSONobj
+     * @throws FileNotFoundException e
+     */
+    public static JSONObject parseJSONFile(String filePath)
+        throws FileNotFoundException
+    {
+        JSONParser parser = new JSONParser();
+        JSONObject jsonObj = new JSONObject();
+        try
+        {
+            Object obj = parser.parse(new FileReader(filePath));
+            jsonObj = (JSONObject) obj;
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return jsonObj;
+    }
+
+    /**
+     * Get JSON object attribute's by name.
+     *
+     * @param obj - JSON Object
+     * @param name - attribute's name
+     * @return value of attribute
+     */
+    public static String getJSONAttribute(JSONObject obj, String name)
+    {
+        return (String) obj.get(name);
+    }
+
+    /**
+     * Get JSONArray attribute by name.
+     *
+     * @param obj - JSON Object
+     * @param name - name of Array
+     * @return jsonArr JSONArray
+     */
+    public static JSONArray getJSONArrayAttribute(JSONObject obj, String name)
+    {
+        return (JSONArray) obj.get(name);
+    }
+
 }

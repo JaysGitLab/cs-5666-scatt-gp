@@ -1,4 +1,7 @@
 import java.io.File;
+import java.io.FileNotFoundException;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 
 /**
  * Submission.java
@@ -22,6 +25,7 @@ public class Submission
     private File zipsDir;
     private File unzipsDir;
     private File json;
+    private JSONObject jsonObj;
     
     /**
      * Submission constructor.
@@ -83,5 +87,61 @@ public class Submission
             json = new File(unzipsDir + File.separator + zipDir 
                 + File.separator, "project.json");
         }
+    }
+
+    /**
+     * Get JSON object of submission.
+     *
+     * @return jsonObj
+     */
+    public JSONObject getJSONObject()
+    {
+        return this.jsonObj;
+    }
+
+    /**
+     * Parse JSON file.
+     *
+     * @throws FileNotFoundException ex
+     */
+    public void  parseJSONFile() throws FileNotFoundException
+    {
+        if (json != null)
+        {
+            try
+            {
+                jsonObj = FileUtils.parseJSONFile(json.getAbsolutePath());
+            }
+            catch (FileNotFoundException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        else 
+        {
+            System.out.println("Invalid JSON file.");
+            return;
+        }
+    }
+
+    /**
+     * Get value of JSON attribute.
+     *
+     * @param name - name of the attribute
+     * @return value - value of attribute
+     */
+    public String getJSONAttribute(String name)
+    {
+        return FileUtils.getJSONAttribute(jsonObj, name);
+    }
+
+    /** Get JSONArray attribute.
+     *
+     * @param name - name of the attribute
+     * @return jsonArr - JSONArray
+     */
+    public JSONArray getJSONArrayAttribute(String name)
+    {
+        return FileUtils.getJSONArrayAttribute(jsonObj, name);
     }
 }
