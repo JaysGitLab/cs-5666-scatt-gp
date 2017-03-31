@@ -117,11 +117,6 @@ public class Submission
                 e.printStackTrace();
             }
         }
-        else 
-        {
-            System.out.println("Invalid JSON file.");
-            return;
-        }
     }
 
     /**
