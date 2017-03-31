@@ -266,6 +266,8 @@ public class SubmissionTest
      * @throws FileNotFoundException ex
      */
     @Test
+    // Suppress warning being caused by adding to JSONArray,
+    //  this is only for unit testing purposes.
     @SuppressWarnings("unchecked")
     public void testGettingJSONArrayAttribute() throws FileNotFoundException
     {
@@ -276,9 +278,7 @@ public class SubmissionTest
         // Create expected JSONArray.   
         JSONObject expectedObject = new JSONObject();
         JSONArray expectedArr = new JSONArray();
-        // This is not just an array of values,
-        //  it contains an object.  So this
-        //  object is for adding to the array.
+        // Object to add to the array.
         JSONObject attribute = new JSONObject();
         attribute = new JSONObject();
         attribute.put("soundID", 1);
