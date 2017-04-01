@@ -341,9 +341,8 @@ public class SubmissionTest
         submissions[2].unZip();
         submissions[2].parseJSONFile();
 
-        int expected = 1;
-        String [] spriteNames = submissions[2].getSpriteNames();
-        int actual = submissions[2].getScriptCountForSprite(spriteNames[0]);
+        int expected = 3;
+        int actual = submissions[2].getScriptCountForSprite("Crab");
         assertEquals("should be equal", expected, actual);
     }
 

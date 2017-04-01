@@ -141,18 +141,18 @@ public class Submission
     {
         JSONArray children = 
             FileUtils.getJSONArrayAttribute(jsonObj, "children");
-        JSONObject[] sprites = new JSONObject[children.size()];
+        JSONObject[] childrenObjs = new JSONObject[children.size()];
         Iterator<?> iterator = children.iterator();
         int n = 0;
         while (iterator.hasNext())
         {
-            sprites[n] = (JSONObject) iterator.next();
+            childrenObjs[n] = (JSONObject) iterator.next();
             n++;
         }
-        String[] names = new String[sprites.length];
+        String[] names = new String[childrenObjs.length];
         for (int i = 0; i < names.length; i++)
         {
-            names[i] = FileUtils.getJSONAttribute(sprites[i], "objName");
+            names[i] = FileUtils.getJSONAttribute(childrenObjs[i], "objName");
         }
         return names;
     }
@@ -165,7 +165,27 @@ public class Submission
      */
     public int getScriptCountForSprite(String spriteName)
     {
-        return 0;
+        JSONArray children = 
+            FileUtils.getJSONArrayAttribute(jsonObj, "children");
+        JSONObject[] childrenObjs = new JSONObject[children.size()];
+        Iterator<?> iterator = children.iterator();
+        int n = 0;
+        while (iterator.hasNext())
+        {
+            childrenObjs[n] = (JSONObject) iterator.next();
+            n++;
+        }
+        JSONArray scripts = new JSONArray();
+        for (int i = 0; i < childrenObjs.length; i++)
+        {
+            if (FileUtils.getJSONAttribute(childrenObjs[i], 
+                    "objName").equals(spriteName))
+            {
+                scripts = 
+                    FileUtils.getJSONArrayAttribute(childrenObjs[i], "scripts");
+            }
+        }
+        return scripts.size();
     }
     
     /**
