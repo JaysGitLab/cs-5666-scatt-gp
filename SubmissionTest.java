@@ -12,8 +12,6 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.nio.file.Files;
 import java.io.IOException;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
 
 /**
  * SubmissionTest.java
@@ -244,63 +242,33 @@ public class SubmissionTest
     } 
 
     /**
-     * Test getting JSON attribute by name.
-     *
-     * @throws FileNotFoundException ex
+     * Test getSpriteCount method, valid.
      */
     @Test
-    public void testGettingJSONAttribute() throws FileNotFoundException
+    public void testGetSpriteCountValid()
     {
         submissions[2].convertToZip();
         submissions[2].unZip();
         submissions[2].parseJSONFile();
 
-        assertEquals("Stage", submissions[2].getJSONAttribute("objName"));
-    }
-
-    /**
-     * Test getting JSONArray attribute by name.
-     *
-     * @throws FileNotFoundException ex
-     */
-    @Test
-    // Suppress warning being caused by adding to JSONArray,
-    //  this is only for unit testing purposes.
-    @SuppressWarnings("unchecked")
-    public void testGettingJSONArrayAttribute() throws FileNotFoundException
-    {
-        submissions[2].convertToZip();
-        submissions[2].unZip();
-        submissions[2].parseJSONFile();
-     
-        // Create expected JSONArray.   
-        JSONObject expectedObject = new JSONObject();
-        JSONArray expectedArr = new JSONArray();
-        // Object to add to the array.
-        JSONObject attribute = new JSONObject();
-        attribute = new JSONObject();
-        attribute.put("soundID", 1);
-        attribute.put("sampleCount", 258);
-        attribute.put("rate", 11025);
-        attribute.put("format", "");
-        attribute.put("soundName", "pop"); 
-        attribute.put("md5", "83a9787d4cb6f3b7632b4ddfebf74367.wav");
-        expectedArr.add(attribute);
-        expectedObject.put("sounds", expectedArr);
-        
-        assertEquals(expectedObject.get("sounds").toString(), 
-            submissions[2].getJSONArrayAttribute("sounds").toString());
-    }
-
-    /**
-     * Test getSpriteCount method.
-     */
-    @Test
-    public void testGetSpriteCount()
-    {
         int expected = 1;
         int actual = submissions[2].getSpriteCount();
         assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getSpriteCount method, invalid.
+     */
+    @Test
+    public void testGetSpriteCountInvalid()
+    {
+        submissions[2].convertToZip();
+        submissions[2].unZip();
+        submissions[2].parseJSONFile();
+
+        int unexpected = 4;
+        int actual = submissions[2].getSpriteCount();
+        assertFalse("should be false", unexpected == actual);
     }
 
     /**

@@ -1,7 +1,5 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
 
 /**
  * Submission.java
@@ -101,43 +99,13 @@ public class Submission
 
     /**
      * Parse JSON file.
-     *
-     * @throws FileNotFoundException ex
      */
-    public void  parseJSONFile() throws FileNotFoundException
+    public void parseJSONFile()
     {
         if (json != null)
         {
-            try
-            {
-                jsonObj = FileUtils.parseJSONFile(json.getAbsolutePath());
-            }
-            catch (FileNotFoundException e)
-            {
-                e.printStackTrace();
-            }
+            jsonObj = FileUtils.parseJSONFile(json.getAbsolutePath());
         }
-    }
-
-    /**
-     * Get value of JSON attribute.
-     *
-     * @param name - name of the attribute
-     * @return value - value of attribute
-     */
-    public String getJSONAttribute(String name)
-    {
-        return FileUtils.getJSONAttribute(jsonObj, name);
-    }
-
-    /** Get JSONArray attribute.
-     *
-     * @param name - name of the attribute
-     * @return jsonArr - JSONArray
-     */
-    public JSONArray getJSONArrayAttribute(String name)
-    {
-        return FileUtils.getJSONArrayAttribute(jsonObj, name);
     }
 
     /**
@@ -147,7 +115,9 @@ public class Submission
      */
     public int getSpriteCount()
     {
-        return 0;
+        JSONObject obj = FileUtils.getJSONObject(jsonObj, "info");
+        long spriteCount = FileUtils.getJSONLongAttribute(obj, "spriteCount");
+        return (int) spriteCount;
     }
     
     /**
