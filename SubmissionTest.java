@@ -315,6 +315,21 @@ public class SubmissionTest
         String[] actual = submissions[2].getSpriteNames();
         assertArrayEquals("should be equal", expected, actual);
     }
+    
+    /**
+     * Test getSpriteNames method, invalid.
+     */
+    @Test
+    public void testGetSpriteNamesInvalid()
+    {
+        submissions[2].convertToZip();
+        submissions[2].unZip();
+        submissions[2].parseJSONFile();
+
+        String[] expected = {"Bob"};
+        String[] actual = submissions[2].getSpriteNames();
+        assertFalse("should not be equal", Arrays.equals(expected, actual));
+    }
 
     /**
      * Test deleteZips method.

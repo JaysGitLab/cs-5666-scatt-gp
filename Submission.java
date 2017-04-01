@@ -1,5 +1,7 @@
 import java.io.File;
 import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+import java.util.Iterator;
 
 /**
  * Submission.java
@@ -137,7 +139,22 @@ public class Submission
      */
     public String[] getSpriteNames()
     {
-        return new String[1];
+        JSONArray children = 
+            FileUtils.getJSONArrayAttribute(jsonObj, "children");
+        JSONObject[] sprites = new JSONObject[children.size()];
+        Iterator<?> iterator = children.iterator();
+        int n = 0;
+        while (iterator.hasNext())
+        {
+            sprites[n] = (JSONObject) iterator.next();
+            n++;
+        }
+        String[] names = new String[sprites.length];
+        for (int i = 0; i < names.length; i++)
+        {
+            names[i] = FileUtils.getJSONAttribute(sprites[i], "objName");
+        }
+        return names;
     }
     
     /**
