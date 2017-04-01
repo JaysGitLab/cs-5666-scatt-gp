@@ -302,6 +302,21 @@ public class SubmissionTest
     }
 
     /**
+     * Test getSpriteNames method, valid.
+     */
+    @Test
+    public void testGetSpriteNamesValid()
+    {
+        submissions[2].convertToZip();
+        submissions[2].unZip();
+        submissions[2].parseJSONFile();
+
+        String[] expected = {"Crab"};
+        String[] actual = submissions[2].getSpriteNames();
+        assertArrayEquals("should be equal", expected, actual);
+    }
+
+    /**
      * Test deleteZips method.
      */
     @Test

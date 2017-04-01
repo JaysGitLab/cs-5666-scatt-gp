@@ -129,6 +129,16 @@ public class Submission
         JSONObject obj = FileUtils.getJSONObject(jsonObj, "info");
         return (int) FileUtils.getJSONLongAttribute(obj, "scriptCount");
     }
+
+    /**
+     * Get sprite names.
+     *
+     * @return array of sprite names.
+     */
+    public String[] getSpriteNames()
+    {
+        return new String[1];
+    }
     
     /**
      * Delete zip files.
