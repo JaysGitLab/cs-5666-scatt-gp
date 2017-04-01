@@ -270,6 +270,36 @@ public class SubmissionTest
         int actual = submissions[2].getSpriteCount();
         assertFalse("should be false", unexpected == actual);
     }
+    
+    /**
+     * Test getScriptCount method, valid.
+     */
+    @Test
+    public void testGetScriptCountValid()
+    {
+        submissions[2].convertToZip();
+        submissions[2].unZip();
+        submissions[2].parseJSONFile();
+
+        int expected = 3;
+        int actual = submissions[2].getScriptCount();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getScriptCount method, invalid.
+     */
+    @Test
+    public void testGetScriptCountInvalid()
+    {
+        submissions[2].convertToZip();
+        submissions[2].unZip();
+        submissions[2].parseJSONFile();
+
+        int unexpected = 4;
+        int actual = submissions[2].getScriptCount();
+        assertFalse("should be false", unexpected == actual);
+    }
 
     /**
      * Test deleteZips method.

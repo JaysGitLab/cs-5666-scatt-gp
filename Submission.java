@@ -116,8 +116,18 @@ public class Submission
     public int getSpriteCount()
     {
         JSONObject obj = FileUtils.getJSONObject(jsonObj, "info");
-        long spriteCount = FileUtils.getJSONLongAttribute(obj, "spriteCount");
-        return (int) spriteCount;
+        return (int) FileUtils.getJSONLongAttribute(obj, "spriteCount");
+    }
+    
+    /**
+     * Get script count.
+     *
+     * @return scriptCount 
+     */
+    public int getScriptCount()
+    {
+        JSONObject obj = FileUtils.getJSONObject(jsonObj, "info");
+        return (int) FileUtils.getJSONLongAttribute(obj, "scriptCount");
     }
     
     /**
