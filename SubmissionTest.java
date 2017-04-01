@@ -293,6 +293,17 @@ public class SubmissionTest
     }
 
     /**
+     * Test getSpriteCount method.
+     */
+    @Test
+    public void testGetSpriteCount()
+    {
+        int expected = 1;
+        int actual = submissions[2].getSpriteCount();
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
      * Test deleteZips method.
      */
     @Test

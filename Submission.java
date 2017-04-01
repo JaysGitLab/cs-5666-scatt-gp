@@ -141,6 +141,16 @@ public class Submission
     }
 
     /**
+     * Get sprite count.
+     *
+     * @return spriteCount 
+     */
+    public int getSpriteCount()
+    {
+        return 0;
+    }
+    
+    /**
      * Delete zip files.
      */
     public void deleteZips()
