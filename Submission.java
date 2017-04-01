@@ -156,6 +156,17 @@ public class Submission
         }
         return names;
     }
+
+    /**
+     * Get script count for sprite.
+     *
+     * @param spriteName 
+     * @return scriptCount 
+     */
+    public int getScriptCountForSprite(String spriteName)
+    {
+        return 0;
+    }
     
     /**
      * Delete zip files.
