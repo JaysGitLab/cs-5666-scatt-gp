@@ -345,6 +345,21 @@ public class SubmissionTest
         int actual = submissions[2].getScriptCountForSprite("Crab");
         assertEquals("should be equal", expected, actual);
     }
+    
+    /**
+     * Test getScriptCountForSprite method, invalid.
+     */
+    @Test
+    public void testGetScriptCountForSpriteInvalid()
+    {
+        submissions[2].convertToZip();
+        submissions[2].unZip();
+        submissions[2].parseJSONFile();
+
+        int expected = 1;
+        int actual = submissions[2].getScriptCountForSprite("Crab");
+        assertFalse("should not be equal", expected == actual);
+    }
 
     /**
      * Test deleteZips method.
