@@ -134,6 +134,9 @@ public class Submission
 
     /**
      * Get array of sprites.
+     * Unchecked warnings are suppresed because JSONArray does not
+     *  allow for a type specification, and this is a private
+     *  method only called from within this class.
      *
      * @return sprites 
      */
