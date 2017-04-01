@@ -1,6 +1,8 @@
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.io.File;
+import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.After;
@@ -34,7 +36,18 @@ public class ReportTest
     public void setUp()
     {
         System.setOut(new PrintStream(outContent));
-        scattReport = new Report();
+        File directory = new File("submissions");
+        File[] sb2s = directory.listFiles();
+        Arrays.sort(sb2s);
+        Submission[] submissions = new Submission[sb2s.length];
+        for (int i = 0; i < submissions.length; i++)
+        {
+            submissions[i] = new Submission(sb2s[i]);
+            submissions[i].convertToZip();
+            submissions[i].unZip();
+            submissions[i].parseJSONFile();
+        }
+        scattReport = new Report(submissions);
     }
     
     /**
@@ -44,7 +57,25 @@ public class ReportTest
     public void makeReportTest()
     {
         scattReport.makeReport();
-        assertEquals("Report Pass\n", outContent.toString());
+        String expected = "------------\n"
+                        + "SCATT Report\n"
+                        + "------------\n\n"
+                        + "File: Animate the Crab.sb2\n"
+                        + "---------------------------------\n"
+                        + "Script count: 3\n"
+                        + "Sprite count: 1\n\n"
+                        + "Sprite: Crab\n"
+                        + "Script count: 3\n\n"
+                        + "File: Big Project.sb2\n"
+                        + "---------------------------------\n"
+                        + "Script count: 5\n"
+                        + "Sprite count: 2\n\n"
+                        + "Sprite: Sprite1\n"
+                        + "Script count: 2\n\n"
+                        + "Sprite: Butterfly3\n"
+                        + "Script count: 2\n"
+                        + "\n";
+        assertEquals("should be equal", expected, outContent.toString());
     }    
 
     /**

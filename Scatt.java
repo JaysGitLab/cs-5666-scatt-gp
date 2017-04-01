@@ -48,7 +48,7 @@ public class Scatt
             submissions[i].parseJSONFile();
         }
         
-        Report report = new Report();
+        Report report = new Report(submissions);
         report.makeReport();
 
         for (int i = 0; i < submissions.length; i++)

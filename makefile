@@ -24,10 +24,6 @@ compile: $(APP_FILES) $(TEST_FILES)
 	javac -cp .:$(JUNIT_JAR):$(JSON_SIMPLE_JAR) $(TEST_FILES)
 	javac -cp .:$(JSON_SIMPLE_JAR) $(APP_FILES)
 
-lintcompile: $(APP_FILES) $(TEST_FILES)
-	javac -Xlint:unchecked -cp .:$(JUNIT_JAR):$(JSON_SIMPLE_JAR) $(TEST_FILES)
-	javac -Xlint:unchecked -cp .:$(JSON_SIMPLE_JAR) $(APP_FILES)
-
 jar: $(CLASS_FILES)
 	jar -cvmf MANIFEST.MF Scatt.jar $(CLASS_FILES)
 
@@ -48,7 +44,7 @@ clean:
 
 test: Submission.class SubmissionTest.class Scatt.class ScattTest.class FileUtils.class
 	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR):$(JSON_SIMPLE_JAR) org.junit.runner.JUnitCore SubmissionTest
-	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore ReportTest
+	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR):$(JSON_SIMPLE_JAR) org.junit.runner.JUnitCore ReportTest
 	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore ScattTest	
 
 check: $(APP_FILES) $(TEST_FILES)
