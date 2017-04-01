@@ -133,23 +133,28 @@ public class Submission
     }
 
     /**
-     * Get array of children JSONObjects.
+     * Get array of sprites.
      *
-     * @return children
+     * @return sprites 
      */
-    private JSONObject[] getChildren()
+    @SuppressWarnings("unchecked")
+    private JSONArray getSprites()
     {
         JSONArray children = 
             FileUtils.getJSONArrayAttribute(jsonObj, "children");
-        JSONObject[] childrenObjs = new JSONObject[children.size()];
+        JSONArray sprites = new JSONArray();
+
         Iterator<?> iterator = children.iterator();
         int n = 0;
         while (iterator.hasNext())
         {
-            childrenObjs[n] = (JSONObject) iterator.next();
-            n++;
+            JSONObject next = (JSONObject) iterator.next();
+            if (FileUtils.getJSONAttribute(next, "objName") != null)
+            {
+                sprites.add(next);
+            }
         }
-        return childrenObjs;
+        return sprites;
     }
 
     /**
@@ -159,11 +164,12 @@ public class Submission
      */
     public String[] getSpriteNames()
     {
-        JSONObject[] childrenObjs = getChildren(); 
-        String[] names = new String[childrenObjs.length];
+        JSONArray sprites = getSprites(); 
+        String[] names = new String[sprites.size()];
         for (int i = 0; i < names.length; i++)
         {
-            names[i] = FileUtils.getJSONAttribute(childrenObjs[i], "objName");
+            names[i] = FileUtils.getJSONAttribute(
+                (JSONObject) sprites.get(i), "objName");
         }
         return names;
     }
@@ -176,15 +182,15 @@ public class Submission
      */
     public int getScriptCountForSprite(String spriteName)
     {
-        JSONObject[] childrenObjs = getChildren();
+        JSONArray sprites = getSprites();
         JSONArray scripts = new JSONArray();
-        for (int i = 0; i < childrenObjs.length; i++)
+        for (int i = 0; i < sprites.size(); i++)
         {
-            if (FileUtils.getJSONAttribute(childrenObjs[i], 
+            if (FileUtils.getJSONAttribute((JSONObject) sprites.get(i), 
                     "objName").equals(spriteName))
             {
-                scripts = 
-                    FileUtils.getJSONArrayAttribute(childrenObjs[i], "scripts");
+                scripts = FileUtils.getJSONArrayAttribute(
+                    (JSONObject) sprites.get(i), "scripts");
             }
         }
         return scripts.size();

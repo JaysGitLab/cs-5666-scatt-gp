@@ -224,12 +224,12 @@ public class SubmissionTest
     @Test
     public void testParseValidJSON() throws FileNotFoundException
     {
-        submissions[0].convertToZip();
-        submissions[0].unZip();
-        submissions[0].parseJSONFile();
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
     
         assertNotNull("Should not be null", 
-            (Object) submissions[0].getJSONObject());
+            (Object) submissions[1].getJSONObject());
     }
 
     /**
@@ -239,11 +239,11 @@ public class SubmissionTest
      */
     public void testParseInvalidJSON() throws FileNotFoundException
     {
-        submissions[2].convertToZip();
-        submissions[2].unZip();
-        submissions[2].parseJSONFile();
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
      
-        assertNull(submissions[2].getJSONObject());
+        assertNull(submissions[1].getJSONObject());
     } 
 
     /**
@@ -252,12 +252,12 @@ public class SubmissionTest
     @Test
     public void testGetSpriteCountValid()
     {
-        submissions[0].convertToZip();
-        submissions[0].unZip();
-        submissions[0].parseJSONFile();
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
 
-        int expected = 1;
-        int actual = submissions[0].getSpriteCount();
+        int expected = 2;
+        int actual = submissions[1].getSpriteCount();
         assertEquals("should be equal", expected, actual);
     }
     
@@ -267,12 +267,12 @@ public class SubmissionTest
     @Test
     public void testGetSpriteCountInvalid()
     {
-        submissions[0].convertToZip();
-        submissions[0].unZip();
-        submissions[0].parseJSONFile();
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
 
         int unexpected = 4;
-        int actual = submissions[0].getSpriteCount();
+        int actual = submissions[1].getSpriteCount();
         assertFalse("should be false", unexpected == actual);
     }
     
@@ -282,12 +282,12 @@ public class SubmissionTest
     @Test
     public void testGetScriptCountValid()
     {
-        submissions[0].convertToZip();
-        submissions[0].unZip();
-        submissions[0].parseJSONFile();
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
 
-        int expected = 3;
-        int actual = submissions[0].getScriptCount();
+        int expected = 5;
+        int actual = submissions[1].getScriptCount();
         assertEquals("should be equal", expected, actual);
     }
     
@@ -297,12 +297,12 @@ public class SubmissionTest
     @Test
     public void testGetScriptCountInvalid()
     {
-        submissions[0].convertToZip();
-        submissions[0].unZip();
-        submissions[0].parseJSONFile();
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
 
         int unexpected = 4;
-        int actual = submissions[0].getScriptCount();
+        int actual = submissions[1].getScriptCount();
         assertFalse("should be false", unexpected == actual);
     }
 
@@ -312,12 +312,12 @@ public class SubmissionTest
     @Test
     public void testGetSpriteNamesValid()
     {
-        submissions[0].convertToZip();
-        submissions[0].unZip();
-        submissions[0].parseJSONFile();
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
 
-        String[] expected = {"Crab"};
-        String[] actual = submissions[0].getSpriteNames();
+        String[] expected = {"Sprite1", "Butterfly3"};
+        String[] actual = submissions[1].getSpriteNames();
         assertArrayEquals("should be equal", expected, actual);
     }
     
@@ -327,12 +327,12 @@ public class SubmissionTest
     @Test
     public void testGetSpriteNamesInvalid()
     {
-        submissions[0].convertToZip();
-        submissions[0].unZip();
-        submissions[0].parseJSONFile();
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
 
         String[] expected = {"Bob"};
-        String[] actual = submissions[0].getSpriteNames();
+        String[] actual = submissions[1].getSpriteNames();
         assertFalse("should not be equal", Arrays.equals(expected, actual));
     }
 
@@ -342,12 +342,12 @@ public class SubmissionTest
     @Test
     public void testGetScriptCountForSpriteValid()
     {
-        submissions[0].convertToZip();
-        submissions[0].unZip();
-        submissions[0].parseJSONFile();
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
 
-        int expected = 3;
-        int actual = submissions[0].getScriptCountForSprite("Crab");
+        int expected = 2;
+        int actual = submissions[1].getScriptCountForSprite("Sprite1");
         assertEquals("should be equal", expected, actual);
     }
     
@@ -357,12 +357,12 @@ public class SubmissionTest
     @Test
     public void testGetScriptCountForSpriteInvalid()
     {
-        submissions[0].convertToZip();
-        submissions[0].unZip();
-        submissions[0].parseJSONFile();
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
 
         int expected = 1;
-        int actual = submissions[0].getScriptCountForSprite("Crab");
+        int actual = submissions[1].getScriptCountForSprite("Sprite1");
         assertFalse("should not be equal", expected == actual);
     }
 

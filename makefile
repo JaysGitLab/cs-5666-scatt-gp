@@ -24,6 +24,10 @@ compile: $(APP_FILES) $(TEST_FILES)
 	javac -cp .:$(JUNIT_JAR):$(JSON_SIMPLE_JAR) $(TEST_FILES)
 	javac -cp .:$(JSON_SIMPLE_JAR) $(APP_FILES)
 
+lintcompile: $(APP_FILES) $(TEST_FILES)
+	javac -Xlint:unchecked -cp .:$(JUNIT_JAR):$(JSON_SIMPLE_JAR) $(TEST_FILES)
+	javac -Xlint:unchecked -cp .:$(JSON_SIMPLE_JAR) $(APP_FILES)
+
 jar: $(CLASS_FILES)
 	jar -cvmf MANIFEST.MF Scatt.jar $(CLASS_FILES)
 
