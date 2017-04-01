@@ -56,5 +56,10 @@ public class Scatt
         
         Report report = new Report();
         report.makeReport();
+
+        for (int i = 0; i < submissions.length; i++)
+        {
+            submissions[i].deleteZips();
+        }
     }
 }

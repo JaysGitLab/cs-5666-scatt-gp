@@ -139,4 +139,35 @@ public class Submission
     {
         return FileUtils.getJSONArrayAttribute(jsonObj, name);
     }
+
+    /**
+     * Delete zip files.
+     */
+    public void deleteZips()
+    {
+        if (zipsDir.exists())
+        {
+            File[] zipsDirFiles = zipsDir.listFiles();
+            for (int i = 0; i < zipsDirFiles.length; i++)
+            {
+                zipsDirFiles[i].delete();
+            }
+            zipsDir.delete();
+        }
+        
+        if (unzipsDir.exists())
+        {
+            File[] unzipsDirs = unzipsDir.listFiles();
+            for (int i = 0; i < unzipsDirs.length; i++)
+            {
+                File[] unzipFiles = unzipsDirs[i].listFiles();
+                for (int j = 0; j < unzipFiles.length; j++)
+                {
+                    unzipFiles[j].delete();
+                }
+                unzipsDirs[i].delete();
+            }
+            unzipsDir.delete();
+        }
+    }
 }

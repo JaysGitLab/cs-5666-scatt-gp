@@ -1,10 +1,11 @@
 import org.junit.Test;
-import org.junit.Before;
-import org.junit.After;
+import org.junit.BeforeClass;
+import org.junit.AfterClass;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -32,15 +33,16 @@ import org.json.simple.JSONArray;
  */
 public class SubmissionTest
 {
-    private File directory;
-    private File[] sb2s;
-    private Submission[] submissions;
+    private static File directory;
+    private static File expectedDir;
+    private static File[] sb2s;
+    private static Submission[] submissions;
     
     /**
      * Set up for tests.
      */
-    @Before
-    public void setUp()
+    @BeforeClass
+    public static void setUp()
     {
         // Set up expected files.
         directory = new File("submissions");
@@ -121,7 +123,7 @@ public class SubmissionTest
     public void testZip() throws IOException
     {
         // Copy and convert expected files to .zip.
-        File expectedDir = new File("expected");
+        expectedDir = new File("expected");
         if (!expectedDir.exists())
         {
             expectedDir.mkdir();
@@ -176,7 +178,7 @@ public class SubmissionTest
     public void testUnzip() throws IOException
     {
         // Get list of expected dir names.
-        File expectedDir = new File("expected");
+        expectedDir = new File("expected");
         File[] expectedZips = expectedDir.listFiles(); 
         String[] expected = new String[expectedZips.length]; 
         for (int i = 0; i < expected.length; i++)
@@ -290,15 +292,38 @@ public class SubmissionTest
             submissions[2].getJSONArrayAttribute("sounds").toString());
     }
 
+    /**
+     * Test deleteZips method.
+     */
+    @Test
+    public void testDeleteZips()
+    {
+        File zipsDir = new File("zips");
+        File unzipsDir = new File("unzips");
+        for (int i = 0; i < submissions.length; i++)
+        {
+            submissions[i].deleteZips();
+        }
+        assertFalse("should be false", zipsDir.exists() && unzipsDir.exists());
+    }
 
     /**
      * Tear down after tests.
      */
-    @After
-    public void tearDown()
+    @AfterClass
+    public static void tearDown()
     {
         // Set arrays to null.
         sb2s = null;
         submissions = null;
+        if (expectedDir.exists())
+        {
+            File[] expectedFiles = expectedDir.listFiles();
+            for (int i = 0; i < expectedFiles.length; i++)
+            {
+                expectedFiles[i].delete();
+            }
+            expectedDir.delete();
+        }
     }
 }
