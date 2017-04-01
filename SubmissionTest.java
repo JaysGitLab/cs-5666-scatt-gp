@@ -8,7 +8,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertEquals;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.nio.file.Files;
 import java.io.IOException;
@@ -218,11 +217,9 @@ public class SubmissionTest
 
     /**
      * Test parsing valid JSON file.
-     *
-     * @throws FileNotFoundException ex
      */
     @Test
-    public void testParseValidJSON() throws FileNotFoundException
+    public void testParseValidJSON()
     {
         submissions[1].convertToZip();
         submissions[1].unZip();
@@ -234,10 +231,8 @@ public class SubmissionTest
 
     /**
      * Test parsing invalid JSON file.
-     *
-     * @throws FileNotFoundException ex
      */
-    public void testParseInvalidJSON() throws FileNotFoundException
+    public void testParseInvalidJSON()
     {
         submissions[1].convertToZip();
         submissions[1].unZip();
