@@ -27,7 +27,7 @@ public class Scatt
      */
     public static void main(String[] args)
     {
-        System.out.print("Please enter the folder path: ");
+        System.out.print("Please enter the folder name: ");
         String dirName = System.console().readLine();
         File directory = new File(dirName);
         Boolean isValid = FileUtils.readValidDirectory(directory);
