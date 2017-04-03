@@ -8,12 +8,9 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertEquals;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.nio.file.Files;
 import java.io.IOException;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
 
 /**
  * SubmissionTest.java
@@ -47,6 +44,7 @@ public class SubmissionTest
         // Set up expected files.
         directory = new File("submissions");
         sb2s = directory.listFiles();
+        Arrays.sort(sb2s);
         
         // Create actual Submission files.
         submissions = new Submission[sb2s.length];
@@ -151,6 +149,7 @@ public class SubmissionTest
         
         // Get expected filenames.
         File[] expectedZips = expectedDir.listFiles();
+        Arrays.sort(expectedZips);
         String[] expected = new String[expectedZips.length];
         for (int i = 0; i < expected.length; i++)
         {
@@ -160,6 +159,7 @@ public class SubmissionTest
         // Get actual Submission filenames.
         File actualDir = new File("zips");
         File[] actualZips = actualDir.listFiles();
+        Arrays.sort(actualZips);
         String[] actual = new String[actualZips.length];
         for (int i = 0; i < actual.length; i++)
         {
@@ -180,6 +180,7 @@ public class SubmissionTest
         // Get list of expected dir names.
         expectedDir = new File("expected");
         File[] expectedZips = expectedDir.listFiles(); 
+        Arrays.sort(expectedZips);
         String[] expected = new String[expectedZips.length]; 
         for (int i = 0; i < expected.length; i++)
         {
@@ -199,6 +200,7 @@ public class SubmissionTest
         // Get list of new zip dirs.
         File zipsDir = new File("unzips");
         File[] zipDirs = zipsDir.listFiles();
+        Arrays.sort(zipDirs);
         String[] actual = new String[zipDirs.length];
         for (int i = 0; i < actual.length; i++)
         {
@@ -215,81 +217,148 @@ public class SubmissionTest
 
     /**
      * Test parsing valid JSON file.
-     *
-     * @throws FileNotFoundException ex
      */
     @Test
-    public void testParseValidJSON() throws FileNotFoundException
+    public void testParseValidJSON()
     {
-        submissions[2].convertToZip();
-        submissions[2].unZip();
-        submissions[2].parseJSONFile();
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
     
         assertNotNull("Should not be null", 
-            (Object) submissions[2].getJSONObject());
+            (Object) submissions[1].getJSONObject());
     }
 
     /**
      * Test parsing invalid JSON file.
-     *
-     * @throws FileNotFoundException ex
      */
-    public void testParseInvalidJSON() throws FileNotFoundException
+    public void testParseInvalidJSON()
     {
-        submissions[0].convertToZip();
-        submissions[0].unZip();
-        submissions[0].parseJSONFile();
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
      
-        assertNull(submissions[0].getJSONObject());
+        assertNull(submissions[1].getJSONObject());
     } 
 
     /**
-     * Test getting JSON attribute by name.
-     *
-     * @throws FileNotFoundException ex
+     * Test getSpriteCount method, valid.
      */
     @Test
-    public void testGettingJSONAttribute() throws FileNotFoundException
+    public void testGetSpriteCountValid()
     {
-        submissions[2].convertToZip();
-        submissions[2].unZip();
-        submissions[2].parseJSONFile();
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
 
-        assertEquals("Stage", submissions[2].getJSONAttribute("objName"));
+        int expected = 2;
+        int actual = submissions[1].getSpriteCount();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getSpriteCount method, invalid.
+     */
+    @Test
+    public void testGetSpriteCountInvalid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int unexpected = 4;
+        int actual = submissions[1].getSpriteCount();
+        assertFalse("should be false", unexpected == actual);
+    }
+    
+    /**
+     * Test getScriptCount method, valid.
+     */
+    @Test
+    public void testGetScriptCountValid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int expected = 5;
+        int actual = submissions[1].getScriptCount();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getScriptCount method, invalid.
+     */
+    @Test
+    public void testGetScriptCountInvalid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int unexpected = 4;
+        int actual = submissions[1].getScriptCount();
+        assertFalse("should be false", unexpected == actual);
     }
 
     /**
-     * Test getting JSONArray attribute by name.
-     *
-     * @throws FileNotFoundException ex
+     * Test getSpriteNames method, valid.
      */
     @Test
-    // Suppress warning being caused by adding to JSONArray,
-    //  this is only for unit testing purposes.
-    @SuppressWarnings("unchecked")
-    public void testGettingJSONArrayAttribute() throws FileNotFoundException
+    public void testGetSpriteNamesValid()
     {
-        submissions[2].convertToZip();
-        submissions[2].unZip();
-        submissions[2].parseJSONFile();
-     
-        // Create expected JSONArray.   
-        JSONObject expectedObject = new JSONObject();
-        JSONArray expectedArr = new JSONArray();
-        // Object to add to the array.
-        JSONObject attribute = new JSONObject();
-        attribute = new JSONObject();
-        attribute.put("soundID", 1);
-        attribute.put("sampleCount", 258);
-        attribute.put("rate", 11025);
-        attribute.put("format", "");
-        attribute.put("soundName", "pop"); 
-        attribute.put("md5", "83a9787d4cb6f3b7632b4ddfebf74367.wav");
-        expectedArr.add(attribute);
-        expectedObject.put("sounds", expectedArr);
-        
-        assertEquals(expectedObject.get("sounds").toString(), 
-            submissions[2].getJSONArrayAttribute("sounds").toString());
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        String[] expected = {"Sprite1", "Butterfly3"};
+        String[] actual = submissions[1].getSpriteNames();
+        assertArrayEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getSpriteNames method, invalid.
+     */
+    @Test
+    public void testGetSpriteNamesInvalid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        String[] expected = {"Bob"};
+        String[] actual = submissions[1].getSpriteNames();
+        assertFalse("should not be equal", Arrays.equals(expected, actual));
+    }
+
+    /**
+     * Test getScriptCountForSprite method, valid.
+     */
+    @Test
+    public void testGetScriptCountForSpriteValid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int expected = 2;
+        int actual = submissions[1].getScriptCountForSprite("Sprite1");
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getScriptCountForSprite method, invalid.
+     */
+    @Test
+    public void testGetScriptCountForSpriteInvalid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int expected = 1;
+        int actual = submissions[1].getScriptCountForSprite("Sprite1");
+        assertFalse("should not be equal", expected == actual);
     }
 
     /**

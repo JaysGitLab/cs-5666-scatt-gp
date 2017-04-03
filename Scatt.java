@@ -1,5 +1,5 @@
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.util.Arrays;
 
 /**
  * Scatt.java
@@ -38,23 +38,17 @@ public class Scatt
         }
         
         File[] sb2s = directory.listFiles();
+        Arrays.sort(sb2s);
         Submission[] submissions = new Submission[sb2s.length];
-        try
+        for (int i = 0; i < submissions.length; i++)
         {
-            for (int i = 0; i < submissions.length; i++)
-            {
-                submissions[i] = new Submission(sb2s[i]);
-                submissions[i].convertToZip();
-                submissions[i].unZip();
-                submissions[i].parseJSONFile();
-            }
-        }
-        catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
+            submissions[i] = new Submission(sb2s[i]);
+            submissions[i].convertToZip();
+            submissions[i].unZip();
+            submissions[i].parseJSONFile();
         }
         
-        Report report = new Report();
+        Report report = new Report(submissions);
         report.makeReport();
 
         for (int i = 0; i < submissions.length; i++)

@@ -174,11 +174,9 @@ public class FileUtils
      * Read JSON file.
      *
      * @param filePath - path to JSON file
-     * @return JSONobj
-     * @throws FileNotFoundException e
+     * @return jsonObj 
      */
     public static JSONObject parseJSONFile(String filePath)
-        throws FileNotFoundException
     {
         JSONParser parser = new JSONParser();
         JSONObject jsonObj = new JSONObject();
@@ -199,15 +197,39 @@ public class FileUtils
     }
 
     /**
+     * Get JSON object by name.
+     *
+     * @param obj - JSON object
+     * @param name - attribute's name
+     * @return JSON object
+     */
+    public static JSONObject getJSONObject(JSONObject obj, String name)
+    {
+        return (JSONObject) obj.get(name);
+    }
+
+    /**
      * Get JSON object attribute's by name.
      *
      * @param obj - JSON Object
      * @param name - attribute's name
-     * @return value of attribute
+     * @return String value of attribute
      */
     public static String getJSONAttribute(JSONObject obj, String name)
     {
         return (String) obj.get(name);
+    }
+
+    /**
+     * Get JSON object attribute's by name.
+     *
+     * @param obj - JSON Object
+     * @param name - attribute's name
+     * @return long value of attribute
+     */
+    public static long getJSONLongAttribute(JSONObject obj, String name)
+    {
+        return (long) obj.get(name);
     }
 
     /**
@@ -221,5 +243,4 @@ public class FileUtils
     {
         return (JSONArray) obj.get(name);
     }
-
 }

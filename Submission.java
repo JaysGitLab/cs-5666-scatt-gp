@@ -1,7 +1,7 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
+import java.util.Iterator;
 
 /**
  * Submission.java
@@ -101,45 +101,104 @@ public class Submission
 
     /**
      * Parse JSON file.
-     *
-     * @throws FileNotFoundException ex
      */
-    public void  parseJSONFile() throws FileNotFoundException
+    public void parseJSONFile()
     {
         if (json != null)
         {
-            try
-            {
-                jsonObj = FileUtils.parseJSONFile(json.getAbsolutePath());
-            }
-            catch (FileNotFoundException e)
-            {
-                e.printStackTrace();
-            }
+            jsonObj = FileUtils.parseJSONFile(json.getAbsolutePath());
         }
     }
 
     /**
-     * Get value of JSON attribute.
+     * Get sprite count.
      *
-     * @param name - name of the attribute
-     * @return value - value of attribute
+     * @return spriteCount 
      */
-    public String getJSONAttribute(String name)
+    public int getSpriteCount()
     {
-        return FileUtils.getJSONAttribute(jsonObj, name);
+        JSONObject obj = FileUtils.getJSONObject(jsonObj, "info");
+        return (int) FileUtils.getJSONLongAttribute(obj, "spriteCount");
+    }
+    
+    /**
+     * Get script count.
+     *
+     * @return scriptCount 
+     */
+    public int getScriptCount()
+    {
+        JSONObject obj = FileUtils.getJSONObject(jsonObj, "info");
+        return (int) FileUtils.getJSONLongAttribute(obj, "scriptCount");
     }
 
-    /** Get JSONArray attribute.
+    /**
+     * Get array of sprites.
+     * Unchecked warnings are suppresed because JSONArray does not
+     *  allow for a type specification, and this is a private
+     *  method only called from within this class.
      *
-     * @param name - name of the attribute
-     * @return jsonArr - JSONArray
+     * @return sprites 
      */
-    public JSONArray getJSONArrayAttribute(String name)
+    @SuppressWarnings("unchecked")
+    private JSONArray getSprites()
     {
-        return FileUtils.getJSONArrayAttribute(jsonObj, name);
+        JSONArray children = 
+            FileUtils.getJSONArrayAttribute(jsonObj, "children");
+        JSONArray sprites = new JSONArray();
+
+        Iterator<?> iterator = children.iterator();
+        int n = 0;
+        while (iterator.hasNext())
+        {
+            JSONObject next = (JSONObject) iterator.next();
+            if (FileUtils.getJSONAttribute(next, "objName") != null)
+            {
+                sprites.add(next);
+            }
+        }
+        return sprites;
     }
 
+    /**
+     * Get sprite names.
+     *
+     * @return array of sprite names.
+     */
+    public String[] getSpriteNames()
+    {
+        JSONArray sprites = getSprites(); 
+        String[] names = new String[sprites.size()];
+        for (int i = 0; i < names.length; i++)
+        {
+            names[i] = FileUtils.getJSONAttribute(
+                (JSONObject) sprites.get(i), "objName");
+        }
+        return names;
+    }
+
+    /**
+     * Get script count for sprite.
+     *
+     * @param spriteName 
+     * @return scriptCount 
+     */
+    public int getScriptCountForSprite(String spriteName)
+    {
+        JSONArray sprites = getSprites();
+        JSONArray scripts = new JSONArray();
+        for (int i = 0; i < sprites.size(); i++)
+        {
+            if (FileUtils.getJSONAttribute((JSONObject) sprites.get(i), 
+                    "objName").equals(spriteName))
+            {
+                scripts = FileUtils.getJSONArrayAttribute(
+                    (JSONObject) sprites.get(i), "scripts");
+            }
+        }
+        return scripts.size();
+    }
+    
     /**
      * Delete zip files.
      */
