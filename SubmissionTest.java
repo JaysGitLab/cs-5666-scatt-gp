@@ -311,8 +311,23 @@ public class SubmissionTest
         submissions[1].unZip();
         submissions[1].parseJSONFile();
 
-        int expected = 0;
+        int expected = 1;
         int actual = submissions[1].getScriptCountForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getScriptCountForStage, valid - stage has no scripts.
+     */
+    @Test
+    public void testGetScriptCountForStageValidEmpty()
+    {
+        submissions[0].convertToZip();
+        submissions[0].unZip();
+        submissions[0].parseJSONFile();
+
+        int expected = 0;
+        int actual = submissions[0].getScriptCountForStage();
         assertEquals("should be equal", expected, actual);
     }
     

@@ -135,11 +135,16 @@ public class Submission
     /**
      * Get script count for stage.
      *
-     * @return scriptCount
+     * @return scripts
      */
     public int getScriptCountForStage()
     {
-        return 10;
+        JSONArray scripts = FileUtils.getJSONArrayAttribute(jsonObj, "scripts");
+        if (scripts != null)
+        {
+            return (int) scripts.size();
+        }
+        return 0;
     }
 
     /**
