@@ -302,6 +302,36 @@ public class SubmissionTest
     }
 
     /**
+     * Test getScriptCountForStage, valid.
+     */
+    @Test
+    public void testGetScriptCountForStageValid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int expected = 0;
+        int actual = submissions[1].getScriptCountForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getScriptCountForStage, invalid.
+     */
+    @Test
+    public void testGetScriptCountForStageInvalid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int unexpected = 2;
+        int actual = submissions[1].getScriptCountForStage();
+        assertFalse("should be false", unexpected == actual);
+    }
+
+    /**
      * Test getSpriteNames method, valid.
      */
     @Test

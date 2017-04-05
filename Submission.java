@@ -133,6 +133,16 @@ public class Submission
     }
 
     /**
+     * Get script count for stage.
+     *
+     * @return scriptCount
+     */
+    public int getScriptCountForStage()
+    {
+        return 10;
+    }
+
+    /**
      * Get array of sprites.
      * Unchecked warnings are suppresed because JSONArray does not
      *  allow for a type specification, and this is a private
