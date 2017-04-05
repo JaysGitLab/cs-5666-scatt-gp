@@ -347,6 +347,51 @@ public class SubmissionTest
     }
 
     /**
+     * Test getVariableCountForStage, valid.
+     */
+    @Test
+    public void testGetVariableCountForStageValid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int expected = 1;
+        int actual = submissions[1].getVariableCountForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getVariableCountForStage, valid - stage has no variables.
+     */
+    @Test
+    public void testGetVariableCountForStageValidEmpty()
+    {
+        submissions[0].convertToZip();
+        submissions[0].unZip();
+        submissions[0].parseJSONFile();
+
+        int expected = 0;
+        int actual = submissions[0].getVariableCountForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getVariableCountForStage, invalid.
+     */
+    @Test
+    public void testGetVariableCountForStageInvalid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int unexpected = 2;
+        int actual = submissions[1].getVariableCountForStage();
+        assertFalse("should be false", unexpected == actual);
+    }
+
+    /**
      * Test getSpriteNames method, valid.
      */
     @Test

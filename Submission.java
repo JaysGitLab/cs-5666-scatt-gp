@@ -148,6 +148,22 @@ public class Submission
     }
 
     /**
+     * Get variable count for stage.
+     *
+     * @return variables
+     */
+    public int getVariableCountForStage()
+    {
+        JSONArray variables = 
+            FileUtils.getJSONArrayAttribute(jsonObj, "variables");
+        if (variables != null)
+        {
+            return (int) variables.size();
+        }
+        return 0;
+    }
+
+    /**
      * Get array of sprites.
      * Unchecked warnings are suppresed because JSONArray does not
      *  allow for a type specification, and this is a private
