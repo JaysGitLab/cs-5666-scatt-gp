@@ -185,7 +185,13 @@ public class Submission
      */
     public int getScriptCommentCountForStage()
     {
-        return 5;
+        JSONArray scriptComments = 
+            FileUtils.getJSONArrayAttribute(jsonObj, "scriptComments");
+        if (scriptComments != null)
+        {
+            return (int) scriptComments.size();
+        }
+        return 0;
     }
 
     /**
