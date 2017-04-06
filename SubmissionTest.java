@@ -356,7 +356,7 @@ public class SubmissionTest
         submissions[1].unZip();
         submissions[1].parseJSONFile();
 
-        int expected = 1;
+        int expected = 2;
         int actual = submissions[1].getVariableCountForStage();
         assertEquals("should be equal", expected, actual);
     }
@@ -386,9 +386,24 @@ public class SubmissionTest
         submissions[1].unZip();
         submissions[1].parseJSONFile();
 
-        int unexpected = 2;
+        int unexpected = 4;
         int actual = submissions[1].getVariableCountForStage();
         assertFalse("should be false", unexpected == actual);
+    }
+
+    /**
+     * Test getListCountForStage, valid.
+     */
+    @Test
+    public void testGetListCountForStageValid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int expected = 1;
+        int actual = submissions[1].getListCountForStage();
+        assertEquals("should be equal", expected, actual);
     }
 
     /**

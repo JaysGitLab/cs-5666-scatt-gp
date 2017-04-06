@@ -164,6 +164,21 @@ public class Submission
     }
 
     /**
+     * Get list count for stage.
+     *
+     * @return lists
+     */
+    public int getListCountForStage()
+    {
+        JSONArray lists = FileUtils.getJSONArrayAttribute(jsonObj, "lists");
+        if (lists != null)
+        {
+            return (int) lists.size();
+        }
+        return 0;
+    }
+
+    /**
      * Get array of sprites.
      * Unchecked warnings are suppresed because JSONArray does not
      *  allow for a type specification, and this is a private
