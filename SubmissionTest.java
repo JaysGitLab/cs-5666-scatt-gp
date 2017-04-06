@@ -407,6 +407,21 @@ public class SubmissionTest
     }
     
     /**
+     * Test getListCountForStage, valid - stage has no variables.
+     */
+    @Test
+    public void testGetListForStageValidEmpty()
+    {
+        submissions[0].convertToZip();
+        submissions[0].unZip();
+        submissions[0].parseJSONFile();
+
+        int expected = 0;
+        int actual = submissions[0].getListCountForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
      * Test getListCountForStage, invalid.
      */
     @Test
