@@ -407,10 +407,10 @@ public class SubmissionTest
     }
     
     /**
-     * Test getListCountForStage, valid - stage has no variables.
+     * Test getListCountForStage, valid - stage has no lists.
      */
     @Test
-    public void testGetListForStageValidEmpty()
+    public void testGetListCountForStageValidEmpty()
     {
         submissions[0].convertToZip();
         submissions[0].unZip();
@@ -433,6 +433,51 @@ public class SubmissionTest
 
         int unexpected = 0;
         int actual = submissions[1].getListCountForStage();
+        assertFalse("should be false", unexpected == actual);
+    }
+    
+    /**
+     * Test getScriptCommentCountForStage, valid.
+     */
+    @Test
+    public void testGetScriptCommentCountForStageValid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int expected = 1;
+        int actual = submissions[1].getScriptCommentCountForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getScriptCommentCountForStage, valid - stage has no script comments.
+     */
+    @Test
+    public void testGetScriptCommentCountForStageValidEmpty()
+    {
+        submissions[0].convertToZip();
+        submissions[0].unZip();
+        submissions[0].parseJSONFile();
+
+        int expected = 0;
+        int actual = submissions[0].getScriptCommentCountForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getScriptCommentCountForStage, invalid.
+     */
+    @Test
+    public void testGetScriptCommentCountForStageInvalid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int unexpected = 0;
+        int actual = submissions[1].getScriptCommentCountForStage();
         assertFalse("should be false", unexpected == actual);
     }
 

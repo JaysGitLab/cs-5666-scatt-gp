@@ -177,6 +177,16 @@ public class Submission
         }
         return 0;
     }
+    
+    /**
+     * Get script comment count for stage.
+     *
+     * @return scriptComments 
+     */
+    public int getScriptCommentCountForStage()
+    {
+        return 5;
+    }
 
     /**
      * Get array of sprites.
