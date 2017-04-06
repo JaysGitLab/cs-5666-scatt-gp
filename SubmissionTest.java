@@ -405,6 +405,21 @@ public class SubmissionTest
         int actual = submissions[1].getListCountForStage();
         assertEquals("should be equal", expected, actual);
     }
+    
+    /**
+     * Test getListCountForStage, invalid.
+     */
+    @Test
+    public void testGetListCountForStageInvalid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int unexpected = 0;
+        int actual = submissions[1].getListCountForStage();
+        assertFalse("should be false", unexpected == actual);
+    }
 
     /**
      * Test getSpriteNames method, valid.
