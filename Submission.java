@@ -321,13 +321,15 @@ public class Submission
     }
     
     /**
-     * Get count for sprite.
+     * Helper method for all CountForSprite methods.
+     * Pass in JSON attribute name and sprite name.
+     * Get count of specified attribute for sprite.
      *
      * @param item 
      * @param spriteName 
      * @return count 
      */
-    private int getCountForSprite(String item, String spriteName)
+    private int getCountForSprite(String attribute, String spriteName)
     {
         JSONArray sprites = getSprites();
         JSONArray items = new JSONArray();
@@ -337,7 +339,7 @@ public class Submission
                     "objName").equals(spriteName))
             {
                 items = FileUtils.getJSONArrayAttribute(
-                    (JSONObject) sprites.get(i), item); 
+                    (JSONObject) sprites.get(i), attribute); 
             }
         }
         if (items != null)
