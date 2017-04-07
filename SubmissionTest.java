@@ -480,6 +480,51 @@ public class SubmissionTest
         int actual = submissions[1].getScriptCommentCountForStage();
         assertFalse("should be false", unexpected == actual);
     }
+    
+    /**
+     * Test getSoundCountForStage, valid.
+     */
+    @Test
+    public void testGetSoundCountForStageValid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int expected = 1;
+        int actual = submissions[1].getSoundCountForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getSoundCountForStage, valid - stage has no sounds.
+     */
+    @Test
+    public void testGetSoundCountForStageValidEmpty()
+    {
+        submissions[0].convertToZip();
+        submissions[0].unZip();
+        submissions[0].parseJSONFile();
+
+        int expected = 0;
+        int actual = submissions[0].getSoundCountForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getSoundCountForStage, invalid.
+     */
+    @Test
+    public void testGetSoundCountForStageInvalid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int unexpected = 0;
+        int actual = submissions[1].getSoundCountForStage();
+        assertFalse("should be false", unexpected == actual);
+    }
 
     /**
      * Test getSpriteNames method, valid.

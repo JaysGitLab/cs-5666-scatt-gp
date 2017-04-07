@@ -195,6 +195,16 @@ public class Submission
     }
 
     /**
+     * Get sound count for stage.
+     *
+     * @return sounds
+     */
+    public int getSoundCountForStage()
+    {
+        return 5;
+    }
+
+    /**
      * Get array of sprites.
      * Unchecked warnings are suppresed because JSONArray does not
      *  allow for a type specification, and this is a private
