@@ -690,6 +690,36 @@ public class SubmissionTest
         int actual = submissions[1].getListCountForSprite("Butterfly3");
         assertFalse("should not be equal", expected == actual);
     }
+    
+    /**
+     * Test getScriptCommentCountForSprite method, valid.
+     */
+    @Test
+    public void testGetScriptCommentCountForSpriteValid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int expected = 1;
+        int actual = submissions[1].getScriptCommentCountForSprite("Sprite1");
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getScriptCommentCountForSprite method, invalid.
+     */
+    @Test
+    public void testGetScriptCommentCountForSpriteInvalid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int expected = 5;
+        int actual = submissions[1].getListCountForSprite("Butterfly3");
+        assertFalse("should not be equal", expected == actual);
+    }
 
     /**
      * Test deleteZips method.

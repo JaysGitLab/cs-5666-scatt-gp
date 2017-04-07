@@ -135,92 +135,76 @@ public class Submission
     /**
      * Get script count for stage.
      *
-     * @return scripts
+     * @return count 
      */
     public int getScriptCountForStage()
     {
-        JSONArray scripts = FileUtils.getJSONArrayAttribute(jsonObj, "scripts");
-        if (scripts != null)
-        {
-            return (int) scripts.size();
-        }
-        return 0;
+        return getCountForStage("scripts");
     }
 
     /**
      * Get variable count for stage.
      *
-     * @return variables
+     * @return count 
      */
     public int getVariableCountForStage()
     {
-        JSONArray variables = 
-            FileUtils.getJSONArrayAttribute(jsonObj, "variables");
-        if (variables != null)
-        {
-            return (int) variables.size();
-        }
-        return 0;
+        return getCountForStage("variables");
     }
 
     /**
      * Get list count for stage.
      *
-     * @return lists
+     * @return count 
      */
     public int getListCountForStage()
     {
-        JSONArray lists = FileUtils.getJSONArrayAttribute(jsonObj, "lists");
-        if (lists != null)
-        {
-            return (int) lists.size();
-        }
-        return 0;
+        return getCountForStage("lists");
     }
     
     /**
      * Get script comment count for stage.
      *
-     * @return scriptComments 
+     * @return count 
      */
     public int getScriptCommentCountForStage()
     {
-        JSONArray scriptComments = 
-            FileUtils.getJSONArrayAttribute(jsonObj, "scriptComments");
-        if (scriptComments != null)
-        {
-            return (int) scriptComments.size();
-        }
-        return 0;
+        return getCountForStage("scriptComments");
     }
 
     /**
      * Get sound count for stage.
      *
-     * @return sounds
+     * @return count 
      */
     public int getSoundCountForStage()
     {
-        JSONArray sounds = FileUtils.getJSONArrayAttribute(jsonObj, "sounds");
-        if (sounds != null)
-        {
-            return (int) sounds.size();
-        }
-        return 0;
+        return getCountForStage("sounds");
     }
 
     /**
      * Get costume count for stage.
      *
-     * @return costumes
+     * @return count 
      */
     public int getCostumeCountForStage()
     {
-        JSONArray costumes = 
-            FileUtils.getJSONArrayAttribute(jsonObj, "costumes");
-        if (costumes != null)
+        return getCountForStage("costumes");
+    }
+    
+    /**
+     * Get count for stage.
+     * 
+     * @param item 
+     * @return count 
+     */
+    private int getCountForStage(String item)
+    {
+        JSONArray items = 
+            FileUtils.getJSONArrayAttribute(jsonObj, item);
+        if (items != null)
         {
-            return (int) costumes.size();
+            return (int) items.size();
         }
         return 0;
     }
@@ -274,79 +258,73 @@ public class Submission
      * Get script count for sprite.
      *
      * @param spriteName 
-     * @return scripts 
+     * @return count 
      */
     public int getScriptCountForSprite(String spriteName)
     {
-        JSONArray sprites = getSprites();
-        JSONArray scripts = new JSONArray();
-        for (int i = 0; i < sprites.size(); i++)
-        {
-            if (FileUtils.getJSONAttribute((JSONObject) sprites.get(i), 
-                    "objName").equals(spriteName))
-            {
-                scripts = FileUtils.getJSONArrayAttribute(
-                    (JSONObject) sprites.get(i), "scripts");
-            }
-        }
-        if (scripts != null)
-        {
-            return scripts.size();
-        }
-        return 0;
+        return getCountForSprite("scripts", spriteName);
     }
     
     /**
      * Get variable count for sprite.
      *
      * @param spriteName 
-     * @return variables 
+     * @return count 
      */
     public int getVariableCountForSprite(String spriteName)
     {
-        JSONArray sprites = getSprites();
-        JSONArray variables = new JSONArray();
-        for (int i = 0; i < sprites.size(); i++)
-        {
-            if (FileUtils.getJSONAttribute((JSONObject) sprites.get(i), 
-                    "objName").equals(spriteName))
-            {
-                variables = FileUtils.getJSONArrayAttribute(
-                    (JSONObject) sprites.get(i), "variables");
-            }
-        }
-        if (variables != null)
-        {
-            return variables.size();
-        }
-        return 0;
+        return getCountForSprite("variables", spriteName);
     }
     
     /**
      * Get list count for sprite.
      *
      * @param spriteName 
-     * @return lists 
+     * @return count 
      */
     public int getListCountForSprite(String spriteName)
     {
+        return getCountForSprite("lists", spriteName);
+    }
+    
+    /**
+     * Get script comment count for sprite.
+     *
+     * @param spriteName 
+     * @return count 
+     */
+    public int getScriptCommentCountForSprite(String spriteName)
+    {
+        return getCountForSprite("scriptComments", spriteName);
+    }
+    
+    /**
+     * Get count for sprite.
+     *
+     * @param item 
+     * @param spriteName 
+     * @return count 
+     */
+    private int getCountForSprite(String item, String spriteName)
+    {
         JSONArray sprites = getSprites();
-        JSONArray lists = new JSONArray();
+        JSONArray items = new JSONArray();
         for (int i = 0; i < sprites.size(); i++)
         {
             if (FileUtils.getJSONAttribute((JSONObject) sprites.get(i), 
                     "objName").equals(spriteName))
             {
-                lists = FileUtils.getJSONArrayAttribute(
-                    (JSONObject) sprites.get(i), "lists");
+                items = FileUtils.getJSONArrayAttribute(
+                    (JSONObject) sprites.get(i), item); 
             }
         }
-        if (lists != null)
+        if (items != null)
         {
-            return lists.size();
+            return items.size();
         }
         return 0;
     }
+
     
     /**
      * Delete zip files.
