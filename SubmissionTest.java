@@ -347,7 +347,7 @@ public class SubmissionTest
     @Test
     public void testGetVariableCountForStageValidEmpty()
     {
-        setUpSubmission(submissions[1]);
+        setUpSubmission(submissions[0]);
 
         int expected = 0;
         int actual = submissions[0].getVariableCountForStage();
