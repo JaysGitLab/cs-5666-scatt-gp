@@ -274,7 +274,7 @@ public class Submission
      * Get script count for sprite.
      *
      * @param spriteName 
-     * @return scriptCount 
+     * @return scripts 
      */
     public int getScriptCountForSprite(String spriteName)
     {
@@ -289,7 +289,37 @@ public class Submission
                     (JSONObject) sprites.get(i), "scripts");
             }
         }
-        return scripts.size();
+        if (scripts != null)
+        {
+            return scripts.size();
+        }
+        return 0;
+    }
+    
+    /**
+     * Get variable count for sprite.
+     *
+     * @param spriteName 
+     * @return variables 
+     */
+    public int getVariableCountForSprite(String spriteName)
+    {
+        JSONArray sprites = getSprites();
+        JSONArray variables = new JSONArray();
+        for (int i = 0; i < sprites.size(); i++)
+        {
+            if (FileUtils.getJSONAttribute((JSONObject) sprites.get(i), 
+                    "objName").equals(spriteName))
+            {
+                variables = FileUtils.getJSONArrayAttribute(
+                    (JSONObject) sprites.get(i), "variables");
+            }
+        }
+        if (variables != null)
+        {
+            return variables.size();
+        }
+        return 0;
     }
     
     /**

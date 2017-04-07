@@ -446,7 +446,7 @@ public class SubmissionTest
         submissions[1].unZip();
         submissions[1].parseJSONFile();
 
-        int expected = 1;
+        int expected = 2;
         int actual = submissions[1].getScriptCommentCountForStage();
         assertEquals("should be equal", expected, actual);
     }
@@ -572,6 +572,21 @@ public class SubmissionTest
     }
     
     /**
+     * Test getSpriteNames method, valid - empty.
+     */
+    @Test
+    public void testGetSpriteNamesValidEmpty()
+    {
+        submissions[2].convertToZip();
+        submissions[2].unZip();
+        submissions[2].parseJSONFile();
+
+        String[] expected = new String[0];
+        String[] actual = submissions[2].getSpriteNames();
+        assertArrayEquals("should be equal", expected, actual);
+    }
+    
+    /**
      * Test getSpriteNames method, invalid.
      */
     @Test
@@ -613,6 +628,36 @@ public class SubmissionTest
 
         int expected = 1;
         int actual = submissions[1].getScriptCountForSprite("Sprite1");
+        assertFalse("should not be equal", expected == actual);
+    }
+
+    /**
+     * Test getVariableCountForSprite method, valid.
+     */
+    @Test
+    public void testGetVariableCountForSpriteValid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int expected = 2;
+        int actual = submissions[1].getVariableCountForSprite("Sprite1");
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getVariableCountForSprite method, invalid.
+     */
+    @Test
+    public void testGetVariableCountForSpriteInvalid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int expected = 1;
+        int actual = submissions[1].getVariableCountForSprite("Butterfly3");
         assertFalse("should not be equal", expected == actual);
     }
 
