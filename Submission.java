@@ -323,6 +323,32 @@ public class Submission
     }
     
     /**
+     * Get list count for sprite.
+     *
+     * @param spriteName 
+     * @return lists 
+     */
+    public int getListCountForSprite(String spriteName)
+    {
+        JSONArray sprites = getSprites();
+        JSONArray lists = new JSONArray();
+        for (int i = 0; i < sprites.size(); i++)
+        {
+            if (FileUtils.getJSONAttribute((JSONObject) sprites.get(i), 
+                    "objName").equals(spriteName))
+            {
+                lists = FileUtils.getJSONArrayAttribute(
+                    (JSONObject) sprites.get(i), "lists");
+            }
+        }
+        if (lists != null)
+        {
+            return lists.size();
+        }
+        return 0;
+    }
+    
+    /**
      * Delete zip files.
      */
     public void deleteZips()

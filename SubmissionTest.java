@@ -660,6 +660,36 @@ public class SubmissionTest
         int actual = submissions[1].getVariableCountForSprite("Butterfly3");
         assertFalse("should not be equal", expected == actual);
     }
+    
+    /**
+     * Test getListCountForSprite method, valid.
+     */
+    @Test
+    public void testGetListCountForSpriteValid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int expected = 1;
+        int actual = submissions[1].getListCountForSprite("Sprite1");
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getListCountForSprite method, invalid.
+     */
+    @Test
+    public void testGetListCountForSpriteInvalid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int expected = 1;
+        int actual = submissions[1].getListCountForSprite("Butterfly3");
+        assertFalse("should not be equal", expected == actual);
+    }
 
     /**
      * Test deleteZips method.
