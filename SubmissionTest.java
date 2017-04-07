@@ -536,23 +536,8 @@ public class SubmissionTest
         submissions[1].unZip();
         submissions[1].parseJSONFile();
 
-        int expected = 1;
+        int expected = 2;
         int actual = submissions[1].getCostumeCountForStage();
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getCostumeCountForStage, valid - stage has no costumes.
-     */
-    @Test
-    public void testGetCostumeCountForStageValidEmpty()
-    {
-        submissions[2].convertToZip();
-        submissions[2].unZip();
-        submissions[2].parseJSONFile();
-
-        int expected = 0;
-        int actual = submissions[2].getCostumeCountForStage();
         assertEquals("should be equal", expected, actual);
     }
     

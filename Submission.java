@@ -216,7 +216,13 @@ public class Submission
      */
     public int getCostumeCountForStage()
     {
-        return 5;
+        JSONArray costumes = 
+            FileUtils.getJSONArrayAttribute(jsonObj, "costumes");
+        if (costumes != null)
+        {
+            return (int) costumes.size();
+        }
+        return 0;
     }
 
     /**
