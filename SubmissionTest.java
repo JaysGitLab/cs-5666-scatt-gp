@@ -525,6 +525,51 @@ public class SubmissionTest
         int actual = submissions[1].getSoundCountForStage();
         assertFalse("should be false", unexpected == actual);
     }
+    
+    /**
+     * Test getCostumeCountForStage, valid.
+     */
+    @Test
+    public void testGetCostumeCountForStageValid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int expected = 1;
+        int actual = submissions[1].getCostumeCountForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getCostumeCountForStage, valid - stage has no costumes.
+     */
+    @Test
+    public void testGetCostumeCountForStageValidEmpty()
+    {
+        submissions[2].convertToZip();
+        submissions[2].unZip();
+        submissions[2].parseJSONFile();
+
+        int expected = 0;
+        int actual = submissions[2].getCostumeCountForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getCostumeCountForStage, invalid.
+     */
+    @Test
+    public void testGetCostumeCountForStageInvalid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int unexpected = 0;
+        int actual = submissions[1].getCostumeCountForStage();
+        assertFalse("should be false", unexpected == actual);
+    }
 
     /**
      * Test getSpriteNames method, valid.
