@@ -221,9 +221,7 @@ public class SubmissionTest
     @Test
     public void testParseValidJSON()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
     
         assertNotNull("Should not be null", 
             (Object) submissions[1].getJSONObject());
@@ -234,9 +232,7 @@ public class SubmissionTest
      */
     public void testParseInvalidJSON()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
      
         assertNull(submissions[1].getJSONObject());
     } 
@@ -247,9 +243,7 @@ public class SubmissionTest
     @Test
     public void testGetSpriteCountValid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 2;
         int actual = submissions[1].getSpriteCount();
@@ -262,9 +256,7 @@ public class SubmissionTest
     @Test
     public void testGetSpriteCountInvalid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int unexpected = 4;
         int actual = submissions[1].getSpriteCount();
@@ -277,9 +269,7 @@ public class SubmissionTest
     @Test
     public void testGetScriptCountValid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 5;
         int actual = submissions[1].getScriptCount();
@@ -292,9 +282,7 @@ public class SubmissionTest
     @Test
     public void testGetScriptCountInvalid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int unexpected = 4;
         int actual = submissions[1].getScriptCount();
@@ -307,9 +295,7 @@ public class SubmissionTest
     @Test
     public void testGetScriptCountForStageValid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 1;
         int actual = submissions[1].getScriptCountForStage();
@@ -322,9 +308,7 @@ public class SubmissionTest
     @Test
     public void testGetScriptCountForStageValidEmpty()
     {
-        submissions[0].convertToZip();
-        submissions[0].unZip();
-        submissions[0].parseJSONFile();
+        setUpSubmission(submissions[0]);
 
         int expected = 0;
         int actual = submissions[0].getScriptCountForStage();
@@ -337,9 +321,7 @@ public class SubmissionTest
     @Test
     public void testGetScriptCountForStageInvalid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int unexpected = 2;
         int actual = submissions[1].getScriptCountForStage();
@@ -352,9 +334,7 @@ public class SubmissionTest
     @Test
     public void testGetVariableCountForStageValid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 2;
         int actual = submissions[1].getVariableCountForStage();
@@ -367,9 +347,7 @@ public class SubmissionTest
     @Test
     public void testGetVariableCountForStageValidEmpty()
     {
-        submissions[0].convertToZip();
-        submissions[0].unZip();
-        submissions[0].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 0;
         int actual = submissions[0].getVariableCountForStage();
@@ -382,9 +360,7 @@ public class SubmissionTest
     @Test
     public void testGetVariableCountForStageInvalid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int unexpected = 4;
         int actual = submissions[1].getVariableCountForStage();
@@ -397,9 +373,7 @@ public class SubmissionTest
     @Test
     public void testGetListCountForStageValid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 1;
         int actual = submissions[1].getListCountForStage();
@@ -412,9 +386,7 @@ public class SubmissionTest
     @Test
     public void testGetListCountForStageValidEmpty()
     {
-        submissions[0].convertToZip();
-        submissions[0].unZip();
-        submissions[0].parseJSONFile();
+        setUpSubmission(submissions[0]);
 
         int expected = 0;
         int actual = submissions[0].getListCountForStage();
@@ -427,9 +399,7 @@ public class SubmissionTest
     @Test
     public void testGetListCountForStageInvalid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int unexpected = 0;
         int actual = submissions[1].getListCountForStage();
@@ -442,9 +412,7 @@ public class SubmissionTest
     @Test
     public void testGetScriptCommentCountForStageValid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 2;
         int actual = submissions[1].getScriptCommentCountForStage();
@@ -457,9 +425,7 @@ public class SubmissionTest
     @Test
     public void testGetScriptCommentCountForStageValidEmpty()
     {
-        submissions[0].convertToZip();
-        submissions[0].unZip();
-        submissions[0].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 0;
         int actual = submissions[0].getScriptCommentCountForStage();
@@ -472,9 +438,7 @@ public class SubmissionTest
     @Test
     public void testGetScriptCommentCountForStageInvalid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int unexpected = 0;
         int actual = submissions[1].getScriptCommentCountForStage();
@@ -487,9 +451,7 @@ public class SubmissionTest
     @Test
     public void testGetSoundCountForStageValid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 1;
         int actual = submissions[1].getSoundCountForStage();
@@ -502,9 +464,7 @@ public class SubmissionTest
     @Test
     public void testGetSoundCountForStageValidEmpty()
     {
-        submissions[2].convertToZip();
-        submissions[2].unZip();
-        submissions[2].parseJSONFile();
+        setUpSubmission(submissions[2]);
 
         int expected = 0;
         int actual = submissions[2].getSoundCountForStage();
@@ -517,9 +477,7 @@ public class SubmissionTest
     @Test
     public void testGetSoundCountForStageInvalid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int unexpected = 0;
         int actual = submissions[1].getSoundCountForStage();
@@ -532,9 +490,7 @@ public class SubmissionTest
     @Test
     public void testGetCostumeCountForStageValid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 2;
         int actual = submissions[1].getCostumeCountForStage();
@@ -547,9 +503,7 @@ public class SubmissionTest
     @Test
     public void testGetCostumeCountForStageInvalid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int unexpected = 0;
         int actual = submissions[1].getCostumeCountForStage();
@@ -562,9 +516,7 @@ public class SubmissionTest
     @Test
     public void testGetSpriteNamesValid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         String[] expected = {"Sprite1", "Butterfly3"};
         String[] actual = submissions[1].getSpriteNames();
@@ -577,9 +529,7 @@ public class SubmissionTest
     @Test
     public void testGetSpriteNamesValidEmpty()
     {
-        submissions[2].convertToZip();
-        submissions[2].unZip();
-        submissions[2].parseJSONFile();
+        setUpSubmission(submissions[2]);
 
         String[] expected = new String[0];
         String[] actual = submissions[2].getSpriteNames();
@@ -592,9 +542,7 @@ public class SubmissionTest
     @Test
     public void testGetSpriteNamesInvalid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         String[] expected = {"Bob"};
         String[] actual = submissions[1].getSpriteNames();
@@ -607,9 +555,7 @@ public class SubmissionTest
     @Test
     public void testGetScriptCountForSpriteValid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 2;
         int actual = submissions[1].getScriptCountForSprite("Sprite1");
@@ -622,9 +568,7 @@ public class SubmissionTest
     @Test
     public void testGetScriptCountForSpriteInvalid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 1;
         int actual = submissions[1].getScriptCountForSprite("Sprite1");
@@ -637,9 +581,7 @@ public class SubmissionTest
     @Test
     public void testGetVariableCountForSpriteValid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 2;
         int actual = submissions[1].getVariableCountForSprite("Sprite1");
@@ -652,9 +594,7 @@ public class SubmissionTest
     @Test
     public void testGetVariableCountForSpriteInvalid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 1;
         int actual = submissions[1].getVariableCountForSprite("Butterfly3");
@@ -667,9 +607,7 @@ public class SubmissionTest
     @Test
     public void testGetListCountForSpriteValid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 1;
         int actual = submissions[1].getListCountForSprite("Sprite1");
@@ -682,9 +620,7 @@ public class SubmissionTest
     @Test
     public void testGetListCountForSpriteInvalid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 1;
         int actual = submissions[1].getListCountForSprite("Butterfly3");
@@ -697,9 +633,7 @@ public class SubmissionTest
     @Test
     public void testGetScriptCommentCountForSpriteValid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 1;
         int actual = submissions[1].getScriptCommentCountForSprite("Sprite1");
@@ -712,9 +646,7 @@ public class SubmissionTest
     @Test
     public void testGetScriptCommentCountForSpriteInvalid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 5;
         int actual = 
@@ -728,9 +660,7 @@ public class SubmissionTest
     @Test
     public void testGetSoundCountForSpriteValid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 1;
         int actual = submissions[1].getSoundCountForSprite("Sprite1");
@@ -743,9 +673,7 @@ public class SubmissionTest
     @Test
     public void testGetSoundCountForSpriteInvalid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 5;
         int actual = submissions[1].getSoundCountForSprite("Butterfly3");
@@ -758,9 +686,7 @@ public class SubmissionTest
     @Test
     public void testGetCostumeCountForSpriteValid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 2;
         int actual = submissions[1].getCostumeCountForSprite("Sprite1");
@@ -773,13 +699,23 @@ public class SubmissionTest
     @Test
     public void testGetCostumeCountForSpriteInvalid()
     {
-        submissions[1].convertToZip();
-        submissions[1].unZip();
-        submissions[1].parseJSONFile();
+        setUpSubmission(submissions[1]);
 
         int expected = 5;
         int actual = submissions[1].getCostumeCountForSprite("Butterfly3");
         assertFalse("should not be equal", expected == actual);
+    }
+
+    /**
+     * Set up submission for test.
+     *
+     * @param submission 
+     */
+    private void setUpSubmission(Submission submission)
+    {
+        submission.convertToZip();
+        submission.unZip();
+        submission.parseJSONFile();
     }
 
     /**
