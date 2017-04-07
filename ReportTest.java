@@ -73,7 +73,11 @@ public class ReportTest
                         + "Sprite: Sprite1\n"
                         + "Script count: 2\n\n"
                         + "Sprite: Butterfly3\n"
-                        + "Script count: 2\n"
+                        + "Script count: 2\n\n"
+                        + "File: Empty.sb2\n"
+                        + "---------------------------------\n"
+                        + "Script count: 0\n"
+                        + "Sprite count: 0\n"
                         + "\n";
         assertEquals("should be equal", expected, outContent.toString());
     }    

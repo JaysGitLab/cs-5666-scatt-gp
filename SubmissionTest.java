@@ -502,12 +502,12 @@ public class SubmissionTest
     @Test
     public void testGetSoundCountForStageValidEmpty()
     {
-        submissions[0].convertToZip();
-        submissions[0].unZip();
-        submissions[0].parseJSONFile();
+        submissions[2].convertToZip();
+        submissions[2].unZip();
+        submissions[2].parseJSONFile();
 
         int expected = 0;
-        int actual = submissions[0].getSoundCountForStage();
+        int actual = submissions[2].getSoundCountForStage();
         assertEquals("should be equal", expected, actual);
     }
     

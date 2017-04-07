@@ -201,7 +201,12 @@ public class Submission
      */
     public int getSoundCountForStage()
     {
-        return 5;
+        JSONArray sounds = FileUtils.getJSONArrayAttribute(jsonObj, "sounds");
+        if (sounds != null)
+        {
+            return (int) sounds.size();
+        }
+        return 0;
     }
 
     /**
