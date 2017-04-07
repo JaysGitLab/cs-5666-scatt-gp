@@ -751,6 +751,36 @@ public class SubmissionTest
         int actual = submissions[1].getSoundCountForSprite("Butterfly3");
         assertFalse("should not be equal", expected == actual);
     }
+    
+    /**
+     * Test getCostumeCountForSprite method, valid.
+     */
+    @Test
+    public void testGetCostumeCountForSpriteValid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int expected = 2;
+        int actual = submissions[1].getCostumeCountForSprite("Sprite1");
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getCostumeCountForSprite method, invalid.
+     */
+    @Test
+    public void testGetCostumeCountForSpriteInvalid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int expected = 5;
+        int actual = submissions[1].getCostumeCountForSprite("Butterfly3");
+        assertFalse("should not be equal", expected == actual);
+    }
 
     /**
      * Test deleteZips method.

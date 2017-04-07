@@ -299,7 +299,7 @@ public class Submission
     }
 
     /**
-     * Get sound cound for sprite.
+     * Get sound count for sprite.
      *
      * @param spriteName 
      * @return count
@@ -307,6 +307,17 @@ public class Submission
     public int getSoundCountForSprite(String spriteName)
     {
         return getCountForSprite("sounds", spriteName);
+    }
+
+    /**
+     * Get costume count for sprite.
+     *
+     * @param spriteName 
+     * @return count
+     */
+    public int getCostumeCountForSprite(String spriteName)
+    {
+        return 10;
     }
     
     /**
