@@ -306,7 +306,7 @@ public class Submission
      */
     public int getSoundCountForSprite(String spriteName)
     {
-        return 10;
+        return getCountForSprite("sounds", spriteName);
     }
     
     /**
