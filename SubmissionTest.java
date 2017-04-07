@@ -717,7 +717,38 @@ public class SubmissionTest
         submissions[1].parseJSONFile();
 
         int expected = 5;
-        int actual = submissions[1].getListCountForSprite("Butterfly3");
+        int actual = 
+            submissions[1].getScriptCommentCountForSprite("Butterfly3");
+        assertFalse("should not be equal", expected == actual);
+    }
+    
+    /**
+     * Test getSoundCountForSprite method, valid.
+     */
+    @Test
+    public void testGetSoundCountForSpriteValid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int expected = 1;
+        int actual = submissions[1].getSoundCountForSprite("Sprite1");
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getSoundCountForSprite method, invalid.
+     */
+    @Test
+    public void testGetSoundCountForSpriteInvalid()
+    {
+        submissions[1].convertToZip();
+        submissions[1].unZip();
+        submissions[1].parseJSONFile();
+
+        int expected = 5;
+        int actual = submissions[1].getSoundCountForSprite("Butterfly3");
         assertFalse("should not be equal", expected == actual);
     }
 

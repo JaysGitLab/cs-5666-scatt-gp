@@ -297,6 +297,17 @@ public class Submission
     {
         return getCountForSprite("scriptComments", spriteName);
     }
+
+    /**
+     * Get sound cound for sprite.
+     *
+     * @param spriteName 
+     * @return count
+     */
+    public int getSoundCountForSprite(String spriteName)
+    {
+        return 10;
+    }
     
     /**
      * Get count for sprite.
