@@ -317,7 +317,7 @@ public class Submission
      */
     public int getCostumeCountForSprite(String spriteName)
     {
-        return 10;
+        return getCountForSprite("costumes", spriteName);
     }
     
     /**
