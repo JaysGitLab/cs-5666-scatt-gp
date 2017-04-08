@@ -396,7 +396,7 @@ public class Submission
      * @param scriptName 
      * @return category
      */
-    public String getCategory(String scriptName)
+    private String getCategory(String scriptName)
     {
         return (String) blocks.get(scriptName);
     }
