@@ -638,6 +638,20 @@ public class SubmissionTest
          
         assertEquals("should be equal", expected, actual);
     }
+    
+    /**
+     * Test getEventsBlockCountForStage method - empty.
+     */
+    @Test
+    public void testGetEventsBlockCountForStageEmpty()
+    {
+        setUpSubmission(submissions[0]);
+
+        int expected = 0;
+        int actual = submissions[0].getEventsBlockCountForStage();
+         
+        assertEquals("should be equal", expected, actual);
+    }
 
     /**
      * Test deleteZips method.

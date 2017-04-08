@@ -235,7 +235,6 @@ public class Submission
         if (scripts != null)
         {
             int count = 0;
-            // get(0) - JSONArray doesn't count numbers before scripts as element.
             JSONArray scriptsArray = (JSONArray) scripts.get(0);
             JSONArray scriptsContents = (JSONArray) scriptsArray.get(2);
             for (int i = 0; i < scriptsContents.size(); i++)
