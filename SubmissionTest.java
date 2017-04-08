@@ -641,6 +641,20 @@ public class SubmissionTest
          
         assertEquals("should be equal", expected, actual);
     }
+    
+    /**
+     * Test getLooskBlockCountForStage method.
+     */
+    @Test
+    public void testGetLooksBlockCountForStage()
+    {
+        setUpSubmission(submissions[1]);
+
+        int expected = 1;
+        int actual = submissions[1].getLooksBlockCountForStage();
+         
+        assertEquals("should be equal", expected, actual);
+    }
 
     /**
      * Test deleteZips method.

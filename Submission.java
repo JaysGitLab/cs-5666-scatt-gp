@@ -249,6 +249,32 @@ public class Submission
         }
         return 0;
     }
+    
+    /**
+     * Get Looks block count for stage.
+     *
+     * @return count 
+     */
+    public int getLooksBlockCountForStage()
+    {
+        JSONArray scripts = FileUtils.getJSONArrayAttribute(jsonObj, "scripts");
+        if (scripts != null)
+        {
+            int count = 0;
+            JSONArray scriptsArray = (JSONArray) scripts.get(0);
+            JSONArray scriptsContents = (JSONArray) scriptsArray.get(2);
+            for (int i = 0; i < scriptsContents.size(); i++)
+            {
+                JSONArray script = (JSONArray) scriptsContents.get(i);
+                if (getCategory((String) script.get(0)).equals("looks"))
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+        return 0;
+    }
 
     /**
      * Get array of sprites.
