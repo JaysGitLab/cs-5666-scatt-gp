@@ -27,7 +27,7 @@ public class Submission
     private File unzipsDir;
     private File json;
     private JSONObject jsonObj;
-    private HashMap blocks;
+    private HashMap<String, String> blocks;
     
     /**
      * Submission constructor.
@@ -39,8 +39,17 @@ public class Submission
         this.sb2 = sb2;
         zipsDir = new File("zips");
         unzipsDir = new File("unzips");
-        blocks = new HashMap();
-        createCategoryMap();
+        blocks = new HashMap<String, String>();
+        addControlCategoryMap();
+        addDataCategoryMap();
+        addEventsCategoryMap();
+        addLooksCategoryMap();
+        addMoreBlocksCategoryMap();
+        addMotionCategoryMap();
+        addOperatorsCategoryMap();
+        addPenCategoryMap();
+        addSensingCategoryMap();
+        addSoundCategoryMap();
     }
 
     /**
@@ -363,11 +372,12 @@ public class Submission
     {
         return (String) blocks.get(scriptName);
     }
-
+    
     /**
      * HashMap to store script names with block category.
+     * Control scripts.
      */
-    private void createCategoryMap()
+    private void addControlCategoryMap()
     {
         blocks.put("wait:elapsed:from:", "control");
         blocks.put("wait:elapsed:from:", "control");
@@ -381,7 +391,14 @@ public class Submission
         blocks.put("whenCloned", "control");
         blocks.put("createCloneOf", "control");
         blocks.put("deleteClone", "control");
-
+    }
+    
+    /**
+     * HashMap to store script names with block category.
+     * Data scripts.
+     */
+    private void addDataCategoryMap()
+    {
         blocks.put("readVariable", "data");
         blocks.put("setVar:to:", "data");
         blocks.put("changeVar:by:", "data");
@@ -397,7 +414,14 @@ public class Submission
         blocks.put("list:contains:", "data");
         blocks.put("showList:", "data");
         blocks.put("hideList:", "data");
-
+    }
+    
+    /**
+     * HashMap to store script names with block category.
+     * Events scripts.
+     */
+    private void addEventsCategoryMap()
+    {
         blocks.put("whenGreenFlag", "events");
         blocks.put("whenKeyPressed", "events");
         blocks.put("whenClicked", "events");
@@ -406,7 +430,14 @@ public class Submission
         blocks.put("whenIReceive", "events");
         blocks.put("broadcast:", "events");
         blocks.put("doBroadcastAndWait", "events");
-
+    }
+    
+    /**
+     * HashMap to store script names with block category.
+     * Looks scripts.
+     */
+    private void addLooksCategoryMap()
+    {
         blocks.put("say:duration:elapsed:from:", "looks");
         blocks.put("say:", "looks");
         blocks.put("think:duration:elapsed:from:", "looks");
@@ -426,7 +457,14 @@ public class Submission
         blocks.put("costumeIndex", "looks");
         blocks.put("sceneName", "looks");
         blocks.put("scale", "looks");
-
+    }
+    
+    /**
+     * HashMap to store script names with block category.
+     * More blocks scripts.
+     */
+    private void addMoreBlocksCategoryMap()
+    {
         blocks.put("procDef", "more blocks");
         blocks.put("LEGO WeDo\u001fmotorOnFor", "more blocks");
         blocks.put("LEGO WeDo\u001fmotorOn", "more blocks");
@@ -453,7 +491,14 @@ public class Submission
         blocks.put("PicoBoard\u001fwhenSensorPass", "more blocks");
         blocks.put("PicoBoard\u001fsensorPressed", "more blocks");
         blocks.put("PicoBoard\u001fsensor", "more blocks");
-
+    }
+    
+    /**
+     * HashMap to store script names with block category.
+     * Motion scripts.
+     */
+    private void addMotionCategoryMap()
+    {
         blocks.put("forward:", "motion");
         blocks.put("turnRight:", "motion");
         blocks.put("turnLeft:", "motion");
@@ -468,7 +513,14 @@ public class Submission
         blocks.put("ypos:", "motion");
         blocks.put("bounceOffEdge", "motion");
         blocks.put("setRotationStyle", "motion");
-
+    }
+    
+    /**
+     * HashMap to store script names with block category.
+     * Operators scripts.
+     */
+    private void addOperatorsCategoryMap()
+    {
         blocks.put("+", "operators");
         blocks.put("-", "operators");
         blocks.put("*", "operators");
@@ -486,7 +538,14 @@ public class Submission
         blocks.put("%", "operators");
         blocks.put("rounded", "operators");
         blocks.put("computeFunction:of:", "operators");
-
+    }
+    
+    /**
+     * HashMap to store script names with block category.
+     * Pen scripts.
+     */
+    private void addPenCategoryMap()
+    {
         blocks.put("clearPenTrails", "pen");
         blocks.put("stampCostume", "pen");
         blocks.put("putPenDown", "pen");
@@ -498,7 +557,14 @@ public class Submission
         blocks.put("setPenShadeTo:", "pen");
         blocks.put("changePenSizeBy:", "pen");
         blocks.put("penSize:", "pen");
-
+    }
+    
+    /**
+     * HashMap to store script names with block category.
+     * Sensing scripts.
+     */
+    private void addSensingCategoryMap()
+    {
         blocks.put("touching:", "sensing");
         blocks.put("touchingColor:", "sensing");
         blocks.put("color:sees:", "sensing");
@@ -519,7 +585,14 @@ public class Submission
         blocks.put("timeAndDate", "sensing");
         blocks.put("timestamp", "sensing");
         blocks.put("getUserName", "sensing");
-
+    }
+    
+    /**
+     * HashMap to store script names with block category.
+     * Sound scripts.
+     */
+    private void addSoundCategoryMap()
+    {
         blocks.put("playSound:", "sound");
         blocks.put("doPlaySoundAndWait", "sound");
         blocks.put("stopAllSounds", "sound");
