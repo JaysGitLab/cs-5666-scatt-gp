@@ -2,6 +2,7 @@ import java.io.File;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import java.util.Iterator;
+import java.util.HashMap;
 
 /**
  * Submission.java
@@ -26,6 +27,7 @@ public class Submission
     private File unzipsDir;
     private File json;
     private JSONObject jsonObj;
+    private HashMap blocks;
     
     /**
      * Submission constructor.
@@ -37,6 +39,8 @@ public class Submission
         this.sb2 = sb2;
         zipsDir = new File("zips");
         unzipsDir = new File("unzips");
+        blocks = new HashMap();
+        createCategoryMap();
     }
 
     /**
@@ -349,6 +353,187 @@ public class Submission
         return 0;
     }
 
+    /**
+     * Get category name for specified script name.
+     *
+     * @param scriptName 
+     * @return category
+     */
+    public String getCategory(String scriptName)
+    {
+        return blocks.get(scriptName);
+    }
+
+    /**
+     * HashMap to store script names with block category.
+     */
+    private void createCategoryMap()
+    {
+        blocks.put("wait:elapsed:from:", "control");
+        blocks.put("wait:elapsed:from:", "control");
+        blocks.put("doRepeat", "control");
+        blocks.put("doForever", "control");
+        blocks.put("doIf", "control");
+        blocks.put("doIfElse", "control");
+        blocks.put("doWaitUntil", "control");
+        blocks.put("doUntil", "control");
+        blocks.put("stopScripts", "control");
+        blocks.put("whenCloned", "control");
+        blocks.put("createCloneOf", "control");
+        blocks.put("deleteClone", "control");
+
+        blocks.put("readVariable", "data");
+        blocks.put("setVar:to:", "data");
+        blocks.put("changeVar:by:", "data");
+        blocks.put("showVariable:", "data");
+        blocks.put("hideVariable:", "data");
+        blocks.put("contentsOfList:", "data");
+        blocks.put("append:toList:", "data");
+        blocks.put("deleteLine:ofList:", "data");
+        blocks.put("insert:at:ofList:", "data");
+        blocks.put("setLine:ofList:to:", "data");
+        blocks.put("getLine:ofList:", "data");
+        blocks.put("lineCountOfList:", "data");
+        blocks.put("list:contains:", "data");
+        blocks.put("showList:", "data");
+        blocks.put("hideList:", "data");
+
+        blocks.put("whenGreenFlag", "events");
+        blocks.put("whenKeyPressed, "events");
+        blocks.put("whenClicked, "events");
+        blocks.put("whenSceneStarts, "events");
+        blocks.put("whenSensorGreaterThan, "events");
+        blocks.put("whenIReceive, "events");
+        blocks.put("broadcast:, "events");
+        blocks.put("doBroadcastAndWait, "events");
+
+        blocks.put("say:duration:elapsed:from:", "looks");
+        blocks.put("say:", "looks");
+        blocks.put("think:duration:elapsed:from:", "looks");
+        blocks.put("think:", "looks");
+        blocks.put("show", "looks");
+        blocks.put("hide", "looks");
+        blocks.put("lookLike:", "looks");
+        blocks.put("nextCostume", "looks");
+        blocks.put("startScene", "looks");
+        blocks.put("changeGraphicEffect:by:", "looks");
+        blocks.put("setGraphicEffect:to:", "looks");
+        blocks.put("filterReset", "looks");
+        blocks.put("changeSizeBy:", "looks");
+        blocks.put("setSizeTo:", "looks");
+        blocks.put("comeToFront", "looks");
+        blocks.put("goBackByLayers:", "looks");
+        blocks.put("costumeIndex", "looks");
+        blocks.put("sceneName", "looks");
+        blocks.put("scale", "looks");
+
+        blocks.put("procDef", "more blocks");
+        blocks.put("LEGO WeDo\u001fmotorOnFor", "more blocks");
+        blocks.put("LEGO WeDo\u001fmotorOn", "more blocks");
+        blocks.put("LEGO WeDo\u001fmotorOff", "more blocks");
+        blocks.put("LEGO WeDo\u001fstartMotorPower", "more blocks");
+        blocks.put("LEGO WeDo\u001fsetMotorDirection", "more blocks");
+        blocks.put("LEGO WeDo\u001fwhenDistance", "more blocks");
+        blocks.put("LEGO WeDo\u001fwhenTilt", "more blocks");
+        blocks.put("LEGO WeDo\u001fgetDistance", "more blocks");
+        blocks.put("LEGO WeDo\u001fgetTilt", "more blocks");
+        blocks.put("LEGO WeDo 2.0\u001fmotorOnFor", "more blocks");
+        blocks.put("LEGO WeDo 2.0\u001fmotorOn", "more blocks");
+        blocks.put("LEGO WeDo 2.0\u001fmotorOff", "more blocks");
+        blocks.put("LEGO WeDo 2.0\u001fstartMotorPower", "more blocks");
+        blocks.put("LEGO WeDo 2.0\u001fsetMotorDirection", "more blocks");
+        blocks.put("LEGO WeDo 2.0\u001fsetLED", "more blocks");
+        blocks.put("LEGO WeDo 2.0\u001fplayNote", "more blocks");
+        blocks.put("LEGO WeDo 2.0\u001fwhenDistance", "more blocks");
+        blocks.put("LEGO WeDo 2.0\u001fwhenTilted", "more blocks");
+        blocks.put("LEGO WeDo 2.0\u001fgetDistance", "more blocks");
+        blocks.put("LEGO WeDo 2.0\u001fisTilted", "more blocks");
+        blocks.put("LEGO WeDo 2.0\u001fgetTilt", "more blocks");
+        blocks.put("PicoBoard\u001fwhenSensorConnected", "more blocks");
+        blocks.put("PicoBoard\u001fwhenSensorPass", "more blocks");
+        blocks.put("PicoBoard\u001fsensorPressed", "more blocks");
+        blocks.put("PicoBoard\u001fsensor", "more blocks");
+
+        blocks.put("forward:", "motion");
+        blocks.put("turnRight:", "motion");
+        blocks.put("turnLeft:", "motion");
+        blocks.put("heading:", "motion");
+        blocks.put("pointTowards:", "motion");
+        blocks.put("gotoX:y:", "motion");
+        blocks.put("gotoSpriteOrMouse:", "motion");
+        blocks.put("glideSecs:toX:y:elapsed:from:", "motion");
+        blocks.put("changeXposBy:", "motion");
+        blocks.put("xpos:", "motion");
+        blocks.put("changeYposBy:", "motion");
+        blocks.put("ypos:", "motion");
+        blocks.put("bounceOffEdge", "motion");
+        blocks.put("setRotationStyle", "motion");
+
+        blocks.put("+", "operators");
+        blocks.put("-", "operators");
+        blocks.put("*", "operators");
+        blocks.put("\/", "operators");
+        blocks.put("randomFrom:to:", "operators");
+        blocks.put("<", "operators");
+        blocks.put("=", "operators");
+        blocks.put(">", "operators");
+        blocks.put("&", "operators");
+        blocks.put("|", "operators");
+        blocks.put("not", "operators");
+        blocks.put("concatenate:with:", "operators");
+        blocks.put("letter:of:", "operators");
+        blocks.put("stringLength:", "operators");
+        blocks.put("%", "operators");
+        blocks.put("rounded", "operators");
+        blocks.put("computeFunction:of:", "operators");
+
+        blocks.put("clearPenTrails", "pen");
+        blocks.put("stampCostume", "pen");
+        blocks.put("putPenDown", "pen");
+        blocks.put("putPenUp", "pen");
+        blocks.put("penColor:", "pen");
+        blocks.put("changePenHueBy:", "pen");
+        blocks.put("setPenHueTo:", "pen");
+        blocks.put("changePenShadeBy:", "pen");
+        blocks.put("setPenShadeTo:", "pen");
+        blocks.put("changePenSizeBy:", "pen");
+        blocks.put("penSize:", "pen");
+
+        blocks.put("touching:", "sensing");
+        blocks.put("touchingColor:", "sensing");
+        blocks.put("color:sees:", "sensing");
+        blocks.put("distanceTo:", "sensing");
+        blocks.put("doAsk", "sensing");
+        blocks.put("answer", "sensing");
+        blocks.put("keyPressed:", "sensing");
+        blocks.put("mousePressed", "sensing");
+        blocks.put("mouseX", "sensing");
+        blocks.put("mouseY", "sensing");
+        blocks.put("soundLevel", "sensing");
+        blocks.put("senseVideoMotion", "sensing");
+        blocks.put("setVideoState", "sensing");
+        blocks.put("setVideoTransparency", "sensing");
+        blocks.put("timer", "sensing");
+        blocks.put("timerReset", "sensing");
+        blocks.put("getAttribute:of:", "sensing");
+        blocks.put("timeAndDate", "sensing");
+        blocks.put("timestamp", "sensing");
+        blocks.put("getUserName", "sensing");
+
+        blocks.put("playSound:", "sound");
+        blocks.put("doPlaySoundAndWait", "sound");
+        blocks.put("stopAllSounds", "sound");
+        blocks.put("playDrum", "sound");
+        blocks.put("rest:elapsed:from:", "sound");
+        blocks.put("noteOn:duration:elapsed:from:", "sound");
+        blocks.put("instrument:", "sound");
+        blocks.put("changeVolumeBy:", "sound");
+        blocks.put("setVolumeTo:", "sound");
+        blocks.put("volume", "sound");
+        blocks.put("changeTempoBy:", "sound");
+        blocks.put("setTempoTo:", "sound");
+        blocks.put("tempo", "sound");
+    }
     
     /**
      * Delete zip files.
