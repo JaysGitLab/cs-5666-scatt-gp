@@ -349,7 +349,6 @@ public class Submission
         return 0;
     }
 
-    
     /**
      * Delete zip files.
      */
