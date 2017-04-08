@@ -223,6 +223,16 @@ public class Submission
     }
 
     /**
+     * Get Events block count for stage.
+     *
+     * @return count 
+     */
+    public int getEventsBlockCountForStage()
+    {
+        return 10;
+    }
+
+    /**
      * Get array of sprites.
      * Unchecked warnings are suppressed because JSONArray does not
      *  allow for a type specification, and this is a private

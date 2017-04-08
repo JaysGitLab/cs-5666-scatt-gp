@@ -626,6 +626,20 @@ public class SubmissionTest
     }
 
     /**
+     * Test getEventsBlockCountForStage method.
+     */
+    @Test
+    public void testGetEventsBlockCountForStage()
+    {
+        setUpSubmission(submissions[1]);
+
+        int expected = 1;
+        int actual = submissions[1].getEventsBlockCountForStage();
+         
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
      * Test deleteZips method.
      */
     @Test
