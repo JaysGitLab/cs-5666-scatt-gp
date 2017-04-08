@@ -325,7 +325,7 @@ public class Submission
      * Pass in JSON attribute name and sprite name.
      * Get count of specified attribute for sprite.
      *
-     * @param item 
+     * @param attribute  
      * @param spriteName 
      * @return count 
      */
