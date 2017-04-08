@@ -329,7 +329,7 @@ public class Submission
      * Pass in JSON attribute name and sprite name.
      * Get count of specified attribute for sprite.
      *
-     * @param item 
+     * @param attribute  
      * @param spriteName 
      * @return count 
      */
@@ -361,7 +361,7 @@ public class Submission
      */
     public String getCategory(String scriptName)
     {
-        return blocks.get(scriptName);
+        return (String) blocks.get(scriptName);
     }
 
     /**
@@ -399,13 +399,13 @@ public class Submission
         blocks.put("hideList:", "data");
 
         blocks.put("whenGreenFlag", "events");
-        blocks.put("whenKeyPressed, "events");
-        blocks.put("whenClicked, "events");
-        blocks.put("whenSceneStarts, "events");
-        blocks.put("whenSensorGreaterThan, "events");
-        blocks.put("whenIReceive, "events");
-        blocks.put("broadcast:, "events");
-        blocks.put("doBroadcastAndWait, "events");
+        blocks.put("whenKeyPressed", "events");
+        blocks.put("whenClicked", "events");
+        blocks.put("whenSceneStarts", "events");
+        blocks.put("whenSensorGreaterThan", "events");
+        blocks.put("whenIReceive", "events");
+        blocks.put("broadcast:", "events");
+        blocks.put("doBroadcastAndWait", "events");
 
         blocks.put("say:duration:elapsed:from:", "looks");
         blocks.put("say:", "looks");
@@ -472,7 +472,7 @@ public class Submission
         blocks.put("+", "operators");
         blocks.put("-", "operators");
         blocks.put("*", "operators");
-        blocks.put("\/", "operators");
+        blocks.put("\\/", "operators");
         blocks.put("randomFrom:to:", "operators");
         blocks.put("<", "operators");
         blocks.put("=", "operators");

@@ -615,6 +615,17 @@ public class SubmissionTest
     }
 
     /**
+     * Test getCategory method.
+     */
+    @Test
+    public void testGetCategory()
+    {
+        String expected = "sensing";
+        String actual = submissions[0].getCategory("touching:");
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
      * Test deleteZips method.
      */
     @Test
