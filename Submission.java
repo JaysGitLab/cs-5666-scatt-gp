@@ -206,15 +206,17 @@ public class Submission
     }
     
     /**
-     * Get count for stage.
+     * Helper method for all CountForStage methods.
+     * Pass in JSON attribute name.
+     * Get count of specified attribute for stage.
      * 
-     * @param item 
+     * @param attribute  
      * @return count 
      */
-    private int getCountForStage(String item)
+    private int getCountForStage(String attribute)
     {
         JSONArray items = 
-            FileUtils.getJSONArrayAttribute(jsonObj, item);
+            FileUtils.getJSONArrayAttribute(jsonObj, attribute);
         if (items != null)
         {
             return (int) items.size();
@@ -229,7 +231,24 @@ public class Submission
      */
     public int getEventsBlockCountForStage()
     {
-        return 10;
+        JSONArray scripts = FileUtils.getJSONArrayAttribute(jsonObj, "scripts");
+        if (scripts != null)
+        {
+            int count = 0;
+            // get(0) - JSONArray doesn't count numbers before scripts as element.
+            JSONArray scriptsArray = (JSONArray) scripts.get(0);
+            JSONArray scriptsContents = (JSONArray) scriptsArray.get(2);
+            for (int i = 0; i < scriptsContents.size(); i++)
+            {
+                JSONArray script = (JSONArray) scriptsContents.get(i);
+                if (getCategory((String) script.get(0)).equals("events"))
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+        return 0;
     }
 
     /**
