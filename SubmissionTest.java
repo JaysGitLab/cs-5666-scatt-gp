@@ -629,6 +629,34 @@ public class SubmissionTest
         int actual = submissions[2].getControlBlocksForStage();
         assertEquals("should be equal", expected, actual);
     }
+    
+    /**
+     * Test getDataBlocksForStage method.
+     */
+    @Test
+    public void testGetDataBlocksForStage()
+    {
+        setUpSubmission(submissions[1]);
+        submissions[1].countBlockCategoriesForStage();
+
+        int expected = 2;
+        int actual = submissions[1].getDataBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getDataBlocksForStage method - empty.
+     */
+    @Test
+    public void testGetDataBlocksForStageEmpty()
+    {
+        setUpSubmission(submissions[2]);
+        submissions[2].countBlockCategoriesForStage();
+
+        int expected = 0;
+        int actual = submissions[2].getDataBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
 
     /**
      * Test getEventsBlocksForStage method.
