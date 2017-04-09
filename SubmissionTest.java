@@ -687,6 +687,34 @@ public class SubmissionTest
     }
     
     /**
+     * Test getLooksBlocksForStage method.
+     */
+    @Test
+    public void testGetLooksBlocksForStage()
+    {
+        setUpSubmission(submissions[1]);
+        submissions[1].countBlockCategoriesForStage();
+
+        int expected = 1;
+        int actual = submissions[1].getLooksBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getLooksBlocksForStage method - empty.
+     */
+    @Test
+    public void testGetLooksBlocksForStageEmpty()
+    {
+        setUpSubmission(submissions[2]);
+        submissions[2].countBlockCategoriesForStage();
+
+        int expected = 0;
+        int actual = submissions[2].getLooksBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
      * Set up submission for test.
      *
      * @param submission 

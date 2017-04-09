@@ -351,6 +351,16 @@ public class Submission
     {
         return eventsBlocksForStage;
     }
+    
+    /**
+     * Get looks block count.
+     *
+     * @return count
+     */
+    public int getLooksBlocksForStage()
+    {
+        return looksBlocksForStage;
+    }
 
     /**
      * Get array of sprites.
