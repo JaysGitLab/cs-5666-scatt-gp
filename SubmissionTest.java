@@ -743,6 +743,20 @@ public class SubmissionTest
     }
     
     /**
+     * Test getMotionBlocksForStage method - empty.
+     */
+    @Test
+    public void testGetMotionBlocksForStageEmpty()
+    {
+        setUpSubmission(submissions[1]);
+        submissions[1].countBlockCategoriesForStage();
+
+        int expected = 0;
+        int actual = submissions[1].getMotionBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
      * Set up submission for test.
      *
      * @param submission 

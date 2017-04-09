@@ -371,6 +371,17 @@ public class Submission
     {
         return moreBlocksBlocksForStage;
     }
+    
+    /**
+     * Get motion block count.
+     * Should always be 0 - motion blocks are not available for stage.
+     *
+     * @return count
+     */
+    public int getMotionBlocksForStage()
+    {
+        return motionBlocksForStage;
+    }
 
     /**
      * Get array of sprites.
