@@ -271,7 +271,7 @@ public class SubmissionTest
     {
         setUpSubmission(submissions[1]);
 
-        int expected = 5;
+        int expected = 6;
         int actual = submissions[1].getScriptCount();
         assertEquals("should be equal", expected, actual);
     }
@@ -297,7 +297,7 @@ public class SubmissionTest
     {
         setUpSubmission(submissions[1]);
 
-        int expected = 1;
+        int expected = 6;
         int actual = submissions[1].getScriptCountForStage();
         assertEquals("should be equal", expected, actual);
     }
@@ -323,7 +323,7 @@ public class SubmissionTest
     {
         setUpSubmission(submissions[1]);
 
-        int expected = 2;
+        int expected = 3;
         int actual = submissions[1].getVariableCountForStage();
         assertEquals("should be equal", expected, actual);
     }

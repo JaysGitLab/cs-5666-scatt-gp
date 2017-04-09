@@ -250,10 +250,7 @@ public class Submission
         sensingBlocksForStage = 0;
         soundBlocksForStage = 0;
         JSONArray scripts = FileUtils.getJSONArrayAttribute(jsonObj, "scripts");
-        if (scripts != null)
-        {
-            processScripts(scripts);
-        }
+        processScripts(scripts);
     }
 
     /**
@@ -263,45 +260,52 @@ public class Submission
      */
     private void processScripts(JSONArray array)
     {
+        if (array == null || array.size() == 0)
+        {
+            return;
+        }
         // If first element is a String, it is the block name.
         // Get and count its category.
         if (array.get(0) instanceof String)
         {
             String category = getCategory((String) array.get(0));
-            switch (category)
+            if (category != null)
             {
-                case "control":
-                    controlBlocksForStage++;
-                    break;
-                case "data":
-                    dataBlocksForStage++;
-                    break;
-                case "events":
-                    eventsBlocksForStage++;
-                    break;
-                case "looks":
-                    looksBlocksForStage++;
-                    break;
-                case "more blocks":
-                    moreBlocksBlocksForStage++;
-                    break;
-                case "motion":
-                    motionBlocksForStage++;
-                    break;
-                case "operators":
-                    operatorsBlocksForStage++;
-                    break;
-                case "pen":
-                    penBlocksForStage++;
-                    break;
-                case "sensing":
-                    sensingBlocksForStage++;
-                    break;
-                case "sound":
-                    soundBlocksForStage++;
-                    break;
-                default:
-                    break;
+                switch (category)
+                {
+                    case "control":
+                        controlBlocksForStage++;
+                        break;
+                    case "data":
+                        dataBlocksForStage++;
+                        break;
+                    case "events":
+                        eventsBlocksForStage++;
+                        break;
+                    case "looks":
+                        looksBlocksForStage++;
+                        break;
+                    case "more blocks":
+                        moreBlocksBlocksForStage++;
+                        break;
+                    case "motion":
+                        motionBlocksForStage++;
+                        break;
+                    case "operators":
+                        operatorsBlocksForStage++;
+                        break;
+                    case "pen":
+                        penBlocksForStage++;
+                        break;
+                    case "sensing":
+                        sensingBlocksForStage++;
+                        break;
+                    case "sound":
+                        soundBlocksForStage++;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
