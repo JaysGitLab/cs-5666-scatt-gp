@@ -28,6 +28,16 @@ public class Submission
     private File json;
     private JSONObject jsonObj;
     private HashMap<String, String> blocks;
+    private int controlBlocksForStage;
+    private int dataBlocksForStage;
+    private int eventsBlocksForStage;
+    private int looksBlocksForStage;
+    private int moreBlocksBlocksForStage;
+    private int motionBlocksForStage;
+    private int operatorsBlocksForStage;
+    private int penBlocksForStage;
+    private int sensingBlocksForStage;
+    private int soundBlocksForStage;
     
     /**
      * Submission constructor.
@@ -225,55 +235,114 @@ public class Submission
     }
 
     /**
-     * Get Events block count for stage.
-     *
-     * @return count 
+     * Count block categories for stage.
      */
-    public int getEventsBlockCountForStage()
+    public void countBlockCategoriesForStage()
     {
+        controlBlocksForStage = 0;
+        dataBlocksForStage = 0;
+        eventsBlocksForStage = 0;
+        looksBlocksForStage = 0;
+        moreBlocksBlocksForStage = 0;
+        motionBlocksForStage = 0;
+        operatorsBlocksForStage = 0;
+        penBlocksForStage = 0;
+        sensingBlocksForStage = 0;
+        soundBlocksForStage = 0;
         JSONArray scripts = FileUtils.getJSONArrayAttribute(jsonObj, "scripts");
-        if (scripts != null)
+        processScripts(scripts);
+    }
+
+    /**
+     * Process scripts to count blocks by category.
+     *
+     * @param array 
+     */
+    private void processScripts(JSONArray array)
+    {
+        // If first element is a String, it is the block name.
+        // Get and count its category.
+        if (array.get(0) instanceof String)
         {
-            int count = 0;
-            JSONArray scriptsArray = (JSONArray) scripts.get(0);
-            JSONArray scriptsContents = (JSONArray) scriptsArray.get(2);
-            for (int i = 0; i < scriptsContents.size(); i++)
+            String category = getCategory((String) array.get(0));
+            switch (category)
             {
-                JSONArray script = (JSONArray) scriptsContents.get(i);
-                if (getCategory((String) script.get(0)).equals("events"))
-                {
-                    count++;
-                }
+                case "control":
+                    controlBlocksForStage++;
+                    break;
+                case "data":
+                    dataBlocksForStage++;
+                    break;
+                case "events":
+                    eventsBlocksForStage++;
+                    break;
+                case "looks":
+                    looksBlocksForStage++;
+                    break;
+                case "more blocks":
+                    moreBlocksBlocksForStage++;
+                    break;
+                case "motion":
+                    motionBlocksForStage++;
+                    break;
+                case "operators":
+                    operatorsBlocksForStage++;
+                    break;
+                case "pen":
+                    penBlocksForStage++;
+                    break;
+                case "sensing":
+                    sensingBlocksForStage++;
+                    break;
+                case "sound":
+                    soundBlocksForStage++;
+                    break;
+                default:
+                    break;
             }
-            return count;
         }
-        return 0;
+
+        // Check for additional array elements.
+        // Need to drill down to check for additional block names.
+        for (int i = 0; i < array.size(); i++)
+        {
+            if (array.get(i) instanceof JSONArray)
+            {
+                processScripts((JSONArray) array.get(i));
+            }
+        }
+
+        return;
+    }
+
+    /**
+     * Get control block count.
+     *
+     * @return count
+     */
+    public int getControlBlocksForStage()
+    {
+        return controlBlocksForStage;
+    }
+
+    /**
+     * Get data block count.
+     *
+     * @return count
+     */
+    public int getDataBlocksForStage()
+    {
+        return dataBlocksForStage;
     }
     
     /**
-     * Get Looks block count for stage.
+     * Get events block count.
      *
-     * @return count 
+     * @return count
      */
-    public int getLooksBlockCountForStage()
+    public int getEventsBlocksForStage()
     {
-        JSONArray scripts = FileUtils.getJSONArrayAttribute(jsonObj, "scripts");
-        if (scripts != null)
-        {
-            int count = 0;
-            JSONArray scriptsArray = (JSONArray) scripts.get(0);
-            JSONArray scriptsContents = (JSONArray) scriptsArray.get(2);
-            for (int i = 0; i < scriptsContents.size(); i++)
-            {
-                JSONArray script = (JSONArray) scriptsContents.get(i);
-                if (getCategory((String) script.get(0)).equals("looks"))
-                {
-                    count++;
-                }
-            }
-            return count;
-        }
-        return 0;
+        return eventsBlocksForStage;
     }
 
     /**

@@ -601,6 +601,20 @@ public class SubmissionTest
         int actual = submissions[1].getCostumeCountForSprite("Sprite1");
         assertEquals("should be equal", expected, actual);
     }
+
+    /**
+     * Test getEventsBlocksForStage method.
+     */
+    @Test
+    public void testGetEventsBlocksForStage()
+    {
+        setUpSubmission(submissions[1]);
+        submissions[1].countBlockCategoriesForStage();
+
+        int expected = 1;
+        int actual = submissions[1].getEventsBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
     
     /**
      * Set up submission for test.
@@ -612,48 +626,6 @@ public class SubmissionTest
         submission.convertToZip();
         submission.unZip();
         submission.parseJSONFile();
-    }
-
-    /**
-     * Test getEventsBlockCountForStage method.
-     */
-    @Test
-    public void testGetEventsBlockCountForStage()
-    {
-        setUpSubmission(submissions[1]);
-
-        int expected = 1;
-        int actual = submissions[1].getEventsBlockCountForStage();
-         
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getEventsBlockCountForStage method - empty.
-     */
-    @Test
-    public void testGetEventsBlockCountForStageEmpty()
-    {
-        setUpSubmission(submissions[0]);
-
-        int expected = 0;
-        int actual = submissions[0].getEventsBlockCountForStage();
-         
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getLooskBlockCountForStage method.
-     */
-    @Test
-    public void testGetLooksBlockCountForStage()
-    {
-        setUpSubmission(submissions[1]);
-
-        int expected = 1;
-        int actual = submissions[1].getLooksBlockCountForStage();
-         
-        assertEquals("should be equal", expected, actual);
     }
 
     /**
