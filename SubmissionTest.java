@@ -601,6 +601,34 @@ public class SubmissionTest
         int actual = submissions[1].getCostumeCountForSprite("Sprite1");
         assertEquals("should be equal", expected, actual);
     }
+    
+    /**
+     * Test getControlBlocksForStage method.
+     */
+    @Test
+    public void testGetControlBlocksForStage()
+    {
+        setUpSubmission(submissions[1]);
+        submissions[1].countBlockCategoriesForStage();
+
+        int expected = 1;
+        int actual = submissions[1].getControlBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getControlBlocksForStage method - empty.
+     */
+    @Test
+    public void testGetControlBlocksForStageEmpty()
+    {
+        setUpSubmission(submissions[2]);
+        submissions[2].countBlockCategoriesForStage();
+
+        int expected = 0;
+        int actual = submissions[2].getControlBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
 
     /**
      * Test getEventsBlocksForStage method.
