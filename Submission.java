@@ -382,6 +382,16 @@ public class Submission
     {
         return motionBlocksForStage;
     }
+    
+    /**
+     * Get operators block count.
+     *
+     * @return count
+     */
+    public int getOperatorsBlocksForStage()
+    {
+        return operatorsBlocksForStage;
+    }
 
     /**
      * Get array of sprites.
