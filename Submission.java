@@ -250,7 +250,10 @@ public class Submission
         sensingBlocksForStage = 0;
         soundBlocksForStage = 0;
         JSONArray scripts = FileUtils.getJSONArrayAttribute(jsonObj, "scripts");
-        processScripts(scripts);
+        if (scripts != null)
+        {
+            processScripts(scripts);
+        }
     }
 
     /**
