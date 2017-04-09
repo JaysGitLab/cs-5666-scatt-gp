@@ -715,6 +715,34 @@ public class SubmissionTest
     }
     
     /**
+     * Test getMoreBlocksBlocksForStage method.
+     */
+    @Test
+    public void testGetMoreBlocksBlocksForStage()
+    {
+        setUpSubmission(submissions[1]);
+        submissions[1].countBlockCategoriesForStage();
+
+        int expected = 2;
+        int actual = submissions[1].getMoreBlocksBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getMoreBlocksBlocksForStage method - empty.
+     */
+    @Test
+    public void testGetMoreBlocksBlocksForStageEmpty()
+    {
+        setUpSubmission(submissions[2]);
+        submissions[2].countBlockCategoriesForStage();
+
+        int expected = 0;
+        int actual = submissions[2].getMoreBlocksBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
      * Set up submission for test.
      *
      * @param submission 

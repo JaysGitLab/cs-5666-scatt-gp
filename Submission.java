@@ -361,6 +361,16 @@ public class Submission
     {
         return looksBlocksForStage;
     }
+    
+    /**
+     * Get more blocks block count.
+     *
+     * @return count
+     */
+    public int getMoreBlocksBlocksForStage()
+    {
+        return moreBlocksBlocksForStage;
+    }
 
     /**
      * Get array of sprites.
@@ -606,6 +616,7 @@ public class Submission
     private void addMoreBlocksCategoryMap()
     {
         blocks.put("procDef", "more blocks");
+        blocks.put("call", "more blocks");
         blocks.put("LEGO WeDo\u001fmotorOnFor", "more blocks");
         blocks.put("LEGO WeDo\u001fmotorOn", "more blocks");
         blocks.put("LEGO WeDo\u001fmotorOff", "more blocks");
