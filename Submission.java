@@ -392,6 +392,16 @@ public class Submission
     {
         return operatorsBlocksForStage;
     }
+    
+    /**
+     * Get pen block count.
+     *
+     * @return count
+     */
+    public int getPenBlocksForStage()
+    {
+        return penBlocksForStage;
+    }
 
     /**
      * Get array of sprites.

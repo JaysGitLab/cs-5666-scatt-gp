@@ -785,6 +785,34 @@ public class SubmissionTest
     }
     
     /**
+     * Test getPenBlocksForStage method.
+     */
+    @Test
+    public void testGetPenBlocksForStage()
+    {
+        setUpSubmission(submissions[1]);
+        submissions[1].countBlockCategoriesForStage();
+
+        int expected = 1;
+        int actual = submissions[1].getPenBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getPenBlocksForStage method - empty.
+     */
+    @Test
+    public void testGetPenBlocksForStageEmpty()
+    {
+        setUpSubmission(submissions[2]);
+        submissions[2].countBlockCategoriesForStage();
+
+        int expected = 0;
+        int actual = submissions[2].getPenBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
      * Set up submission for test.
      *
      * @param submission 
