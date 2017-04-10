@@ -904,14 +904,5 @@ public class SubmissionTest
         // Set arrays to null.
         sb2s = null;
         submissions = null;
-        if (expectedDir.exists())
-        {
-            File[] expectedFiles = expectedDir.listFiles();
-            for (int i = 0; i < expectedFiles.length; i++)
-            {
-                expectedFiles[i].delete();
-            }
-            expectedDir.delete();
-        }
     }
 }

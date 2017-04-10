@@ -27,7 +27,7 @@ public class Submission
     private File unzipsDir;
     private File json;
     private JSONObject jsonObj;
-    private HashMap<String, String> blocks;
+    private HashMap<String, String> categoryMap;
     private int controlBlocksForStage;
     private int dataBlocksForStage;
     private int eventsBlocksForStage;
@@ -49,7 +49,7 @@ public class Submission
         this.sb2 = sb2;
         zipsDir = new File("zips");
         unzipsDir = new File("unzips");
-        blocks = new HashMap<String, String>();
+        categoryMap = new HashMap<String, String>();
         addControlCategoryMap();
         addDataCategoryMap();
         addEventsCategoryMap();
@@ -264,6 +264,7 @@ public class Submission
         {
             return;
         }
+        
         // If first element is a String, it is the block name.
         // Get and count its category.
         if (array.get(0) instanceof String)
@@ -309,8 +310,7 @@ public class Submission
             }
         }
 
-        // Check for additional array elements.
-        // Need to drill down to check for additional block names.
+        // Check for additional array elements, which represent embedded blocks.
         for (int i = 0; i < array.size(); i++)
         {
             if (array.get(i) instanceof JSONArray)
@@ -571,7 +571,7 @@ public class Submission
      */
     private String getCategory(String scriptName)
     {
-        return (String) blocks.get(scriptName);
+        return (String) categoryMap.get(scriptName);
     }
     
     /**
@@ -580,18 +580,18 @@ public class Submission
      */
     private void addControlCategoryMap()
     {
-        blocks.put("wait:elapsed:from:", "control");
-        blocks.put("wait:elapsed:from:", "control");
-        blocks.put("doRepeat", "control");
-        blocks.put("doForever", "control");
-        blocks.put("doIf", "control");
-        blocks.put("doIfElse", "control");
-        blocks.put("doWaitUntil", "control");
-        blocks.put("doUntil", "control");
-        blocks.put("stopScripts", "control");
-        blocks.put("whenCloned", "control");
-        blocks.put("createCloneOf", "control");
-        blocks.put("deleteClone", "control");
+        categoryMap.put("wait:elapsed:from:", "control");
+        categoryMap.put("wait:elapsed:from:", "control");
+        categoryMap.put("doRepeat", "control");
+        categoryMap.put("doForever", "control");
+        categoryMap.put("doIf", "control");
+        categoryMap.put("doIfElse", "control");
+        categoryMap.put("doWaitUntil", "control");
+        categoryMap.put("doUntil", "control");
+        categoryMap.put("stopScripts", "control");
+        categoryMap.put("whenCloned", "control");
+        categoryMap.put("createCloneOf", "control");
+        categoryMap.put("deleteClone", "control");
     }
     
     /**
@@ -600,21 +600,21 @@ public class Submission
      */
     private void addDataCategoryMap()
     {
-        blocks.put("readVariable", "data");
-        blocks.put("setVar:to:", "data");
-        blocks.put("changeVar:by:", "data");
-        blocks.put("showVariable:", "data");
-        blocks.put("hideVariable:", "data");
-        blocks.put("contentsOfList:", "data");
-        blocks.put("append:toList:", "data");
-        blocks.put("deleteLine:ofList:", "data");
-        blocks.put("insert:at:ofList:", "data");
-        blocks.put("setLine:ofList:to:", "data");
-        blocks.put("getLine:ofList:", "data");
-        blocks.put("lineCountOfList:", "data");
-        blocks.put("list:contains:", "data");
-        blocks.put("showList:", "data");
-        blocks.put("hideList:", "data");
+        categoryMap.put("readVariable", "data");
+        categoryMap.put("setVar:to:", "data");
+        categoryMap.put("changeVar:by:", "data");
+        categoryMap.put("showVariable:", "data");
+        categoryMap.put("hideVariable:", "data");
+        categoryMap.put("contentsOfList:", "data");
+        categoryMap.put("append:toList:", "data");
+        categoryMap.put("deleteLine:ofList:", "data");
+        categoryMap.put("insert:at:ofList:", "data");
+        categoryMap.put("setLine:ofList:to:", "data");
+        categoryMap.put("getLine:ofList:", "data");
+        categoryMap.put("lineCountOfList:", "data");
+        categoryMap.put("list:contains:", "data");
+        categoryMap.put("showList:", "data");
+        categoryMap.put("hideList:", "data");
     }
     
     /**
@@ -623,14 +623,14 @@ public class Submission
      */
     private void addEventsCategoryMap()
     {
-        blocks.put("whenGreenFlag", "events");
-        blocks.put("whenKeyPressed", "events");
-        blocks.put("whenClicked", "events");
-        blocks.put("whenSceneStarts", "events");
-        blocks.put("whenSensorGreaterThan", "events");
-        blocks.put("whenIReceive", "events");
-        blocks.put("broadcast:", "events");
-        blocks.put("doBroadcastAndWait", "events");
+        categoryMap.put("whenGreenFlag", "events");
+        categoryMap.put("whenKeyPressed", "events");
+        categoryMap.put("whenClicked", "events");
+        categoryMap.put("whenSceneStarts", "events");
+        categoryMap.put("whenSensorGreaterThan", "events");
+        categoryMap.put("whenIReceive", "events");
+        categoryMap.put("broadcast:", "events");
+        categoryMap.put("doBroadcastAndWait", "events");
     }
     
     /**
@@ -639,25 +639,25 @@ public class Submission
      */
     private void addLooksCategoryMap()
     {
-        blocks.put("say:duration:elapsed:from:", "looks");
-        blocks.put("say:", "looks");
-        blocks.put("think:duration:elapsed:from:", "looks");
-        blocks.put("think:", "looks");
-        blocks.put("show", "looks");
-        blocks.put("hide", "looks");
-        blocks.put("lookLike:", "looks");
-        blocks.put("nextCostume", "looks");
-        blocks.put("startScene", "looks");
-        blocks.put("changeGraphicEffect:by:", "looks");
-        blocks.put("setGraphicEffect:to:", "looks");
-        blocks.put("filterReset", "looks");
-        blocks.put("changeSizeBy:", "looks");
-        blocks.put("setSizeTo:", "looks");
-        blocks.put("comeToFront", "looks");
-        blocks.put("goBackByLayers:", "looks");
-        blocks.put("costumeIndex", "looks");
-        blocks.put("sceneName", "looks");
-        blocks.put("scale", "looks");
+        categoryMap.put("say:duration:elapsed:from:", "looks");
+        categoryMap.put("say:", "looks");
+        categoryMap.put("think:duration:elapsed:from:", "looks");
+        categoryMap.put("think:", "looks");
+        categoryMap.put("show", "looks");
+        categoryMap.put("hide", "looks");
+        categoryMap.put("lookLike:", "looks");
+        categoryMap.put("nextCostume", "looks");
+        categoryMap.put("startScene", "looks");
+        categoryMap.put("changeGraphicEffect:by:", "looks");
+        categoryMap.put("setGraphicEffect:to:", "looks");
+        categoryMap.put("filterReset", "looks");
+        categoryMap.put("changeSizeBy:", "looks");
+        categoryMap.put("setSizeTo:", "looks");
+        categoryMap.put("comeToFront", "looks");
+        categoryMap.put("goBackByLayers:", "looks");
+        categoryMap.put("costumeIndex", "looks");
+        categoryMap.put("sceneName", "looks");
+        categoryMap.put("scale", "looks");
     }
     
     /**
@@ -666,33 +666,33 @@ public class Submission
      */
     private void addMoreBlocksCategoryMap()
     {
-        blocks.put("procDef", "more blocks");
-        blocks.put("call", "more blocks");
-        blocks.put("LEGO WeDo\u001fmotorOnFor", "more blocks");
-        blocks.put("LEGO WeDo\u001fmotorOn", "more blocks");
-        blocks.put("LEGO WeDo\u001fmotorOff", "more blocks");
-        blocks.put("LEGO WeDo\u001fstartMotorPower", "more blocks");
-        blocks.put("LEGO WeDo\u001fsetMotorDirection", "more blocks");
-        blocks.put("LEGO WeDo\u001fwhenDistance", "more blocks");
-        blocks.put("LEGO WeDo\u001fwhenTilt", "more blocks");
-        blocks.put("LEGO WeDo\u001fgetDistance", "more blocks");
-        blocks.put("LEGO WeDo\u001fgetTilt", "more blocks");
-        blocks.put("LEGO WeDo 2.0\u001fmotorOnFor", "more blocks");
-        blocks.put("LEGO WeDo 2.0\u001fmotorOn", "more blocks");
-        blocks.put("LEGO WeDo 2.0\u001fmotorOff", "more blocks");
-        blocks.put("LEGO WeDo 2.0\u001fstartMotorPower", "more blocks");
-        blocks.put("LEGO WeDo 2.0\u001fsetMotorDirection", "more blocks");
-        blocks.put("LEGO WeDo 2.0\u001fsetLED", "more blocks");
-        blocks.put("LEGO WeDo 2.0\u001fplayNote", "more blocks");
-        blocks.put("LEGO WeDo 2.0\u001fwhenDistance", "more blocks");
-        blocks.put("LEGO WeDo 2.0\u001fwhenTilted", "more blocks");
-        blocks.put("LEGO WeDo 2.0\u001fgetDistance", "more blocks");
-        blocks.put("LEGO WeDo 2.0\u001fisTilted", "more blocks");
-        blocks.put("LEGO WeDo 2.0\u001fgetTilt", "more blocks");
-        blocks.put("PicoBoard\u001fwhenSensorConnected", "more blocks");
-        blocks.put("PicoBoard\u001fwhenSensorPass", "more blocks");
-        blocks.put("PicoBoard\u001fsensorPressed", "more blocks");
-        blocks.put("PicoBoard\u001fsensor", "more blocks");
+        categoryMap.put("procDef", "more blocks");
+        categoryMap.put("call", "more blocks");
+        categoryMap.put("LEGO WeDo\u001fmotorOnFor", "more blocks");
+        categoryMap.put("LEGO WeDo\u001fmotorOn", "more blocks");
+        categoryMap.put("LEGO WeDo\u001fmotorOff", "more blocks");
+        categoryMap.put("LEGO WeDo\u001fstartMotorPower", "more blocks");
+        categoryMap.put("LEGO WeDo\u001fsetMotorDirection", "more blocks");
+        categoryMap.put("LEGO WeDo\u001fwhenDistance", "more blocks");
+        categoryMap.put("LEGO WeDo\u001fwhenTilt", "more blocks");
+        categoryMap.put("LEGO WeDo\u001fgetDistance", "more blocks");
+        categoryMap.put("LEGO WeDo\u001fgetTilt", "more blocks");
+        categoryMap.put("LEGO WeDo 2.0\u001fmotorOnFor", "more blocks");
+        categoryMap.put("LEGO WeDo 2.0\u001fmotorOn", "more blocks");
+        categoryMap.put("LEGO WeDo 2.0\u001fmotorOff", "more blocks");
+        categoryMap.put("LEGO WeDo 2.0\u001fstartMotorPower", "more blocks");
+        categoryMap.put("LEGO WeDo 2.0\u001fsetMotorDirection", "more blocks");
+        categoryMap.put("LEGO WeDo 2.0\u001fsetLED", "more blocks");
+        categoryMap.put("LEGO WeDo 2.0\u001fplayNote", "more blocks");
+        categoryMap.put("LEGO WeDo 2.0\u001fwhenDistance", "more blocks");
+        categoryMap.put("LEGO WeDo 2.0\u001fwhenTilted", "more blocks");
+        categoryMap.put("LEGO WeDo 2.0\u001fgetDistance", "more blocks");
+        categoryMap.put("LEGO WeDo 2.0\u001fisTilted", "more blocks");
+        categoryMap.put("LEGO WeDo 2.0\u001fgetTilt", "more blocks");
+        categoryMap.put("PicoBoard\u001fwhenSensorConnected", "more blocks");
+        categoryMap.put("PicoBoard\u001fwhenSensorPass", "more blocks");
+        categoryMap.put("PicoBoard\u001fsensorPressed", "more blocks");
+        categoryMap.put("PicoBoard\u001fsensor", "more blocks");
     }
     
     /**
@@ -701,20 +701,20 @@ public class Submission
      */
     private void addMotionCategoryMap()
     {
-        blocks.put("forward:", "motion");
-        blocks.put("turnRight:", "motion");
-        blocks.put("turnLeft:", "motion");
-        blocks.put("heading:", "motion");
-        blocks.put("pointTowards:", "motion");
-        blocks.put("gotoX:y:", "motion");
-        blocks.put("gotoSpriteOrMouse:", "motion");
-        blocks.put("glideSecs:toX:y:elapsed:from:", "motion");
-        blocks.put("changeXposBy:", "motion");
-        blocks.put("xpos:", "motion");
-        blocks.put("changeYposBy:", "motion");
-        blocks.put("ypos:", "motion");
-        blocks.put("bounceOffEdge", "motion");
-        blocks.put("setRotationStyle", "motion");
+        categoryMap.put("forward:", "motion");
+        categoryMap.put("turnRight:", "motion");
+        categoryMap.put("turnLeft:", "motion");
+        categoryMap.put("heading:", "motion");
+        categoryMap.put("pointTowards:", "motion");
+        categoryMap.put("gotoX:y:", "motion");
+        categoryMap.put("gotoSpriteOrMouse:", "motion");
+        categoryMap.put("glideSecs:toX:y:elapsed:from:", "motion");
+        categoryMap.put("changeXposBy:", "motion");
+        categoryMap.put("xpos:", "motion");
+        categoryMap.put("changeYposBy:", "motion");
+        categoryMap.put("ypos:", "motion");
+        categoryMap.put("bounceOffEdge", "motion");
+        categoryMap.put("setRotationStyle", "motion");
     }
     
     /**
@@ -723,23 +723,23 @@ public class Submission
      */
     private void addOperatorsCategoryMap()
     {
-        blocks.put("+", "operators");
-        blocks.put("-", "operators");
-        blocks.put("*", "operators");
-        blocks.put("\\/", "operators");
-        blocks.put("randomFrom:to:", "operators");
-        blocks.put("<", "operators");
-        blocks.put("=", "operators");
-        blocks.put(">", "operators");
-        blocks.put("&", "operators");
-        blocks.put("|", "operators");
-        blocks.put("not", "operators");
-        blocks.put("concatenate:with:", "operators");
-        blocks.put("letter:of:", "operators");
-        blocks.put("stringLength:", "operators");
-        blocks.put("%", "operators");
-        blocks.put("rounded", "operators");
-        blocks.put("computeFunction:of:", "operators");
+        categoryMap.put("+", "operators");
+        categoryMap.put("-", "operators");
+        categoryMap.put("*", "operators");
+        categoryMap.put("\\/", "operators");
+        categoryMap.put("randomFrom:to:", "operators");
+        categoryMap.put("<", "operators");
+        categoryMap.put("=", "operators");
+        categoryMap.put(">", "operators");
+        categoryMap.put("&", "operators");
+        categoryMap.put("|", "operators");
+        categoryMap.put("not", "operators");
+        categoryMap.put("concatenate:with:", "operators");
+        categoryMap.put("letter:of:", "operators");
+        categoryMap.put("stringLength:", "operators");
+        categoryMap.put("%", "operators");
+        categoryMap.put("rounded", "operators");
+        categoryMap.put("computeFunction:of:", "operators");
     }
     
     /**
@@ -748,17 +748,17 @@ public class Submission
      */
     private void addPenCategoryMap()
     {
-        blocks.put("clearPenTrails", "pen");
-        blocks.put("stampCostume", "pen");
-        blocks.put("putPenDown", "pen");
-        blocks.put("putPenUp", "pen");
-        blocks.put("penColor:", "pen");
-        blocks.put("changePenHueBy:", "pen");
-        blocks.put("setPenHueTo:", "pen");
-        blocks.put("changePenShadeBy:", "pen");
-        blocks.put("setPenShadeTo:", "pen");
-        blocks.put("changePenSizeBy:", "pen");
-        blocks.put("penSize:", "pen");
+        categoryMap.put("clearPenTrails", "pen");
+        categoryMap.put("stampCostume", "pen");
+        categoryMap.put("putPenDown", "pen");
+        categoryMap.put("putPenUp", "pen");
+        categoryMap.put("penColor:", "pen");
+        categoryMap.put("changePenHueBy:", "pen");
+        categoryMap.put("setPenHueTo:", "pen");
+        categoryMap.put("changePenShadeBy:", "pen");
+        categoryMap.put("setPenShadeTo:", "pen");
+        categoryMap.put("changePenSizeBy:", "pen");
+        categoryMap.put("penSize:", "pen");
     }
     
     /**
@@ -767,26 +767,26 @@ public class Submission
      */
     private void addSensingCategoryMap()
     {
-        blocks.put("touching:", "sensing");
-        blocks.put("touchingColor:", "sensing");
-        blocks.put("color:sees:", "sensing");
-        blocks.put("distanceTo:", "sensing");
-        blocks.put("doAsk", "sensing");
-        blocks.put("answer", "sensing");
-        blocks.put("keyPressed:", "sensing");
-        blocks.put("mousePressed", "sensing");
-        blocks.put("mouseX", "sensing");
-        blocks.put("mouseY", "sensing");
-        blocks.put("soundLevel", "sensing");
-        blocks.put("senseVideoMotion", "sensing");
-        blocks.put("setVideoState", "sensing");
-        blocks.put("setVideoTransparency", "sensing");
-        blocks.put("timer", "sensing");
-        blocks.put("timerReset", "sensing");
-        blocks.put("getAttribute:of:", "sensing");
-        blocks.put("timeAndDate", "sensing");
-        blocks.put("timestamp", "sensing");
-        blocks.put("getUserName", "sensing");
+        categoryMap.put("touching:", "sensing");
+        categoryMap.put("touchingColor:", "sensing");
+        categoryMap.put("color:sees:", "sensing");
+        categoryMap.put("distanceTo:", "sensing");
+        categoryMap.put("doAsk", "sensing");
+        categoryMap.put("answer", "sensing");
+        categoryMap.put("keyPressed:", "sensing");
+        categoryMap.put("mousePressed", "sensing");
+        categoryMap.put("mouseX", "sensing");
+        categoryMap.put("mouseY", "sensing");
+        categoryMap.put("soundLevel", "sensing");
+        categoryMap.put("senseVideoMotion", "sensing");
+        categoryMap.put("setVideoState", "sensing");
+        categoryMap.put("setVideoTransparency", "sensing");
+        categoryMap.put("timer", "sensing");
+        categoryMap.put("timerReset", "sensing");
+        categoryMap.put("getAttribute:of:", "sensing");
+        categoryMap.put("timeAndDate", "sensing");
+        categoryMap.put("timestamp", "sensing");
+        categoryMap.put("getUserName", "sensing");
     }
     
     /**
@@ -795,19 +795,19 @@ public class Submission
      */
     private void addSoundCategoryMap()
     {
-        blocks.put("playSound:", "sound");
-        blocks.put("doPlaySoundAndWait", "sound");
-        blocks.put("stopAllSounds", "sound");
-        blocks.put("playDrum", "sound");
-        blocks.put("rest:elapsed:from:", "sound");
-        blocks.put("noteOn:duration:elapsed:from:", "sound");
-        blocks.put("instrument:", "sound");
-        blocks.put("changeVolumeBy:", "sound");
-        blocks.put("setVolumeTo:", "sound");
-        blocks.put("volume", "sound");
-        blocks.put("changeTempoBy:", "sound");
-        blocks.put("setTempoTo:", "sound");
-        blocks.put("tempo", "sound");
+        categoryMap.put("playSound:", "sound");
+        categoryMap.put("doPlaySoundAndWait", "sound");
+        categoryMap.put("stopAllSounds", "sound");
+        categoryMap.put("playDrum", "sound");
+        categoryMap.put("rest:elapsed:from:", "sound");
+        categoryMap.put("noteOn:duration:elapsed:from:", "sound");
+        categoryMap.put("instrument:", "sound");
+        categoryMap.put("changeVolumeBy:", "sound");
+        categoryMap.put("setVolumeTo:", "sound");
+        categoryMap.put("volume", "sound");
+        categoryMap.put("changeTempoBy:", "sound");
+        categoryMap.put("setTempoTo:", "sound");
+        categoryMap.put("tempo", "sound");
     }
     
     /**
