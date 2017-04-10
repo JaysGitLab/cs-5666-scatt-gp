@@ -402,6 +402,16 @@ public class Submission
     {
         return penBlocksForStage;
     }
+    
+    /**
+     * Get sensing block count.
+     *
+     * @return count
+     */
+    public int getSensingBlocksForStage()
+    {
+        return sensingBlocksForStage;
+    }
 
     /**
      * Get array of sprites.

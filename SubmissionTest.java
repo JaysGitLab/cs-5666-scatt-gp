@@ -813,6 +813,34 @@ public class SubmissionTest
     }
     
     /**
+     * Test getSensingBlocksForStage method.
+     */
+    @Test
+    public void testGetSensingBlocksForStage()
+    {
+        setUpSubmission(submissions[1]);
+        submissions[1].countBlockCategoriesForStage();
+
+        int expected = 1;
+        int actual = submissions[1].getSensingBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getSensingBlocksForStage method - empty.
+     */
+    @Test
+    public void testGetSensingBlocksForStageEmpty()
+    {
+        setUpSubmission(submissions[2]);
+        submissions[2].countBlockCategoriesForStage();
+
+        int expected = 0;
+        int actual = submissions[2].getSensingBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
      * Set up submission for test.
      *
      * @param submission 
