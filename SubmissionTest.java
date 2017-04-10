@@ -841,6 +841,34 @@ public class SubmissionTest
     }
     
     /**
+     * Test getSoundBlocksForStage method.
+     */
+    @Test
+    public void testGetSoundBlocksForStage()
+    {
+        setUpSubmission(submissions[1]);
+        submissions[1].countBlockCategoriesForStage();
+
+        int expected = 2;
+        int actual = submissions[1].getSoundBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getSoundBlocksForStage method - empty.
+     */
+    @Test
+    public void testGetSoundBlocksForStageEmpty()
+    {
+        setUpSubmission(submissions[2]);
+        submissions[2].countBlockCategoriesForStage();
+
+        int expected = 0;
+        int actual = submissions[2].getSoundBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
      * Set up submission for test.
      *
      * @param submission 

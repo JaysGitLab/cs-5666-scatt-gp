@@ -412,6 +412,16 @@ public class Submission
     {
         return sensingBlocksForStage;
     }
+    
+    /**
+     * Get sound block count.
+     *
+     * @return count
+     */
+    public int getSoundBlocksForStage()
+    {
+        return soundBlocksForStage;
+    }
 
     /**
      * Get array of sprites.
