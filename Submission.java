@@ -26,6 +26,7 @@ public class Submission
     private File unzipsDir;
     private File json;
     private JSONObject jsonObj;
+    private Sprite[] sprites;
     
     /**
      * Submission constructor.
@@ -210,145 +211,48 @@ public class Submission
     }
 
     /**
-     * Get array of sprites.
+     * Create sprite objects.
      * Unchecked warnings are suppressed because JSONArray does not
      *  allow for a type specification, and this is a private
      *  method only called from within this class.
-     *
-     * @return sprites 
      */
     @SuppressWarnings("unchecked")
-    private JSONArray getSprites()
+    public void createSprites()
     {
-        JSONArray children = 
-            FileUtils.getJSONArrayAttribute(jsonObj, "children");
-        JSONArray sprites = new JSONArray();
-
-        Iterator<?> iterator = children.iterator();
-        int n = 0;
-        while (iterator.hasNext())
+        if (getSpriteCount() > 0)
         {
-            JSONObject next = (JSONObject) iterator.next();
-            if (FileUtils.getJSONAttribute(next, "objName") != null)
+            JSONArray children = 
+                FileUtils.getJSONArrayAttribute(jsonObj, "children");
+            JSONArray spritesJson = new JSONArray();
+
+            Iterator<?> iterator = children.iterator();
+            int n = 0;
+            while (iterator.hasNext())
             {
-                sprites.add(next);
+                JSONObject next = (JSONObject) iterator.next();
+                if (FileUtils.getJSONAttribute(next, "objName") != null)
+                {
+                    spritesJson.add(next);
+                }
+            }
+
+            for (int i = 0; i < spritesJson.size(); i++)
+            {
+                sprites[i] = new Sprite(spritesJson.get(i));
             }
         }
+    }
+
+    /**
+     * Get sprites.
+     *
+     * @return sprites
+     */
+    public Sprite[] getSprites()
+    {
         return sprites;
     }
-
-    /**
-     * Get sprite names.
-     *
-     * @return array of sprite names.
-     */
-    public String[] getSpriteNames()
-    {
-        JSONArray sprites = getSprites(); 
-        String[] names = new String[sprites.size()];
-        for (int i = 0; i < names.length; i++)
-        {
-            names[i] = FileUtils.getJSONAttribute(
-                (JSONObject) sprites.get(i), "objName");
-        }
-        return names;
-    }
-
-    /**
-     * Get script count for sprite.
-     *
-     * @param spriteName 
-     * @return count 
-     */
-    public int getScriptCountForSprite(String spriteName)
-    {
-        return getCountForSprite("scripts", spriteName);
-    }
     
-    /**
-     * Get variable count for sprite.
-     *
-     * @param spriteName 
-     * @return count 
-     */
-    public int getVariableCountForSprite(String spriteName)
-    {
-        return getCountForSprite("variables", spriteName);
-    }
-    
-    /**
-     * Get list count for sprite.
-     *
-     * @param spriteName 
-     * @return count 
-     */
-    public int getListCountForSprite(String spriteName)
-    {
-        return getCountForSprite("lists", spriteName);
-    }
-    
-    /**
-     * Get script comment count for sprite.
-     *
-     * @param spriteName 
-     * @return count 
-     */
-    public int getScriptCommentCountForSprite(String spriteName)
-    {
-        return getCountForSprite("scriptComments", spriteName);
-    }
-
-    /**
-     * Get sound count for sprite.
-     *
-     * @param spriteName 
-     * @return count
-     */
-    public int getSoundCountForSprite(String spriteName)
-    {
-        return getCountForSprite("sounds", spriteName);
-    }
-
-    /**
-     * Get costume count for sprite.
-     *
-     * @param spriteName 
-     * @return count
-     */
-    public int getCostumeCountForSprite(String spriteName)
-    {
-        return getCountForSprite("costumes", spriteName);
-    }
-    
-    /**
-     * Helper method for all CountForSprite methods.
-     * Pass in JSON attribute name and sprite name.
-     * Get count of specified attribute for sprite.
-     *
-     * @param attribute  
-     * @param spriteName 
-     * @return count 
-     */
-    private int getCountForSprite(String attribute, String spriteName)
-    {
-        JSONArray sprites = getSprites();
-        JSONArray items = new JSONArray();
-        for (int i = 0; i < sprites.size(); i++)
-        {
-            if (FileUtils.getJSONAttribute((JSONObject) sprites.get(i), 
-                    "objName").equals(spriteName))
-            {
-                items = FileUtils.getJSONArrayAttribute(
-                    (JSONObject) sprites.get(i), attribute); 
-            }
-        }
-        if (items != null)
-        {
-            return items.size();
-        }
-        return 0;
-    }
-
     /**
      * Delete zip files.
      */
