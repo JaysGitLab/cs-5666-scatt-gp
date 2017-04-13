@@ -283,12 +283,8 @@ public class Submission
         penBlocksForStage = 0;
         sensingBlocksForStage = 0;
         soundBlocksForStage = 0;
-        if (FileUtils.getJSONArrayAttribute(jsonObj, "scripts") != null)
-        {
-            JSONArray scripts = 
-                FileUtils.getJSONArrayAttribute(jsonObj, "scripts");
-            processScripts(scripts);
-        }
+        JSONArray scripts = FileUtils.getJSONArrayAttribute(jsonObj, "scripts");
+        processScripts(scripts);
     }
 
     /**
