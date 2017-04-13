@@ -33,7 +33,7 @@ public class Scatt
         Boolean isValid = FileUtils.readValidDirectory(directory);
         if (!isValid)
         {
-            System.out.println("Invalid folder path.");
+            System.out.println("Invalid folder name.");
             return;
         }
         
@@ -46,6 +46,7 @@ public class Scatt
             submissions[i].convertToZip();
             submissions[i].unZip();
             submissions[i].parseJSONFile();
+            submissions[i].createSprites();
         }
         
         Report report = new Report(submissions);

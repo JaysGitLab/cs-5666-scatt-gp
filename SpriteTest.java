@@ -25,9 +25,9 @@ import java.util.Arrays;
  */
 public class SpriteTest
 {
-    private Submission[] submissions;
-    private Sprite[] spritesBigProject;
-    private Sprite[] spritesEmpty;
+    private static Submission[] submissions;
+    private static Sprite[] spritesBigProject;
+    private static Sprite[] spritesEmpty;
     
     /**
      * Set up for tests.
@@ -36,8 +36,8 @@ public class SpriteTest
     public static void setUp()
     {
         // Set up expected files.
-        directory = new File("submissions");
-        sb2s = directory.listFiles();
+        File directory = new File("submissions");
+        File[] sb2s = directory.listFiles();
         Arrays.sort(sb2s);
         
         // Create actual Submission files.
@@ -79,7 +79,7 @@ public class SpriteTest
     public void testGetSpriteName()
     {
         String expected = "Sprite1";
-        String actual = spritesBigProject[0].getSpriteName();
+        String actual = spritesBigProject[0].getName();
         assertEquals("should be equal", expected, actual);
     }
     

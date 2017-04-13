@@ -25,22 +25,22 @@ compile: $(APP_FILES) $(TEST_FILES)
 	javac -cp .:$(JUNIT_JAR):$(JSON_SIMPLE_JAR) $(TEST_FILES)
 	javac -cp .:$(JSON_SIMPLE_JAR) $(APP_FILES)
 
-jar: $(CLASS_FILES)
-	jar -cvmf MANIFEST.MF Scatt.jar $(JSON_SIMPLE_JAR) $(CLASS_FILES)
+jar: $(APP_CLASS_FILES)
+	jar -cvmf MANIFEST.MF Scatt.jar $(JSON_SIMPLE_JAR) $(APP_CLASS_FILES)
 
 run: Scatt.jar
 	java -jar Scatt.jar
 
 scatt: $(APP_FILES)
 	javac -cp .:$(JSON_SIMPLE_JAR) $(APP_FILES)
-	jar -cvmf MANIFEST.MF Scatt.jar $(CLASS_FILES)
+	jar -cvmf MANIFEST.MF Scatt.jar $(APP_CLASS_FILES)
 	java -jar Scatt.jar
 
 test: $(APP_CLASS_FILES) $(TEST_CLASS_FILES) 
 	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR):$(JSON_SIMPLE_JAR) org.junit.runner.JUnitCore SubmissionTest
 	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR):$(JSON_SIMPLE_JAR) org.junit.runner.JUnitCore ReportTest
 	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore ScattTest
-	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore SpriteTest
+	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR):$(JSON_SIMPLE_JAR) org.junit.runner.JUnitCore SpriteTest
 
 check: $(APP_FILES) $(TEST_FILES)
 	checkstyle $(APP_FILES) $(TEST_FILES)

@@ -271,7 +271,7 @@ public class SubmissionTest
     {
         setUpSubmission(submissions[1]);
 
-        int expected = 5;
+        int expected = 6;
         int actual = submissions[1].getScriptCount();
         assertEquals("should be equal", expected, actual);
     }
@@ -297,7 +297,7 @@ public class SubmissionTest
     {
         setUpSubmission(submissions[1]);
 
-        int expected = 1;
+        int expected = 6;
         int actual = submissions[1].getScriptCountForStage();
         assertEquals("should be equal", expected, actual);
     }
@@ -323,7 +323,7 @@ public class SubmissionTest
     {
         setUpSubmission(submissions[1]);
 
-        int expected = 2;
+        int expected = 3;
         int actual = submissions[1].getVariableCountForStage();
         assertEquals("should be equal", expected, actual);
     }
@@ -431,7 +431,273 @@ public class SubmissionTest
         int actual = submissions[1].getCostumeCountForStage();
         assertEquals("should be equal", expected, actual);
     }
+    
+    /**
+     * Test getControlBlocksForStage method.
+     */
+    @Test
+    public void testGetControlBlocksForStage()
+    {
+        setUpSubmission(submissions[1]);
+        submissions[1].countBlockCategoriesForStage();
 
+        int expected = 1;
+        int actual = submissions[1].getControlBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getControlBlocksForStage method - empty.
+     */
+    @Test
+    public void testGetControlBlocksForStageEmpty()
+    {
+        setUpSubmission(submissions[2]);
+        submissions[2].countBlockCategoriesForStage();
+
+        int expected = 0;
+        int actual = submissions[2].getControlBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getDataBlocksForStage method.
+     */
+    @Test
+    public void testGetDataBlocksForStage()
+    {
+        setUpSubmission(submissions[1]);
+        submissions[1].countBlockCategoriesForStage();
+
+        int expected = 2;
+        int actual = submissions[1].getDataBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getDataBlocksForStage method - empty.
+     */
+    @Test
+    public void testGetDataBlocksForStageEmpty()
+    {
+        setUpSubmission(submissions[2]);
+        submissions[2].countBlockCategoriesForStage();
+
+        int expected = 0;
+        int actual = submissions[2].getDataBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getEventsBlocksForStage method.
+     */
+    @Test
+    public void testGetEventsBlocksForStage()
+    {
+        setUpSubmission(submissions[1]);
+        submissions[1].countBlockCategoriesForStage();
+
+        int expected = 1;
+        int actual = submissions[1].getEventsBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getEventsBlocksForStage method - empty.
+     */
+    @Test
+    public void testGetEventsBlocksForStageEmpty()
+    {
+        setUpSubmission(submissions[2]);
+        submissions[2].countBlockCategoriesForStage();
+
+        int expected = 0;
+        int actual = submissions[2].getEventsBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getLooksBlocksForStage method.
+     */
+    @Test
+    public void testGetLooksBlocksForStage()
+    {
+        setUpSubmission(submissions[1]);
+        submissions[1].countBlockCategoriesForStage();
+
+        int expected = 1;
+        int actual = submissions[1].getLooksBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getLooksBlocksForStage method - empty.
+     */
+    @Test
+    public void testGetLooksBlocksForStageEmpty()
+    {
+        setUpSubmission(submissions[2]);
+        submissions[2].countBlockCategoriesForStage();
+
+        int expected = 0;
+        int actual = submissions[2].getLooksBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getMoreBlocksBlocksForStage method.
+     */
+    @Test
+    public void testGetMoreBlocksBlocksForStage()
+    {
+        setUpSubmission(submissions[1]);
+        submissions[1].countBlockCategoriesForStage();
+
+        int expected = 2;
+        int actual = submissions[1].getMoreBlocksBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getMoreBlocksBlocksForStage method - empty.
+     */
+    @Test
+    public void testGetMoreBlocksBlocksForStageEmpty()
+    {
+        setUpSubmission(submissions[2]);
+        submissions[2].countBlockCategoriesForStage();
+
+        int expected = 0;
+        int actual = submissions[2].getMoreBlocksBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getMotionBlocksForStage method - empty.
+     */
+    @Test
+    public void testGetMotionBlocksForStageEmpty()
+    {
+        setUpSubmission(submissions[1]);
+        submissions[1].countBlockCategoriesForStage();
+
+        int expected = 0;
+        int actual = submissions[1].getMotionBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getOperatorsBlocksForStage method.
+     */
+    @Test
+    public void testGetOperatorsBlocksForStage()
+    {
+        setUpSubmission(submissions[1]);
+        submissions[1].countBlockCategoriesForStage();
+
+        int expected = 1;
+        int actual = submissions[1].getOperatorsBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getOperatorsBlocksForStage method - empty.
+     */
+    @Test
+    public void testGetOperatorsBlocksForStageEmpty()
+    {
+        setUpSubmission(submissions[2]);
+        submissions[2].countBlockCategoriesForStage();
+
+        int expected = 0;
+        int actual = submissions[2].getOperatorsBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getPenBlocksForStage method.
+     */
+    @Test
+    public void testGetPenBlocksForStage()
+    {
+        setUpSubmission(submissions[1]);
+        submissions[1].countBlockCategoriesForStage();
+
+        int expected = 1;
+        int actual = submissions[1].getPenBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getPenBlocksForStage method - empty.
+     */
+    @Test
+    public void testGetPenBlocksForStageEmpty()
+    {
+        setUpSubmission(submissions[2]);
+        submissions[2].countBlockCategoriesForStage();
+
+        int expected = 0;
+        int actual = submissions[2].getPenBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getSensingBlocksForStage method.
+     */
+    @Test
+    public void testGetSensingBlocksForStage()
+    {
+        setUpSubmission(submissions[1]);
+        submissions[1].countBlockCategoriesForStage();
+
+        int expected = 1;
+        int actual = submissions[1].getSensingBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getSensingBlocksForStage method - empty.
+     */
+    @Test
+    public void testGetSensingBlocksForStageEmpty()
+    {
+        setUpSubmission(submissions[2]);
+        submissions[2].countBlockCategoriesForStage();
+
+        int expected = 0;
+        int actual = submissions[2].getSensingBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getSoundBlocksForStage method.
+     */
+    @Test
+    public void testGetSoundBlocksForStage()
+    {
+        setUpSubmission(submissions[1]);
+        submissions[1].countBlockCategoriesForStage();
+
+        int expected = 2;
+        int actual = submissions[1].getSoundBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getSoundBlocksForStage method - empty.
+     */
+    @Test
+    public void testGetSoundBlocksForStageEmpty()
+    {
+        setUpSubmission(submissions[2]);
+        submissions[2].countBlockCategoriesForStage();
+
+        int expected = 0;
+        int actual = submissions[2].getSoundBlocksForStage();
+        assertEquals("should be equal", expected, actual);
+    }
+    
     /**
      * Set up submission for test.
      *
