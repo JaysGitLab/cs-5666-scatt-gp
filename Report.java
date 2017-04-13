@@ -1,3 +1,4 @@
+import java.io.PrintWriter;
 /**
  * Report.java
  *  
@@ -34,31 +35,83 @@ public class Report
      */
     public void makeReport()
     {
-        System.out.println("------------");
-        System.out.println("SCATT Report");
-        System.out.println("------------");
-        System.out.println();
+        PrintWriter printW = new PrintWriter(new FileWriter("./Report.txt"));
+        printW.println("SCATT Report");
+        printW.println();
         for (int i = 0; i < submissions.length; i++)
         {
             if (submissions[i].isValid())
             {
-                System.out.println("File: " + submissions[i].getName());
-                System.out.println("---------------------------------");
-                System.out.println("Script count: " 
+                printW.println("File: " + submissions[i].getName());
+                printW.println("---------------------------------");
+                printW.println("Script count Total: " 
                     + submissions[i].getScriptCount());
-                System.out.println("Sprite count: " 
+                printW.println("Sprite count Total: " 
                     + submissions[i].getSpriteCount());
-                System.out.println();
+                printW.println();
+                printW.println("---------------------------------");
+                printW.println();
+
+                printW.println("Stage Counts");
+                printW.println("Script: " 
+                    + submissions[i].getScriptCountForStage);
+                printW.println("Variable: " 
+                    + submissions[i].getVariableCountForStage);
+                printW.println("Comments: " 
+                    + submissions[i].getScriptCommentsCountForStage());
+                printW.println("Sounds: " 
+                    + submissions[i].getSoundCountForStage());
+                printW.println("Costumes: " 
+                    + submissions[i].getCostumeCountForStage());
+                printW.println("Control Block: " 
+                    + submissions[i].getControlBlocksForStage());
+                printW.println("Data Block: " 
+                    + submissions[i].getDataBlocksForStage());
+                printW.println("Event Block: " 
+                    + submissions[i].getEventsBlocksForStage());
+                printW.println("Looks Block: " 
+                    + submissions[i].getLooksBlocksForStage());
+                printW.println("More Block: " 
+                    + submissions[i].getMoreBlocksBlocksForStage());
+                printW.println("Motion Block: " 
+                    + submissions[i].getMotionBlockForStage());
+                printW.println("Operator Block: " 
+                    + submissions[i].getOperatorsBlocksForStage());
+                printW.println("Pen Block: " 
+                    + submissions[i].getPenBlocksForStage());
+                printW.println("Sensing Block: " 
+                    + submissions[i].getSensingBlocksForStage());
+                printW.println("Sound Block: " 
+                    + submissions[i].getSoundBlocksForStage());
+                printW.println();
+                printW.println("--------------------------------");
+                printW.println();
+
+                printW.println("Sprite Counts");
                 String[] spriteNames = submissions[i].getSpriteNames();
                 for (int j = 0; j < spriteNames.length; j++)
                 {
-                    System.out.println("Sprite: " + spriteNames[j]);
-                    System.out.println("Script count: " 
+                    printW.println("Sprite: " + spriteNames[j]);
+                    printW.println("Script: " 
                         + submissions[i].getScriptCountForSprite(
                             spriteNames[j]));
-                    System.out.println();
+                    printW.println("Variable: " 
+                        + submissions[i].getVariableCountForSprite(
+                            spriteNames[j]));
+                    printW.println("Comment: " 
+                        + submissions[i].getScriptCommentCountForSprite(
+                            spriteNames[j]));
+                    printW.println("Sound: " 
+                        + submissions[i].getSoundCountForSprite(
+                            spriteNames[j]));
+                    printW.println("Costume: " 
+                        + submissions[i].getCostumeCountForSprite(
+                            spriteNames[j]));
+
+                    printW.println();
                 }
             }
         }
+        printW.close();
     }
 }
