@@ -1,6 +1,8 @@
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.io.File;
+import java.util.Arrays;
 import org.junit.Before;
 import org.junit.After;
 
@@ -33,6 +35,17 @@ public class ReportTest
     public void setUp()
     {
         System.setOut(new PrintStream(outContent));
+    	File directory = new File("submissions");  
+    	File[] sb2s = directory.listFiles();  
+    	Arrays.sort(sb2s);  
+    	Submission[] submissions = new Submission[sb2s.length];  
+		for (int i = 0; i < submissions.length; i++)  
+		{  
+			submissions[i] = new Submission(sb2s[i]);  
+			submissions[i].convertToZip();  
+			submissions[i].unZip();  
+			submissions[i].parseJSONFile();  
+		}  
         scattReport = new Report(submissions);
     }
     
