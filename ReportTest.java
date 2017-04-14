@@ -9,10 +9,6 @@ import org.junit.After;
 
 /**
  * ReportTest.java
- *
- * @author Kara Beason
- * @author Cydney Caldwell
- * @author Michelle Melton
  */
 
 /**
@@ -21,7 +17,7 @@ import org.junit.After;
  * @author Kara Beason
  * @author Cydney Caldwell
  * @author Michelle Melton
- * @version Mar 2017
+ * @version Spr 2017
  */
 public class ReportTest
 {
@@ -46,6 +42,8 @@ public class ReportTest
             submissions[i].convertToZip();
             submissions[i].unZip();
             submissions[i].parseJSONFile();
+            submissions[i].countBlockCategoriesForStage();
+            submissions[i].createSprites();
         }
         scattReport = new Report(submissions);
     }
@@ -67,7 +65,7 @@ public class ReportTest
                         + "Sprite: Crab\n"
                         + "Script count: 3\n\n"
                         + "Sprite: Bananas\n"
-                        + "Script count: 0\n\n"
+                        + "Script count: 3\n\n"
                         + "File: Big Project.sb2\n"
                         + "---------------------------------\n"
                         + "Script count: 6\n"

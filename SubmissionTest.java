@@ -14,19 +14,15 @@ import java.io.IOException;
 
 /**
  * SubmissionTest.java
- *
- * @author Kara Beason
- * @author Cydney Caldwell
- * @author Michelle Melton
  */
 
 /**
- * Class to test Submission class.
+ * Class to test submission class.
  *
  * @author Kara Beason
  * @author Cydney Caldwell
  * @author Michelle Melton
- * @version Mar 2017
+ * @version Spr 2017
  */
 public class SubmissionTest
 {
@@ -429,176 +425,6 @@ public class SubmissionTest
 
         int expected = 2;
         int actual = submissions[1].getCostumeCountForStage();
-        assertEquals("should be equal", expected, actual);
-    }
-
-    /**
-     * Test getSpriteNames method, valid.
-     */
-    @Test
-    public void testGetSpriteNamesValid()
-    {
-        setUpSubmission(submissions[1]);
-
-        String[] expected = {"Sprite1", "Butterfly3"};
-        String[] actual = submissions[1].getSpriteNames();
-        assertArrayEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getSpriteNames method, valid - empty.
-     */
-    @Test
-    public void testGetSpriteNamesEmpty()
-    {
-        setUpSubmission(submissions[2]);
-
-        String[] expected = new String[0];
-        String[] actual = submissions[2].getSpriteNames();
-        assertArrayEquals("should be equal", expected, actual);
-    }
-
-    /**
-     * Test getScriptCountForSprite method, valid.
-     */
-    @Test
-    public void testGetScriptCountForSpriteValid()
-    {
-        setUpSubmission(submissions[1]);
-
-        int expected = 2;
-        int actual = submissions[1].getScriptCountForSprite("Sprite1");
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getScriptCountForSprite method, valid - empty.
-     */
-    @Test
-    public void testGetScriptCountForSpriteEmpty()
-    {
-        setUpSubmission(submissions[0]);
-
-        int expected = 0;
-        int actual = submissions[0].getScriptCountForSprite("Bananas");
-        assertEquals("should be equal", expected, actual);
-    }
-
-    /**
-     * Test getVariableCountForSprite method, valid.
-     */
-    @Test
-    public void testGetVariableCountForSpriteValid()
-    {
-        setUpSubmission(submissions[1]);
-
-        int expected = 2;
-        int actual = submissions[1].getVariableCountForSprite("Sprite1");
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getVariableCountForSprite method, valid - empty.
-     */
-    @Test
-    public void testGetVariableCountForSpriteEmpty()
-    {
-        setUpSubmission(submissions[0]);
-
-        int expected = 0;
-        int actual = submissions[0].getVariableCountForSprite("Bananas");
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getListCountForSprite method, valid.
-     */
-    @Test
-    public void testGetListCountForSpriteValid()
-    {
-        setUpSubmission(submissions[1]);
-
-        int expected = 1;
-        int actual = submissions[1].getListCountForSprite("Sprite1");
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getListCountForSprite method, valid - empty.
-     */
-    @Test
-    public void testGetListCountForSpriteEmpty()
-    {
-        setUpSubmission(submissions[0]);
-
-        int expected = 0;
-        int actual = submissions[0].getListCountForSprite("Bananas");
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getScriptCommentCountForSprite method, valid.
-     */
-    @Test
-    public void testGetScriptCommentCountForSpriteValid()
-    {
-        setUpSubmission(submissions[1]);
-
-        int expected = 1;
-        int actual = submissions[1].getScriptCommentCountForSprite("Sprite1");
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getScriptCommentCountForSprite method, valid - empty.
-     */
-    @Test
-    public void testGetScriptCommentCountForSpriteEmpty()
-    {
-        setUpSubmission(submissions[0]);
-
-        int expected = 0;
-        int actual = 
-            submissions[0].getScriptCommentCountForSprite("Bananas");
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getSoundCountForSprite method, valid.
-     */
-    @Test
-    public void testGetSoundCountForSpriteValid()
-    {
-        setUpSubmission(submissions[1]);
-
-        int expected = 1;
-        int actual = submissions[1].getSoundCountForSprite("Sprite1");
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getSoundCountForSprite method, valid - empty.
-     */
-    @Test
-    public void testGetSoundCountForSpriteEmpty()
-    {
-        setUpSubmission(submissions[0]);
-
-        int expected = 0;
-        int actual = submissions[0].getSoundCountForSprite("Bananas");
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getCostumeCountForSprite method, valid.
-     */
-    @Test
-    public void testGetCostumeCountForSpriteValid()
-    {
-        setUpSubmission(submissions[1]);
-
-        int expected = 2;
-        int actual = submissions[1].getCostumeCountForSprite("Sprite1");
         assertEquals("should be equal", expected, actual);
     }
     
