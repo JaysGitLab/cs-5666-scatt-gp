@@ -39,14 +39,14 @@ public class ReportTest
     	File directory = new File("submissions");  
     	File[] sb2s = directory.listFiles();  
     	Arrays.sort(sb2s);  
-    	Submission[] submissions = new Submission[sb2s.length];  
-		for (int i = 0; i < submissions.length; i++)  
-		{  
-			submissions[i] = new Submission(sb2s[i]);  
-			submissions[i].convertToZip();  
-			submissions[i].unZip();  
-			submissions[i].parseJSONFile();  
-		}  
+    	Submission[] submissions = new Submission[sb2s.length];
+        for (int i = 0; i < submissions.length; i++)  
+        {
+            submissions[i] = new Submission(sb2s[i]);
+            submissions[i].convertToZip();
+            submissions[i].unZip();
+            submissions[i].parseJSONFile();
+        }  
         scattReport = new Report(submissions);
     }
     
@@ -57,7 +57,7 @@ public class ReportTest
     public void makeReportTest()
     {
         scattReport.makeReport();
-		File reportFile = new File("Report.txt");
+        File reportFile = new File("Report.txt");
         assertTrue(reportFile.exists());
     }
 
