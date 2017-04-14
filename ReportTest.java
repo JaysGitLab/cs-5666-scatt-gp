@@ -39,11 +39,6 @@ public class ReportTest
         for (int i = 0; i < submissions.length; i++)
         {
             submissions[i] = new Submission(sb2s[i]);
-            submissions[i].convertToZip();
-            submissions[i].unZip();
-            submissions[i].parseJSONFile();
-            submissions[i].countBlockCategoriesForStage();
-            submissions[i].createSprites();
         }
         scattReport = new Report(submissions);
     }

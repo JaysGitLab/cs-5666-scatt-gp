@@ -41,10 +41,6 @@ public class SpriteTest
         for (int i = 0; i < submissions.length; i++)
         {
             submissions[i] = new Submission(sb2s[i]);
-            submissions[i].convertToZip();
-            submissions[i].unZip();
-            submissions[i].parseJSONFile();
-            submissions[i].createSprites();
         }
         spritesBigProject = submissions[1].getSprites();
         spritesEmpty = submissions[2].getSprites();

@@ -38,10 +38,6 @@ public class Scatt
         for (int i = 0; i < submissions.length; i++)
         {
             submissions[i] = new Submission(sb2s[i]);
-            submissions[i].convertToZip();
-            submissions[i].unZip();
-            submissions[i].parseJSONFile();
-            submissions[i].createSprites();
         }
         
         Report report = new Report(submissions);

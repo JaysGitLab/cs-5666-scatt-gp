@@ -45,6 +45,10 @@ public class Submission
         this.sb2 = sb2;
         zipsDir = new File("zips");
         unzipsDir = new File("unzips");
+        convertToZip();
+        unZip();
+        parseJSONFile();
+        createSprites();
         categoryMap = new HashMap<String, String>();
         addControlCategoryMap();
         addDataCategoryMap();
@@ -56,6 +60,7 @@ public class Submission
         addPenCategoryMap();
         addSensingCategoryMap();
         addSoundCategoryMap();
+        countBlockCategoriesForStage();
     }
 
     /**
@@ -85,7 +90,7 @@ public class Submission
      * Convert .sb2 to .zip.
      * Handles valid .sb2 test internally.
      */
-    public void convertToZip()
+    private void convertToZip()
     {
         if (isValid())
         {
@@ -97,7 +102,7 @@ public class Submission
      * Unzip file. 
      * Handles valid .sb2 test internally.
      */
-    public void unZip()
+    private void unZip()
     {
         if (isValid())
         {
@@ -121,7 +126,7 @@ public class Submission
     /**
      * Parse JSON file.
      */
-    public void parseJSONFile()
+    private void parseJSONFile()
     {
         if (json != null)
         {
@@ -233,7 +238,7 @@ public class Submission
      *  method only called from within this class.
      */
     @SuppressWarnings("unchecked")
-    public void createSprites()
+    private void createSprites()
     {
         if (getSpriteCount() > 0)
         {
@@ -267,7 +272,7 @@ public class Submission
     /**
      * Count block categories for stage.
      */
-    public void countBlockCategoriesForStage()
+    private void countBlockCategoriesForStage()
     {
         controlBlocksForStage = 0;
         dataBlocksForStage = 0;
