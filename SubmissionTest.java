@@ -14,19 +14,15 @@ import java.io.IOException;
 
 /**
  * SubmissionTest.java
- *
- * @author Kara Beason
- * @author Cydney Caldwell
- * @author Michelle Melton
  */
 
 /**
- * Class to test Submission class.
+ * Class to test submission class.
  *
  * @author Kara Beason
  * @author Cydney Caldwell
  * @author Michelle Melton
- * @version Mar 2017
+ * @version Spr 2017
  */
 public class SubmissionTest
 {

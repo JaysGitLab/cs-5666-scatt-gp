@@ -13,10 +13,6 @@ import org.json.simple.parser.JSONParser;
 
 /**
  * FileUtils.java
- *
- * @author Michelle Melton
- * @author Kara Beason
- * @author Cydney Caldwell
  */
 
 /**
@@ -25,7 +21,7 @@ import org.json.simple.parser.JSONParser;
  * @author Michelle Melton
  * @author Kara Beason
  * @author Cydney Caldwell
- * @version Mar 2017
+ * @version Spr 2017
  */
 public class FileUtils 
 {

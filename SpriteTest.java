@@ -9,10 +9,6 @@ import java.util.Arrays;
 
 /**
  * SpriteTest.java
- *
- * @author Kara Beason
- * @author Cydney Caldwell
- * @author Michelle Melton
  */
 
 /**
@@ -21,7 +17,7 @@ import java.util.Arrays;
  * @author Kara Beason
  * @author Cydney Caldwell
  * @author Michelle Melton
- * @version Apr 2017
+ * @version Spr 2017
  */
 public class SpriteTest
 {

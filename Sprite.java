@@ -2,10 +2,6 @@ import org.json.simple.JSONObject;
 
 /**
  * Sprite.java
- *
- * @author Michelle Melton
- * @author Kara Beason
- * @author Cydney Caldwell
  */
 
 /**
@@ -14,7 +10,7 @@ import org.json.simple.JSONObject;
  * @author Michelle Melton
  * @author Kara Beason
  * @author Cydney Caldwell
- * @version Apr 2017
+ * @version Spr 2017
  */
 public class Sprite 
 {

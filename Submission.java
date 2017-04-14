@@ -5,10 +5,6 @@ import java.util.HashMap;
 
 /**
  * Submission.java
- *
- * @author Michelle Melton
- * @author Kara Beason
- * @author Cydney Caldwell
  */
 
 /**
@@ -17,7 +13,7 @@ import java.util.HashMap;
  * @author Michelle Melton
  * @author Kara Beason
  * @author Cydney Caldwell
- * @version Mar 2017
+ * @version Spr 2017
  */
 public class Submission
 {

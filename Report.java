@@ -1,19 +1,14 @@
 /**
  * Report.java
- *  
- * @author Kara Beason
- * @author Cydney Caldwell
- * @author Michelle Melton
- * @version Mar 2017
  */
 
 /**
  * Class for the Report. 
- * 
+ *
  * @author Kara Beason
  * @author Cydney Caldwell
  * @author Michelle Melton
- * @version Mar 2017
+ * @version Spr 2017
  */
 public class Report
 {

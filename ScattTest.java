@@ -7,10 +7,6 @@ import org.junit.After;
 
 /**
  * ScattTest.java
- *
- * @author Kara Beason
- * @author Cydney Caldwell
- * @author Michelle Melton
  */
 
 /**
@@ -19,7 +15,7 @@ import org.junit.After;
  * @author Kara Beason
  * @author Cydney Caldwell
  * @author Michelle Melton
- * @version Mar 2017
+ * @version Spr 2017
  */
 public class ScattTest
 {
