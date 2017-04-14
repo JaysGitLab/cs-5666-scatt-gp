@@ -1,5 +1,6 @@
 import java.io.PrintWriter;
 import java.io.FileWriter;
+import java.io.File;
 
 /**
  * Report.java
@@ -37,7 +38,8 @@ public class Report
      */
     public void makeReport()
     {
-        PrintWriter printW = new PrintWriter(new FileWriter("./Report.txt"));
+		File reportFile = new File("./Report.txt");
+        PrintWriter printW = new PrintWriter(reportFile);
         printW.println("SCATT Report");
         printW.println();
         for (int i = 0; i < submissions.length; i++)
@@ -56,11 +58,11 @@ public class Report
 
                 printW.println("Stage Counts");
                 printW.println("Script: " 
-                    + submissions[i].getScriptCountForStage);
+                    + submissions[i].getScriptCountForStage());
                 printW.println("Variable: " 
-                    + submissions[i].getVariableCountForStage);
+                    + submissions[i].getVariableCountForStage());
                 printW.println("Comments: " 
-                    + submissions[i].getScriptCommentsCountForStage());
+                    + submissions[i].getScriptCommentCountForStage());
                 printW.println("Sounds: " 
                     + submissions[i].getSoundCountForStage());
                 printW.println("Costumes: " 
@@ -76,7 +78,7 @@ public class Report
                 printW.println("More Block: " 
                     + submissions[i].getMoreBlocksBlocksForStage());
                 printW.println("Motion Block: " 
-                    + submissions[i].getMotionBlockForStage());
+                    + submissions[i].getMotionBlocksForStage());
                 printW.println("Operator Block: " 
                     + submissions[i].getOperatorsBlocksForStage());
                 printW.println("Pen Block: " 

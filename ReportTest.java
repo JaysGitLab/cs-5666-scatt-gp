@@ -3,6 +3,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.File;
 import java.util.Arrays;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.After;
 
@@ -56,7 +57,8 @@ public class ReportTest
     public void makeReportTest()
     {
         scattReport.makeReport();
-        assertTrue(scattReport.exists());
+		File reportFile = new File("Report.txt");
+        assertTrue(reportFile.exists());
     }
 
     /**
