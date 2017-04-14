@@ -1,0 +1,111 @@
+SCATT Report
+
+File: Animate the Crab.sb2
+---------------------------------
+Script count Total: 3
+Sprite count Total: 2
+
+---------------------------------
+
+Stage Counts
+Script: 0
+Variable: 0
+Comments: 0
+Sounds: 1
+Costumes: 3
+Control Block: 0
+Data Block: 0
+Event Block: 0
+Looks Block: 0
+More Block: 0
+Motion Block: 0
+Operator Block: 0
+Pen Block: 0
+Sensing Block: 0
+Sound Block: 0
+
+--------------------------------
+
+Sprite Counts
+Sprite: Crab
+Script: 3
+Variable: 0
+Comment: 3
+Sound: 1
+Costume: 7
+
+Sprite: Bananas
+Script: 0
+Variable: 0
+Comment: 0
+Sound: 0
+Costume: 1
+
+File: Big Project.sb2
+---------------------------------
+Script count Total: 6
+Sprite count Total: 2
+
+---------------------------------
+
+Stage Counts
+Script: 6
+Variable: 3
+Comments: 2
+Sounds: 1
+Costumes: 2
+Control Block: 0
+Data Block: 0
+Event Block: 0
+Looks Block: 0
+More Block: 0
+Motion Block: 0
+Operator Block: 0
+Pen Block: 0
+Sensing Block: 0
+Sound Block: 0
+
+--------------------------------
+
+Sprite Counts
+Sprite: Sprite1
+Script: 2
+Variable: 2
+Comment: 1
+Sound: 1
+Costume: 2
+
+Sprite: Butterfly3
+Script: 2
+Variable: 0
+Comment: 1
+Sound: 1
+Costume: 2
+
+File: Empty.sb2
+---------------------------------
+Script count Total: 0
+Sprite count Total: 0
+
+---------------------------------
+
+Stage Counts
+Script: 0
+Variable: 0
+Comments: 0
+Sounds: 0
+Costumes: 1
+Control Block: 0
+Data Block: 0
+Event Block: 0
+Looks Block: 0
+More Block: 0
+Motion Block: 0
+Operator Block: 0
+Pen Block: 0
+Sensing Block: 0
+Sound Block: 0
+
+--------------------------------
+
+Sprite Counts

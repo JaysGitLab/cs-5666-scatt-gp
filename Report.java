@@ -1,6 +1,7 @@
 import java.io.PrintWriter;
 import java.io.FileWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  * Report.java
@@ -39,7 +40,10 @@ public class Report
     public void makeReport()
     {
 		File reportFile = new File("./Report.txt");
-        PrintWriter printW = new PrintWriter(reportFile);
+        PrintWriter printW;
+        try
+        {
+            printW = new PrintWriter(reportFile);
         printW.println("SCATT Report");
         printW.println();
         for (int i = 0; i < submissions.length; i++)
@@ -116,6 +120,12 @@ public class Report
                 }
             }
         }
-        printW.close();
+            printW.close();
+    
+        }
+        catch (FileNotFoundException ex)
+        {
+            ex.printStackTrace();
+        }
     }
 }
