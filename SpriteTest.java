@@ -140,6 +140,17 @@ public class SpriteTest
         int actual = spritesBigProject[0].getCostumeCount();
         assertEquals("should be equal", expected, actual);
     }
+
+    /**
+     * Test getControlBlocksForSprite method.
+     */
+    @Test
+    public void testGetControlBlocksForSprite()
+    {
+        int expected = 4;
+        int actual = spritesBigProject[0].getControlBlocksForSprite();
+        assertEquals("should be equal", expected, actual);
+    }
     
     /**
      * Tear down after tests.

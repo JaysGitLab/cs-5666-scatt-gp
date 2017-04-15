@@ -22,6 +22,16 @@ public class Sprite
     private int scriptCommentCount;
     private int soundCount;
     private int costumeCount;
+    private int controlBlocksForSprite;
+    private int dataBlocksForSprite;
+    private int eventsBlocksForSprite;
+    private int looksBlocksForSprite;
+    private int moreBlocksBlocksForSprite;
+    private int motionBlocksForSprite;
+    private int operatorsBlocksForSprite;
+    private int penBlocksForSprite;
+    private int sensingBlocksForSprite;
+    private int soundBlocksForSprite;
     
     /**
      * Sprite constructor.
@@ -114,5 +124,15 @@ public class Sprite
     public int getCostumeCount()
     {
         return costumeCount;
+    }
+
+    /**
+     * Get control block count for sprite.
+     *
+     * @return count
+     */
+    public int getControlBlocksForSprite()
+    {
+        return 0;
     }
 }
