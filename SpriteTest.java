@@ -22,6 +22,7 @@ import java.util.Arrays;
 public class SpriteTest
 {
     private static Submission[] submissions;
+    private static Sprite[] spritesAnimateTheCrab;
     private static Sprite[] spritesBigProject;
     private static Sprite[] spritesEmpty;
     
@@ -42,6 +43,7 @@ public class SpriteTest
         {
             submissions[i] = new Submission(sb2s[i]);
         }
+        spritesAnimateTheCrab = submissions[0].getSprites();
         spritesBigProject = submissions[1].getSprites();
         spritesEmpty = submissions[2].getSprites();
     }
@@ -149,6 +151,17 @@ public class SpriteTest
     {
         int expected = 4;
         int actual = spritesBigProject[0].getControlBlocksForSprite();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getControlBlocksForSprite method - empty.
+     */
+    @Test
+    public void testGetControlBlocksForSpriteEmpty()
+    {
+        int expected = 0;
+        int actual = spritesAnimateTheCrab[1].getControlBlocksForSprite();
         assertEquals("should be equal", expected, actual);
     }
     
