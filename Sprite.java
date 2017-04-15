@@ -1,4 +1,5 @@
 import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 
 /**
  * Sprite.java
@@ -54,6 +55,7 @@ public class Sprite
             "sounds").size();
         costumeCount = FileUtils.getJSONArrayAttribute(this.jsonObj, 
             "costumes").size();
+        countBlockCategoriesForSprite();
     }
 
     /**
@@ -133,6 +135,94 @@ public class Sprite
      */
     public int getControlBlocksForSprite()
     {
-        return 0;
+        return controlBlocksForSprite;
+    }
+
+    /**
+     * Count block categories for sprite.
+     */
+    private void countBlockCategoriesForSprite()
+    {
+        controlBlocksForSprite = 0;
+        dataBlocksForSprite = 0;
+        eventsBlocksForSprite = 0;
+        looksBlocksForSprite = 0;
+        moreBlocksBlocksForSprite = 0;
+        motionBlocksForSprite = 0;
+        operatorsBlocksForSprite = 0;
+        penBlocksForSprite = 0;
+        sensingBlocksForSprite = 0;
+        soundBlocksForSprite = 0;
+        JSONArray scripts = FileUtils.getJSONArrayAttribute(jsonObj, "scripts");
+        processScripts(scripts);
+    }
+
+    /**
+     * Process scripts to count blocks by category.
+     *
+     * @param array 
+     */
+    private void processScripts(JSONArray array)
+    {
+        if (array == null || array.size() == 0)
+        {
+            return;
+        }
+        
+        // If first element is a String, it is the block name.
+        // Get and count its category.
+        if (array.get(0) instanceof String)
+        {
+            String category = Submission.getCategory((String) array.get(0));
+            if (category != null)
+            {
+                switch (category)
+                {
+                    case "control":
+                        controlBlocksForSprite++;
+                        break;
+                    case "data":
+                        dataBlocksForSprite++;
+                        break;
+                    case "events":
+                        eventsBlocksForSprite++;
+                        break;
+                    case "looks":
+                        looksBlocksForSprite++;
+                        break;
+                    case "more blocks":
+                        moreBlocksBlocksForSprite++;
+                        break;
+                    case "motion":
+                        motionBlocksForSprite++;
+                        break;
+                    case "operators":
+                        operatorsBlocksForSprite++;
+                        break;
+                    case "pen":
+                        penBlocksForSprite++;
+                        break;
+                    case "sensing":
+                        sensingBlocksForSprite++;
+                        break;
+                    case "sound":
+                        soundBlocksForSprite++;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        // Check for additional array elements, which represent embedded blocks.
+        for (int i = 0; i < array.size(); i++)
+        {
+            if (array.get(i) instanceof JSONArray)
+            {
+                processScripts((JSONArray) array.get(i));
+            }
+        }
+
+        return;
     }
 }

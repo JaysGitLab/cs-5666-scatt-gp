@@ -23,7 +23,7 @@ public class Submission
     private File json;
     private JSONObject jsonObj;
     private Sprite[] sprites;
-    private HashMap<String, String> categoryMap;
+    private static HashMap<String, String> categoryMap;
     private int controlBlocksForStage;
     private int dataBlocksForStage;
     private int eventsBlocksForStage;
@@ -48,7 +48,6 @@ public class Submission
         convertToZip();
         unZip();
         parseJSONFile();
-        createSprites();
         categoryMap = new HashMap<String, String>();
         addControlCategoryMap();
         addDataCategoryMap();
@@ -61,6 +60,7 @@ public class Submission
         addSensingCategoryMap();
         addSoundCategoryMap();
         countBlockCategoriesForStage();
+        createSprites();
     }
 
     /**
@@ -464,7 +464,7 @@ public class Submission
      * @param scriptName 
      * @return category, null if no mapping
      */
-    private String getCategory(String scriptName)
+    protected static String getCategory(String scriptName)
     {
         return (String) categoryMap.get(scriptName);
     }
