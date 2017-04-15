@@ -17,13 +17,13 @@ import java.util.HashMap;
  */
 public class Submission
 {
+    private static HashMap<String, String> categoryMap;
     private File sb2;
     private File zipsDir;
     private File unzipsDir;
     private File json;
     private JSONObject jsonObj;
     private Sprite[] sprites;
-    private static HashMap<String, String> categoryMap;
     private int controlBlocksForStage;
     private int dataBlocksForStage;
     private int eventsBlocksForStage;

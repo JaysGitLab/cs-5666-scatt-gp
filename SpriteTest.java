@@ -87,6 +87,17 @@ public class SpriteTest
         int actual = spritesBigProject[0].getScriptCount();
         assertEquals("should be equal", expected, actual);
     }
+    
+    /**
+     * Test getScriptCount method - empty.
+     */
+    @Test
+    public void testGetScriptCountEmpty()
+    {
+        int expected = 0;
+        int actual = spritesAnimateTheCrab[1].getScriptCount();
+        assertEquals("should be equal", expected, actual);
+    }
 
     /**
      * Test getVariableCount method.
@@ -96,6 +107,17 @@ public class SpriteTest
     {
         int expected = 2;
         int actual = spritesBigProject[0].getVariableCount();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getVariableCount method - empty.
+     */
+    @Test
+    public void testGetVariableCountEmpty()
+    {
+        int expected = 0;
+        int actual = spritesAnimateTheCrab[1].getVariableCount();
         assertEquals("should be equal", expected, actual);
     }
     
@@ -111,6 +133,17 @@ public class SpriteTest
     }
     
     /**
+     * Test getListCount method - empty.
+     */
+    @Test
+    public void testGetListCountEmpty()
+    {
+        int expected = 0;
+        int actual = spritesAnimateTheCrab[1].getListCount();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
      * Test getScriptCommentCount method.
      */
     @Test
@@ -122,6 +155,17 @@ public class SpriteTest
     }
     
     /**
+     * Test getScriptCommentCount method - empty.
+     */
+    @Test
+    public void testGetScriptCommentCountEmpty()
+    {
+        int expected = 0;
+        int actual = spritesAnimateTheCrab[1].getScriptCommentCount();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
      * Test getSoundCount method.
      */
     @Test
@@ -129,6 +173,17 @@ public class SpriteTest
     {
         int expected = 1;
         int actual = spritesBigProject[0].getSoundCount();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getSoundCount method - empty.
+     */
+    @Test
+    public void testGetSoundCountEmpty()
+    {
+        int expected = 0;
+        int actual = spritesAnimateTheCrab[1].getSoundCount();
         assertEquals("should be equal", expected, actual);
     }
     
