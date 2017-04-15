@@ -137,6 +137,16 @@ public class Sprite
     {
         return controlBlocksForSprite;
     }
+    
+    /**
+     * Get data block count for sprite.
+     *
+     * @return count
+     */
+    public int getDataBlocksForSprite()
+    {
+        return dataBlocksForSprite;
+    }
 
     /**
      * Count block categories for sprite.

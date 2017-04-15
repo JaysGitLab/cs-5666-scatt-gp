@@ -221,6 +221,28 @@ public class SpriteTest
     }
     
     /**
+     * Test getDataBlocksForSprite method.
+     */
+    @Test
+    public void testGetDataBlocksForSprite()
+    {
+        int expected = 3;
+        int actual = spritesBigProject[0].getDataBlocksForSprite();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getDataBlocksForSprite method - empty.
+     */
+    @Test
+    public void testGetDataBlocksForSpriteEmpty()
+    {
+        int expected = 0;
+        int actual = spritesAnimateTheCrab[1].getDataBlocksForSprite();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
      * Tear down after tests.
      */
     @AfterClass
