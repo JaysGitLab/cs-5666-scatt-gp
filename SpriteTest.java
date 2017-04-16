@@ -309,6 +309,28 @@ public class SpriteTest
     }
     
     /**
+     * Test getMotionBlocksForSprite method.
+     */
+    @Test
+    public void testGetMotionBlocksForSprite()
+    {
+        int expected = 4;
+        int actual = spritesBigProject[0].getMotionBlocksForSprite();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getMotionBlocksForSprite method - empty.
+     */
+    @Test
+    public void testGetMotionBlocksForSpriteEmpty()
+    {
+        int expected = 0;
+        int actual = spritesAnimateTheCrab[1].getMotionBlocksForSprite();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
      * Tear down after tests.
      */
     @AfterClass

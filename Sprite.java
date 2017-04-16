@@ -177,6 +177,16 @@ public class Sprite
     {
         return moreBlocksBlocksForSprite;
     }
+    
+    /**
+     * Get motion block count for sprite.
+     *
+     * @return count
+     */
+    public int getMotionBlocksForSprite()
+    {
+        return motionBlocksForSprite;
+    }
 
     /**
      * Count block categories for sprite.
