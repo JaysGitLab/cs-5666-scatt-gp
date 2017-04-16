@@ -157,6 +157,16 @@ public class Sprite
     {
         return eventsBlocksForSprite;
     }
+    
+    /**
+     * Get looks block count for sprite.
+     *
+     * @return count
+     */
+    public int getLooksBlocksForSprite()
+    {
+        return looksBlocksForSprite;
+    }
 
     /**
      * Count block categories for sprite.

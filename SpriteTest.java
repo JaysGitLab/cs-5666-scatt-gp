@@ -265,6 +265,28 @@ public class SpriteTest
     }
     
     /**
+     * Test getLooksBlocksForSprite method.
+     */
+    @Test
+    public void testGetLooksBlocksForSprite()
+    {
+        int expected = 4;
+        int actual = spritesBigProject[0].getLooksBlocksForSprite();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getLooksBlocksForSprite method - empty.
+     */
+    @Test
+    public void testGetLooksBlocksForSpriteEmpty()
+    {
+        int expected = 0;
+        int actual = spritesAnimateTheCrab[1].getLooksBlocksForSprite();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
      * Tear down after tests.
      */
     @AfterClass
