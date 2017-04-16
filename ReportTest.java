@@ -63,7 +63,7 @@ public class ReportTest
                         + "Script count: 3\n\n"
                         + "File: Big Project.sb2\n"
                         + "---------------------------------\n"
-                        + "Script count: 6\n"
+                        + "Script count: 8\n"
                         + "Sprite count: 2\n\n"
                         + "Sprite: Sprite1\n"
                         + "Script count: 2\n\n"

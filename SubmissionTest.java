@@ -243,7 +243,7 @@ public class SubmissionTest
     @Test
     public void testGetScriptCountValid()
     {
-        int expected = 6;
+        int expected = 8;
         int actual = submissions[1].getScriptCount();
         assertEquals("should be equal", expected, actual);
     }

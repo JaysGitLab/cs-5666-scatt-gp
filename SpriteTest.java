@@ -83,7 +83,7 @@ public class SpriteTest
     @Test
     public void testGetScriptCount()
     {
-        int expected = 2;
+        int expected = 4;
         int actual = spritesBigProject[0].getScriptCount();
         assertEquals("should be equal", expected, actual);
     }
@@ -283,6 +283,28 @@ public class SpriteTest
     {
         int expected = 0;
         int actual = spritesAnimateTheCrab[1].getLooksBlocksForSprite();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getMoreBlocksBlocksForSprite method.
+     */
+    @Test
+    public void testGetMoreBlocksBlocksForSprite()
+    {
+        int expected = 3;
+        int actual = spritesBigProject[0].getMoreBlocksBlocksForSprite();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getMoreBlocksBlocksForSprite method - empty.
+     */
+    @Test
+    public void testGetMoreBlocksBlocksForSpriteEmpty()
+    {
+        int expected = 0;
+        int actual = spritesAnimateTheCrab[1].getMoreBlocksBlocksForSprite();
         assertEquals("should be equal", expected, actual);
     }
     

@@ -167,6 +167,16 @@ public class Sprite
     {
         return looksBlocksForSprite;
     }
+    
+    /**
+     * Get more blocks block count for sprite.
+     *
+     * @return count
+     */
+    public int getMoreBlocksBlocksForSprite()
+    {
+        return moreBlocksBlocksForSprite;
+    }
 
     /**
      * Count block categories for sprite.
