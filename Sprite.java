@@ -147,6 +147,16 @@ public class Sprite
     {
         return dataBlocksForSprite;
     }
+    
+    /**
+     * Get events block count for sprite.
+     *
+     * @return count
+     */
+    public int getEventsBlocksForSprite()
+    {
+        return eventsBlocksForSprite;
+    }
 
     /**
      * Count block categories for sprite.
