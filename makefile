@@ -51,3 +51,17 @@ clean:
 	rm -rf expected
 	rm -rf zips 
 	rm -rf unzips
+
+test: Submission.class SubmissionTest.class Scatt.class ScattTest.class FileUtils.class
+	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR):$(JSON_SIMPLE_JAR) org.junit.runner.JUnitCore SubmissionTest
+	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR):$(JSON_SIMPLE_JAR) org.junit.runner.JUnitCore ReportTest
+	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore ScattTest	
+
+check: $(APP_FILES) $(TEST_FILES)
+	checkstyle $(APP_FILES) $(TEST_FILES)
+
+update:
+	rm -rf WindowsDemo.zip
+	make jar
+	cp Scatt.jar ./WindowsDemo
+	zip -r WindowsDemo ./WindowsDemo
