@@ -375,6 +375,28 @@ public class SpriteTest
     }
     
     /**
+     * Test getSensingBlocksForSprite method.
+     */
+    @Test
+    public void testGetSensingBlocksForSprite()
+    {
+        int expected = 3;
+        int actual = spritesBigProject[0].getSensingBlocksForSprite();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getSensingBlocksForSprite method - empty.
+     */
+    @Test
+    public void testGetSensingBlocksForSpriteEmpty()
+    {
+        int expected = 0;
+        int actual = spritesAnimateTheCrab[1].getSensingBlocksForSprite();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
      * Tear down after tests.
      */
     @AfterClass

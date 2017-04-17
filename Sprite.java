@@ -207,6 +207,16 @@ public class Sprite
     {
         return penBlocksForSprite;
     }
+    
+    /**
+     * Get sensing block count for sprite.
+     *
+     * @return count
+     */
+    public int getSensingBlocksForSprite()
+    {
+        return sensingBlocksForSprite;
+    }
 
     /**
      * Count block categories for sprite.
