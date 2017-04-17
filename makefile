@@ -49,3 +49,9 @@ test: Submission.class SubmissionTest.class Scatt.class ScattTest.class FileUtil
 
 check: $(APP_FILES) $(TEST_FILES)
 	checkstyle $(APP_FILES) $(TEST_FILES)
+
+update:
+	rm -rf WindowsDemo.zip
+	make jar
+	cp Scatt.jar ./WindowsDemo
+	zip -r WindowsDemo ./WindowsDemo
