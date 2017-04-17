@@ -217,6 +217,16 @@ public class Sprite
     {
         return sensingBlocksForSprite;
     }
+    
+    /**
+     * Get sound block count for sprite.
+     *
+     * @return count
+     */
+    public int getSoundBlocksForSprite()
+    {
+        return soundBlocksForSprite;
+    }
 
     /**
      * Count block categories for sprite.

@@ -397,6 +397,28 @@ public class SpriteTest
     }
     
     /**
+     * Test getSoundBlocksForSprite method.
+     */
+    @Test
+    public void testGetSoundBlocksForSprite()
+    {
+        int expected = 1;
+        int actual = spritesBigProject[0].getSoundBlocksForSprite();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getSoundBlocksForSprite method - empty.
+     */
+    @Test
+    public void testGetSoundBlocksForSpriteEmpty()
+    {
+        int expected = 0;
+        int actual = spritesAnimateTheCrab[1].getSoundBlocksForSprite();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
      * Tear down after tests.
      */
     @AfterClass
