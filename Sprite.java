@@ -187,6 +187,16 @@ public class Sprite
     {
         return motionBlocksForSprite;
     }
+    
+    /**
+     * Get operators block count for sprite.
+     *
+     * @return count
+     */
+    public int getOperatorsBlocksForSprite()
+    {
+        return operatorsBlocksForSprite;
+    }
 
     /**
      * Count block categories for sprite.

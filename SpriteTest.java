@@ -331,6 +331,28 @@ public class SpriteTest
     }
     
     /**
+     * Test getOperatorsBlocksForSprite method.
+     */
+    @Test
+    public void testGetOperatorsBlocksForSprite()
+    {
+        int expected = 1;
+        int actual = spritesBigProject[0].getOperatorsBlocksForSprite();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getOperatorsBlocksForSprite method - empty.
+     */
+    @Test
+    public void testGetOperatorsBlocksForSpriteEmpty()
+    {
+        int expected = 0;
+        int actual = spritesAnimateTheCrab[1].getOperatorsBlocksForSprite();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
      * Tear down after tests.
      */
     @AfterClass
