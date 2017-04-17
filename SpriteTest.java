@@ -353,6 +353,28 @@ public class SpriteTest
     }
     
     /**
+     * Test getPenBlocksForSprite method.
+     */
+    @Test
+    public void testGetPenBlocksForSprite()
+    {
+        int expected = 2;
+        int actual = spritesBigProject[1].getPenBlocksForSprite();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
+     * Test getPenBlocksForSprite method - empty.
+     */
+    @Test
+    public void testGetPenBlocksForSpriteEmpty()
+    {
+        int expected = 0;
+        int actual = spritesAnimateTheCrab[1].getPenBlocksForSprite();
+        assertEquals("should be equal", expected, actual);
+    }
+    
+    /**
      * Tear down after tests.
      */
     @AfterClass

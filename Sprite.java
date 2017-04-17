@@ -197,6 +197,16 @@ public class Sprite
     {
         return operatorsBlocksForSprite;
     }
+    
+    /**
+     * Get pen block count for sprite.
+     *
+     * @return count
+     */
+    public int getPenBlocksForSprite()
+    {
+        return penBlocksForSprite;
+    }
 
     /**
      * Count block categories for sprite.
