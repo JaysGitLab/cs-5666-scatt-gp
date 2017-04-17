@@ -1,15 +1,10 @@
 import java.io.File;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
-import java.util.Iterator;
 import java.util.HashMap;
 
 /**
  * Submission.java
- *
- * @author Michelle Melton
- * @author Kara Beason
- * @author Cydney Caldwell
  */
 
 /**
@@ -18,7 +13,7 @@ import java.util.HashMap;
  * @author Michelle Melton
  * @author Kara Beason
  * @author Cydney Caldwell
- * @version Mar 2017
+ * @version Spr 2017
  */
 public class Submission
 {
@@ -27,6 +22,7 @@ public class Submission
     private File unzipsDir;
     private File json;
     private JSONObject jsonObj;
+    private Sprite[] sprites;
     private HashMap<String, String> categoryMap;
     private int controlBlocksForStage;
     private int dataBlocksForStage;
@@ -49,6 +45,10 @@ public class Submission
         this.sb2 = sb2;
         zipsDir = new File("zips");
         unzipsDir = new File("unzips");
+        convertToZip();
+        unZip();
+        parseJSONFile();
+        createSprites();
         categoryMap = new HashMap<String, String>();
         addControlCategoryMap();
         addDataCategoryMap();
@@ -60,6 +60,7 @@ public class Submission
         addPenCategoryMap();
         addSensingCategoryMap();
         addSoundCategoryMap();
+        countBlockCategoriesForStage();
     }
 
     /**
@@ -89,7 +90,7 @@ public class Submission
      * Convert .sb2 to .zip.
      * Handles valid .sb2 test internally.
      */
-    public void convertToZip()
+    private void convertToZip()
     {
         if (isValid())
         {
@@ -101,7 +102,7 @@ public class Submission
      * Unzip file. 
      * Handles valid .sb2 test internally.
      */
-    public void unZip()
+    private void unZip()
     {
         if (isValid())
         {
@@ -125,7 +126,7 @@ public class Submission
     /**
      * Parse JSON file.
      */
-    public void parseJSONFile()
+    private void parseJSONFile()
     {
         if (json != null)
         {
@@ -227,17 +228,51 @@ public class Submission
     {
         JSONArray items = 
             FileUtils.getJSONArrayAttribute(jsonObj, attribute);
-        if (items != null)
+        return (int) items.size();
+    }
+
+    /**
+     * Create sprite objects.
+     * Unchecked warnings are suppressed because JSONArray does not
+     *  allow for a type specification, and this is a private
+     *  method only called from within this class.
+     */
+    @SuppressWarnings("unchecked")
+    private void createSprites()
+    {
+        if (getSpriteCount() > 0)
         {
-            return (int) items.size();
+            JSONArray children = 
+                FileUtils.getJSONArrayAttribute(jsonObj, "children");
+            sprites = new Sprite[getSpriteCount()];
+            
+            int j = 0;
+            for (int i = 0; i < children.size(); i++)
+            {
+                if (FileUtils.getJSONAttribute(
+                    (JSONObject) children.get(i), "objName") != "")
+                {
+                    sprites[j] = new Sprite((JSONObject) children.get(i));
+                    j++;
+                }
+            }
         }
-        return 0;
+    }
+
+    /**
+     * Get sprites.
+     *
+     * @return sprites
+     */
+    public Sprite[] getSprites()
+    {
+        return sprites;
     }
 
     /**
      * Count block categories for stage.
      */
-    public void countBlockCategoriesForStage()
+    private void countBlockCategoriesForStage()
     {
         controlBlocksForStage = 0;
         dataBlocksForStage = 0;
@@ -256,20 +291,20 @@ public class Submission
     /**
      * Process scripts to count blocks by category.
      *
-     * @param array 
+     * @param scripts  
      */
-    private void processScripts(JSONArray array)
+    private void processScripts(JSONArray scripts)
     {
-        if (array == null || array.size() == 0)
+        if (scripts.size() == 0)
         {
             return;
         }
         
         // If first element is a String, it is the block name.
         // Get and count its category.
-        if (array.get(0) instanceof String)
+        if (scripts.get(0) instanceof String)
         {
-            String category = getCategory((String) array.get(0));
+            String category = getCategory((String) scripts.get(0));
             if (category != null)
             {
                 switch (category)
@@ -311,11 +346,11 @@ public class Submission
         }
 
         // Check for additional array elements, which represent embedded blocks.
-        for (int i = 0; i < array.size(); i++)
+        for (int i = 0; i < scripts.size(); i++)
         {
-            if (array.get(i) instanceof JSONArray)
+            if (scripts.get(i) instanceof JSONArray)
             {
-                processScripts((JSONArray) array.get(i));
+                processScripts((JSONArray) scripts.get(i));
             }
         }
 
@@ -424,150 +459,10 @@ public class Submission
     }
 
     /**
-     * Get array of sprites.
-     * Unchecked warnings are suppressed because JSONArray does not
-     *  allow for a type specification, and this is a private
-     *  method only called from within this class.
-     *
-     * @return sprites 
-     */
-    @SuppressWarnings("unchecked")
-    private JSONArray getSprites()
-    {
-        JSONArray children = 
-            FileUtils.getJSONArrayAttribute(jsonObj, "children");
-        JSONArray sprites = new JSONArray();
-
-        Iterator<?> iterator = children.iterator();
-        int n = 0;
-        while (iterator.hasNext())
-        {
-            JSONObject next = (JSONObject) iterator.next();
-            if (FileUtils.getJSONAttribute(next, "objName") != null)
-            {
-                sprites.add(next);
-            }
-        }
-        return sprites;
-    }
-
-    /**
-     * Get sprite names.
-     *
-     * @return array of sprite names.
-     */
-    public String[] getSpriteNames()
-    {
-        JSONArray sprites = getSprites(); 
-        String[] names = new String[sprites.size()];
-        for (int i = 0; i < names.length; i++)
-        {
-            names[i] = FileUtils.getJSONAttribute(
-                (JSONObject) sprites.get(i), "objName");
-        }
-        return names;
-    }
-
-    /**
-     * Get script count for sprite.
-     *
-     * @param spriteName 
-     * @return count 
-     */
-    public int getScriptCountForSprite(String spriteName)
-    {
-        return getCountForSprite("scripts", spriteName);
-    }
-    
-    /**
-     * Get variable count for sprite.
-     *
-     * @param spriteName 
-     * @return count 
-     */
-    public int getVariableCountForSprite(String spriteName)
-    {
-        return getCountForSprite("variables", spriteName);
-    }
-    
-    /**
-     * Get list count for sprite.
-     *
-     * @param spriteName 
-     * @return count 
-     */
-    public int getListCountForSprite(String spriteName)
-    {
-        return getCountForSprite("lists", spriteName);
-    }
-    
-    /**
-     * Get script comment count for sprite.
-     *
-     * @param spriteName 
-     * @return count 
-     */
-    public int getScriptCommentCountForSprite(String spriteName)
-    {
-        return getCountForSprite("scriptComments", spriteName);
-    }
-
-    /**
-     * Get sound count for sprite.
-     *
-     * @param spriteName 
-     * @return count
-     */
-    public int getSoundCountForSprite(String spriteName)
-    {
-        return getCountForSprite("sounds", spriteName);
-    }
-
-    /**
-     * Get costume count for sprite.
-     *
-     * @param spriteName 
-     * @return count
-     */
-    public int getCostumeCountForSprite(String spriteName)
-    {
-        return getCountForSprite("costumes", spriteName);
-    }
-    
-    /**
-     * Helper method for all CountForSprite methods.
-     * Pass in JSON attribute name and sprite name.
-     * Get count of specified attribute for sprite.
-     *
-     * @param attribute  
-     * @param spriteName 
-     * @return count 
-     */
-    private int getCountForSprite(String attribute, String spriteName)
-    {
-        JSONArray sprites = getSprites();
-        JSONArray items = new JSONArray();
-        for (int i = 0; i < sprites.size(); i++)
-        {
-            if (FileUtils.getJSONAttribute((JSONObject) sprites.get(i), 
-                    "objName").equals(spriteName))
-            {
-                items = FileUtils.getJSONArrayAttribute(
-                    (JSONObject) sprites.get(i), attribute); 
-            }
-        }
-        if (items != null)
-        {
-            return items.size();
-        }
-        return 0;
-    }
-
-    /**
      * Get category name for specified script name.
      *
      * @param scriptName 
-     * @return category
+     * @return category, null if no mapping
      */
     private String getCategory(String scriptName)
     {

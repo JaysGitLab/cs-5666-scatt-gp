@@ -1,19 +1,14 @@
 /**
  * Report.java
- *  
- * @author Kara Beason
- * @author Cydney Caldwell
- * @author Michelle Melton
- * @version Mar 2017
  */
 
 /**
  * Class for the Report. 
- * 
+ *
  * @author Kara Beason
  * @author Cydney Caldwell
  * @author Michelle Melton
- * @version Mar 2017
+ * @version Spr 2017
  */
 public class Report
 {
@@ -49,14 +44,20 @@ public class Report
                 System.out.println("Sprite count: " 
                     + submissions[i].getSpriteCount());
                 System.out.println();
-                String[] spriteNames = submissions[i].getSpriteNames();
-                for (int j = 0; j < spriteNames.length; j++)
+                if (submissions[i].getSpriteCount() > 0)
                 {
-                    System.out.println("Sprite: " + spriteNames[j]);
-                    System.out.println("Script count: " 
-                        + submissions[i].getScriptCountForSprite(
-                            spriteNames[j]));
-                    System.out.println();
+                    Sprite[] sprites = submissions[i].getSprites();
+                    if (sprites != null)
+                    {
+                        for (int j = 0; j < sprites.length; j++)
+                        {
+                            System.out.println("Sprite: " 
+                                + sprites[j].getName());
+                            System.out.println("Script count: " 
+                                + sprites[i].getScriptCount());
+                            System.out.println();
+                        }
+                    }
                 }
             }
         }

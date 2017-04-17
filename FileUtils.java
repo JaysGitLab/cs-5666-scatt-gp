@@ -13,10 +13,6 @@ import org.json.simple.parser.JSONParser;
 
 /**
  * FileUtils.java
- *
- * @author Michelle Melton
- * @author Kara Beason
- * @author Cydney Caldwell
  */
 
 /**
@@ -25,7 +21,7 @@ import org.json.simple.parser.JSONParser;
  * @author Michelle Melton
  * @author Kara Beason
  * @author Cydney Caldwell
- * @version Mar 2017
+ * @version Spr 2017
  */
 public class FileUtils 
 {
@@ -146,6 +142,10 @@ public class FileUtils
      */
     public static String getBaseName(File file)
     {
+        if (!file.exists())
+        {
+            return "";
+        }
         String fileName = file.getName();
         int len = fileName.length();
         return fileName.substring(0, len - 4);
@@ -205,7 +205,12 @@ public class FileUtils
      */
     public static JSONObject getJSONObject(JSONObject obj, String name)
     {
-        return (JSONObject) obj.get(name);
+        JSONObject jsonObj = new JSONObject();
+        if (obj != null && obj.get(name) != null)
+        {
+            jsonObj = (JSONObject) obj.get(name);
+        }
+        return jsonObj;
     }
 
     /**
@@ -217,7 +222,12 @@ public class FileUtils
      */
     public static String getJSONAttribute(JSONObject obj, String name)
     {
-        return (String) obj.get(name);
+        String attribute = "";
+        if (obj != null && obj.get(name) != null)
+        {
+            attribute = (String) obj.get(name);
+        }
+        return attribute; 
     }
 
     /**
@@ -229,7 +239,12 @@ public class FileUtils
      */
     public static long getJSONLongAttribute(JSONObject obj, String name)
     {
-        return (long) obj.get(name);
+        long value = 0;
+        if (obj != null && obj.get(name) != null)
+        {
+            value = (long) obj.get(name);
+        }
+        return value;
     }
 
     /**
@@ -241,6 +256,11 @@ public class FileUtils
      */
     public static JSONArray getJSONArrayAttribute(JSONObject obj, String name)
     {
-        return (JSONArray) obj.get(name);
+        JSONArray jsonArr = new JSONArray();
+        if (obj != null && obj.get(name) != null)
+        {
+            jsonArr = (JSONArray) obj.get(name);
+        }
+        return jsonArr;
     }
 }
