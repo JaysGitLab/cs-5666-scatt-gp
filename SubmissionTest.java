@@ -610,6 +610,28 @@ public class SubmissionTest
         int actual = submissions[2].getControlBlocksForProgram();
         assertEquals("should be equal", expected, actual);
     }
+    
+    /**
+     * Test getDataBlocksForProgram method.
+     */
+    @Test
+    public void testGetDataBlocksForProgram()
+    {
+        int expected = 6;
+        int actual = submissions[1].getDataBlocksForProgram();
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getDataBlocksForProgram method - empty.
+     */
+    @Test
+    public void testGetDataBlocksForProgramEmpty()
+    {
+        int expected = 0;
+        int actual = submissions[2].getDataBlocksForProgram();
+        assertEquals("should be equal", expected, actual);
+    }
 
     /**
      * Test deleteZips method.
