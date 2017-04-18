@@ -511,6 +511,24 @@ public class Submission
         }
         return count + eventsBlocksForStage;
     }
+    
+    /**
+     * Get looks block count for program.
+     *
+     * @return count
+     */
+    public int getLooksBlocksForProgram()
+    {
+        int count = 0;
+        if (getSpriteCount() > 0)
+        {
+            for (int i = 0; i < sprites.length; i++)
+            {
+                count += sprites[i].getLooksBlocksForSprite();
+            }
+        }
+        return count + looksBlocksForStage;
+    }
 
     /**
      * Get category name for specified script name.
