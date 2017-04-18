@@ -529,6 +529,24 @@ public class Submission
         }
         return count + looksBlocksForStage;
     }
+    
+    /**
+     * Get more blocks block count for program.
+     *
+     * @return count
+     */
+    public int getMoreBlocksBlocksForProgram()
+    {
+        int count = 0;
+        if (getSpriteCount() > 0)
+        {
+            for (int i = 0; i < sprites.length; i++)
+            {
+                count += sprites[i].getMoreBlocksBlocksForSprite();
+            }
+        }
+        return count + moreBlocksBlocksForStage;
+    }
 
     /**
      * Get category name for specified script name.
