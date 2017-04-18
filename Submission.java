@@ -565,6 +565,24 @@ public class Submission
         }
         return count + motionBlocksForStage;
     }
+    
+    /**
+     * Get operators block count for program.
+     *
+     * @return count
+     */
+    public int getOperatorsBlocksForProgram()
+    {
+        int count = 0;
+        if (getSpriteCount() > 0)
+        {
+            for (int i = 0; i < sprites.length; i++)
+            {
+                count += sprites[i].getOperatorsBlocksForSprite();
+            }
+        }
+        return count + operatorsBlocksForStage;
+    }
 
     /**
      * Get category name for specified script name.
