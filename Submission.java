@@ -601,6 +601,24 @@ public class Submission
         }
         return count + penBlocksForStage;
     }
+    
+    /**
+     * Get sensing block count for program.
+     *
+     * @return count
+     */
+    public int getSensingBlocksForProgram()
+    {
+        int count = 0;
+        if (getSpriteCount() > 0)
+        {
+            for (int i = 0; i < sprites.length; i++)
+            {
+                count += sprites[i].getSensingBlocksForSprite();
+            }
+        }
+        return count + sensingBlocksForStage;
+    }
 
     /**
      * Get category name for specified script name.

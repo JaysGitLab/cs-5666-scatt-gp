@@ -764,6 +764,28 @@ public class SubmissionTest
         int actual = submissions[2].getPenBlocksForProgram();
         assertEquals("should be equal", expected, actual);
     }
+    
+    /**
+     * Test getSensingBlocksForProgram method.
+     */
+    @Test
+    public void testGetSensingBlocksForProgram()
+    {
+        int expected = 5;
+        int actual = submissions[1].getSensingBlocksForProgram();
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getSensingBlocksForProgram method - empty.
+     */
+    @Test
+    public void testGetSensingBlocksForProgramEmpty()
+    {
+        int expected = 0;
+        int actual = submissions[2].getSensingBlocksForProgram();
+        assertEquals("should be equal", expected, actual);
+    }
 
     /**
      * Test deleteZips method.
