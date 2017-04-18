@@ -493,6 +493,24 @@ public class Submission
         }
         return count + dataBlocksForStage;
     }
+    
+    /**
+     * Get events block count for program.
+     *
+     * @return count
+     */
+    public int getEventsBlocksForProgram()
+    {
+        int count = 0;
+        if (getSpriteCount() > 0)
+        {
+            for (int i = 0; i < sprites.length; i++)
+            {
+                count += sprites[i].getEventsBlocksForSprite();
+            }
+        }
+        return count + eventsBlocksForStage;
+    }
 
     /**
      * Get category name for specified script name.
