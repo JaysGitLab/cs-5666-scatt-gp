@@ -10,4 +10,4 @@ a folder within the application directory.
 * Go into the SCATT directory with the command `cd cs-5666-scatt-gp`.
 * Enter `make scatt` and hit return.
 * Enter the name of your SCATT submissions folder when prompted.
-* View the report output.
+* To view the report, open the file named `Report.txt` in your current working directory.
