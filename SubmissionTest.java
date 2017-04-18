@@ -742,6 +742,28 @@ public class SubmissionTest
         int actual = submissions[2].getOperatorsBlocksForProgram();
         assertEquals("should be equal", expected, actual);
     }
+    
+    /**
+     * Test getPenBlocksForProgram method.
+     */
+    @Test
+    public void testGetPenBlocksForProgram()
+    {
+        int expected = 3;
+        int actual = submissions[1].getPenBlocksForProgram();
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getPenBlocksForProgram method - empty.
+     */
+    @Test
+    public void testGetPenBlocksForProgramEmpty()
+    {
+        int expected = 0;
+        int actual = submissions[2].getPenBlocksForProgram();
+        assertEquals("should be equal", expected, actual);
+    }
 
     /**
      * Test deleteZips method.

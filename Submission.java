@@ -583,6 +583,24 @@ public class Submission
         }
         return count + operatorsBlocksForStage;
     }
+    
+    /**
+     * Get pen block count for program.
+     *
+     * @return count
+     */
+    public int getPenBlocksForProgram()
+    {
+        int count = 0;
+        if (getSpriteCount() > 0)
+        {
+            for (int i = 0; i < sprites.length; i++)
+            {
+                count += sprites[i].getPenBlocksForSprite();
+            }
+        }
+        return count + penBlocksForStage;
+    }
 
     /**
      * Get category name for specified script name.
