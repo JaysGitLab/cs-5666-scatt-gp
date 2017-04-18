@@ -619,6 +619,24 @@ public class Submission
         }
         return count + sensingBlocksForStage;
     }
+    
+    /**
+     * Get sound block count for program.
+     *
+     * @return count
+     */
+    public int getSoundBlocksForProgram()
+    {
+        int count = 0;
+        if (getSpriteCount() > 0)
+        {
+            for (int i = 0; i < sprites.length; i++)
+            {
+                count += sprites[i].getSoundBlocksForSprite();
+            }
+        }
+        return count + soundBlocksForStage;
+    }
 
     /**
      * Get category name for specified script name.

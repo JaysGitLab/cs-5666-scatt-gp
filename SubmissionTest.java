@@ -786,6 +786,28 @@ public class SubmissionTest
         int actual = submissions[2].getSensingBlocksForProgram();
         assertEquals("should be equal", expected, actual);
     }
+    
+    /**
+     * Test getSoundBlocksForProgram method.
+     */
+    @Test
+    public void testGetSoundBlocksForProgram()
+    {
+        int expected = 4;
+        int actual = submissions[1].getSoundBlocksForProgram();
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getSoundBlocksForProgram method - empty.
+     */
+    @Test
+    public void testGetSoundBlocksForProgramEmpty()
+    {
+        int expected = 0;
+        int actual = submissions[2].getSoundBlocksForProgram();
+        assertEquals("should be equal", expected, actual);
+    }
 
     /**
      * Test deleteZips method.
