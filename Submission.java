@@ -459,6 +459,24 @@ public class Submission
     }
 
     /**
+     * Get control block count for program.
+     *
+     * @return count
+     */
+    public int getControlBlocksForProgram()
+    {
+        int count = 0;
+        if (getSpriteCount() > 0)
+        {
+            for (int i = 0; i < sprites.length; i++)
+            {
+                count += sprites[i].getControlBlocksForSprite();
+            }
+        }
+        return count + controlBlocksForStage;
+    }
+
+    /**
      * Get category name for specified script name.
      *
      * @param scriptName 
