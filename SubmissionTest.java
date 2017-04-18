@@ -698,6 +698,28 @@ public class SubmissionTest
         int actual = submissions[2].getMoreBlocksBlocksForProgram();
         assertEquals("should be equal", expected, actual);
     }
+    
+    /**
+     * Test getMotionBlocksForProgram method.
+     */
+    @Test
+    public void testGetMotionBlocksForProgram()
+    {
+        int expected = 6;
+        int actual = submissions[1].getMotionBlocksForProgram();
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getMotionBlocksForProgram method - empty.
+     */
+    @Test
+    public void testGetMotionBlocksForProgramEmpty()
+    {
+        int expected = 0;
+        int actual = submissions[2].getMotionBlocksForProgram();
+        assertEquals("should be equal", expected, actual);
+    }
 
     /**
      * Test deleteZips method.

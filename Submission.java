@@ -547,6 +547,24 @@ public class Submission
         }
         return count + moreBlocksBlocksForStage;
     }
+    
+    /**
+     * Get motion block count for program.
+     *
+     * @return count
+     */
+    public int getMotionBlocksForProgram()
+    {
+        int count = 0;
+        if (getSpriteCount() > 0)
+        {
+            for (int i = 0; i < sprites.length; i++)
+            {
+                count += sprites[i].getMotionBlocksForSprite();
+            }
+        }
+        return count + motionBlocksForStage;
+    }
 
     /**
      * Get category name for specified script name.
