@@ -147,7 +147,7 @@ public class Report
             printW.println("Variables: " 
                 + submissions[i].getVariableCountForSprite(
                     spriteNames[j]));
-            printW.println("Comments: " 
+            printW.println("ScriptComments: " 
                 + submissions[i].getScriptCommentCountForSprite(
                     spriteNames[j]));
             printW.println("Sounds: " 
@@ -156,10 +156,8 @@ public class Report
             printW.println("Costumes: " 
                 + submissions[i].getCostumeCountForSprite(
                     spriteNames[j]));
-
             printW.println();
         }
     }   
 
 }
-
