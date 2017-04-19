@@ -52,7 +52,6 @@ public class Report
                 }
             }
             printW.close();
-    
         }
         catch (FileNotFoundException ex)
         {
