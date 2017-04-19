@@ -9,10 +9,6 @@ import org.junit.After;
 
 /**
  * ReportTest.java
- *
- * @author Kara Beason
- * @author Cydney Caldwell
- * @author Michelle Melton
  */
 
 /**
@@ -21,7 +17,7 @@ import org.junit.After;
  * @author Kara Beason
  * @author Cydney Caldwell
  * @author Michelle Melton
- * @version Mar 2017
+ * @version Spr 2017
  */
 public class ReportTest
 {
@@ -43,9 +39,6 @@ public class ReportTest
         for (int i = 0; i < submissions.length; i++)  
         {
             submissions[i] = new Submission(sb2s[i]);
-            submissions[i].convertToZip();
-            submissions[i].unZip();
-            submissions[i].parseJSONFile();
         }  
         scattReport = new Report(submissions);
     }

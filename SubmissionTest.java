@@ -14,19 +14,15 @@ import java.io.IOException;
 
 /**
  * SubmissionTest.java
- *
- * @author Kara Beason
- * @author Cydney Caldwell
- * @author Michelle Melton
  */
 
 /**
- * Class to test Submission class.
+ * Class to test submission class.
  *
  * @author Kara Beason
  * @author Cydney Caldwell
  * @author Michelle Melton
- * @version Mar 2017
+ * @version Spr 2017
  */
 public class SubmissionTest
 {
@@ -141,12 +137,6 @@ public class SubmissionTest
             }
         }
         
-        // Copy and convert actual files to .zip.
-        for (int i = 0; i < submissions.length; i++)
-        {
-            submissions[i].convertToZip();
-        }
-        
         // Get expected filenames.
         File[] expectedZips = expectedDir.listFiles();
         Arrays.sort(expectedZips);
@@ -188,14 +178,6 @@ public class SubmissionTest
             int len = zipName.length();
             expected[i] = zipName.substring(0, len - 4);
         }
-        
-        // Copy and convert actual files to .zip.
-        // Unzip files.
-        for (int i = 0; i < submissions.length; i++)
-        {
-            submissions[i].convertToZip();
-            submissions[i].unZip();
-        }
 
         // Get list of new zip dirs.
         File zipsDir = new File("unzips");
@@ -221,8 +203,6 @@ public class SubmissionTest
     @Test
     public void testParseValidJSON()
     {
-        setUpSubmission(submissions[1]);
-    
         assertNotNull("Should not be null", 
             (Object) submissions[1].getJSONObject());
     }
@@ -232,8 +212,6 @@ public class SubmissionTest
      */
     public void testParseInvalidJSON()
     {
-        setUpSubmission(submissions[1]);
-     
         assertNull(submissions[1].getJSONObject());
     } 
 
@@ -243,8 +221,6 @@ public class SubmissionTest
     @Test
     public void testGetSpriteCountValid()
     {
-        setUpSubmission(submissions[1]);
-
         int expected = 2;
         int actual = submissions[1].getSpriteCount();
         assertEquals("should be equal", expected, actual);
@@ -256,8 +232,6 @@ public class SubmissionTest
     @Test
     public void testGetSpriteCountEmpty()
     {
-        setUpSubmission(submissions[2]);
-
         int expected = 0;
         int actual = submissions[2].getSpriteCount();
         assertEquals("should be equal", expected, actual);
@@ -269,8 +243,6 @@ public class SubmissionTest
     @Test
     public void testGetScriptCountValid()
     {
-        setUpSubmission(submissions[1]);
-
         int expected = 6;
         int actual = submissions[1].getScriptCount();
         assertEquals("should be equal", expected, actual);
@@ -282,8 +254,6 @@ public class SubmissionTest
     @Test
     public void testGetScriptCountEmpty()
     {
-        setUpSubmission(submissions[2]);
-
         int expected = 0;
         int actual = submissions[2].getScriptCount();
         assertEquals("should be equal", expected, actual);
@@ -295,8 +265,6 @@ public class SubmissionTest
     @Test
     public void testGetScriptCountForStageValid()
     {
-        setUpSubmission(submissions[1]);
-
         int expected = 6;
         int actual = submissions[1].getScriptCountForStage();
         assertEquals("should be equal", expected, actual);
@@ -308,8 +276,6 @@ public class SubmissionTest
     @Test
     public void testGetScriptCountForStageEmpty()
     {
-        setUpSubmission(submissions[0]);
-
         int expected = 0;
         int actual = submissions[0].getScriptCountForStage();
         assertEquals("should be equal", expected, actual);
@@ -321,8 +287,6 @@ public class SubmissionTest
     @Test
     public void testGetVariableCountForStageValid()
     {
-        setUpSubmission(submissions[1]);
-
         int expected = 3;
         int actual = submissions[1].getVariableCountForStage();
         assertEquals("should be equal", expected, actual);
@@ -334,8 +298,6 @@ public class SubmissionTest
     @Test
     public void testGetVariableCountForStageEmpty()
     {
-        setUpSubmission(submissions[0]);
-
         int expected = 0;
         int actual = submissions[0].getVariableCountForStage();
         assertEquals("should be equal", expected, actual);
@@ -347,8 +309,6 @@ public class SubmissionTest
     @Test
     public void testGetListCountForStageValid()
     {
-        setUpSubmission(submissions[1]);
-
         int expected = 1;
         int actual = submissions[1].getListCountForStage();
         assertEquals("should be equal", expected, actual);
@@ -360,8 +320,6 @@ public class SubmissionTest
     @Test
     public void testGetListCountForStageEmpty()
     {
-        setUpSubmission(submissions[0]);
-
         int expected = 0;
         int actual = submissions[0].getListCountForStage();
         assertEquals("should be equal", expected, actual);
@@ -373,8 +331,6 @@ public class SubmissionTest
     @Test
     public void testGetScriptCommentCountForStageValid()
     {
-        setUpSubmission(submissions[1]);
-
         int expected = 2;
         int actual = submissions[1].getScriptCommentCountForStage();
         assertEquals("should be equal", expected, actual);
@@ -386,8 +342,6 @@ public class SubmissionTest
     @Test
     public void testGetScriptCommentCountForStageEmpty()
     {
-        setUpSubmission(submissions[1]);
-
         int expected = 0;
         int actual = submissions[0].getScriptCommentCountForStage();
         assertEquals("should be equal", expected, actual);
@@ -399,8 +353,6 @@ public class SubmissionTest
     @Test
     public void testGetSoundCountForStageValid()
     {
-        setUpSubmission(submissions[1]);
-
         int expected = 1;
         int actual = submissions[1].getSoundCountForStage();
         assertEquals("should be equal", expected, actual);
@@ -412,8 +364,6 @@ public class SubmissionTest
     @Test
     public void testGetSoundCountForStageEmpty()
     {
-        setUpSubmission(submissions[2]);
-
         int expected = 0;
         int actual = submissions[2].getSoundCountForStage();
         assertEquals("should be equal", expected, actual);
@@ -425,180 +375,8 @@ public class SubmissionTest
     @Test
     public void testGetCostumeCountForStageValid()
     {
-        setUpSubmission(submissions[1]);
-
         int expected = 2;
         int actual = submissions[1].getCostumeCountForStage();
-        assertEquals("should be equal", expected, actual);
-    }
-
-    /**
-     * Test getSpriteNames method, valid.
-     */
-    @Test
-    public void testGetSpriteNamesValid()
-    {
-        setUpSubmission(submissions[1]);
-
-        String[] expected = {"Sprite1", "Butterfly3"};
-        String[] actual = submissions[1].getSpriteNames();
-        assertArrayEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getSpriteNames method, valid - empty.
-     */
-    @Test
-    public void testGetSpriteNamesEmpty()
-    {
-        setUpSubmission(submissions[2]);
-
-        String[] expected = new String[0];
-        String[] actual = submissions[2].getSpriteNames();
-        assertArrayEquals("should be equal", expected, actual);
-    }
-
-    /**
-     * Test getScriptCountForSprite method, valid.
-     */
-    @Test
-    public void testGetScriptCountForSpriteValid()
-    {
-        setUpSubmission(submissions[1]);
-
-        int expected = 2;
-        int actual = submissions[1].getScriptCountForSprite("Sprite1");
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getScriptCountForSprite method, valid - empty.
-     */
-    @Test
-    public void testGetScriptCountForSpriteEmpty()
-    {
-        setUpSubmission(submissions[0]);
-
-        int expected = 0;
-        int actual = submissions[0].getScriptCountForSprite("Bananas");
-        assertEquals("should be equal", expected, actual);
-    }
-
-    /**
-     * Test getVariableCountForSprite method, valid.
-     */
-    @Test
-    public void testGetVariableCountForSpriteValid()
-    {
-        setUpSubmission(submissions[1]);
-
-        int expected = 2;
-        int actual = submissions[1].getVariableCountForSprite("Sprite1");
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getVariableCountForSprite method, valid - empty.
-     */
-    @Test
-    public void testGetVariableCountForSpriteEmpty()
-    {
-        setUpSubmission(submissions[0]);
-
-        int expected = 0;
-        int actual = submissions[0].getVariableCountForSprite("Bananas");
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getListCountForSprite method, valid.
-     */
-    @Test
-    public void testGetListCountForSpriteValid()
-    {
-        setUpSubmission(submissions[1]);
-
-        int expected = 1;
-        int actual = submissions[1].getListCountForSprite("Sprite1");
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getListCountForSprite method, valid - empty.
-     */
-    @Test
-    public void testGetListCountForSpriteEmpty()
-    {
-        setUpSubmission(submissions[0]);
-
-        int expected = 0;
-        int actual = submissions[0].getListCountForSprite("Bananas");
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getScriptCommentCountForSprite method, valid.
-     */
-    @Test
-    public void testGetScriptCommentCountForSpriteValid()
-    {
-        setUpSubmission(submissions[1]);
-
-        int expected = 1;
-        int actual = submissions[1].getScriptCommentCountForSprite("Sprite1");
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getScriptCommentCountForSprite method, valid - empty.
-     */
-    @Test
-    public void testGetScriptCommentCountForSpriteEmpty()
-    {
-        setUpSubmission(submissions[0]);
-
-        int expected = 0;
-        int actual = 
-            submissions[0].getScriptCommentCountForSprite("Bananas");
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getSoundCountForSprite method, valid.
-     */
-    @Test
-    public void testGetSoundCountForSpriteValid()
-    {
-        setUpSubmission(submissions[1]);
-
-        int expected = 1;
-        int actual = submissions[1].getSoundCountForSprite("Sprite1");
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getSoundCountForSprite method, valid - empty.
-     */
-    @Test
-    public void testGetSoundCountForSpriteEmpty()
-    {
-        setUpSubmission(submissions[0]);
-
-        int expected = 0;
-        int actual = submissions[0].getSoundCountForSprite("Bananas");
-        assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Test getCostumeCountForSprite method, valid.
-     */
-    @Test
-    public void testGetCostumeCountForSpriteValid()
-    {
-        setUpSubmission(submissions[1]);
-
-        int expected = 2;
-        int actual = submissions[1].getCostumeCountForSprite("Sprite1");
         assertEquals("should be equal", expected, actual);
     }
     
@@ -608,9 +386,6 @@ public class SubmissionTest
     @Test
     public void testGetControlBlocksForStage()
     {
-        setUpSubmission(submissions[1]);
-        submissions[1].countBlockCategoriesForStage();
-
         int expected = 1;
         int actual = submissions[1].getControlBlocksForStage();
         assertEquals("should be equal", expected, actual);
@@ -622,9 +397,6 @@ public class SubmissionTest
     @Test
     public void testGetControlBlocksForStageEmpty()
     {
-        setUpSubmission(submissions[2]);
-        submissions[2].countBlockCategoriesForStage();
-
         int expected = 0;
         int actual = submissions[2].getControlBlocksForStage();
         assertEquals("should be equal", expected, actual);
@@ -636,9 +408,6 @@ public class SubmissionTest
     @Test
     public void testGetDataBlocksForStage()
     {
-        setUpSubmission(submissions[1]);
-        submissions[1].countBlockCategoriesForStage();
-
         int expected = 2;
         int actual = submissions[1].getDataBlocksForStage();
         assertEquals("should be equal", expected, actual);
@@ -650,9 +419,6 @@ public class SubmissionTest
     @Test
     public void testGetDataBlocksForStageEmpty()
     {
-        setUpSubmission(submissions[2]);
-        submissions[2].countBlockCategoriesForStage();
-
         int expected = 0;
         int actual = submissions[2].getDataBlocksForStage();
         assertEquals("should be equal", expected, actual);
@@ -664,9 +430,6 @@ public class SubmissionTest
     @Test
     public void testGetEventsBlocksForStage()
     {
-        setUpSubmission(submissions[1]);
-        submissions[1].countBlockCategoriesForStage();
-
         int expected = 1;
         int actual = submissions[1].getEventsBlocksForStage();
         assertEquals("should be equal", expected, actual);
@@ -678,9 +441,6 @@ public class SubmissionTest
     @Test
     public void testGetEventsBlocksForStageEmpty()
     {
-        setUpSubmission(submissions[2]);
-        submissions[2].countBlockCategoriesForStage();
-
         int expected = 0;
         int actual = submissions[2].getEventsBlocksForStage();
         assertEquals("should be equal", expected, actual);
@@ -692,9 +452,6 @@ public class SubmissionTest
     @Test
     public void testGetLooksBlocksForStage()
     {
-        setUpSubmission(submissions[1]);
-        submissions[1].countBlockCategoriesForStage();
-
         int expected = 1;
         int actual = submissions[1].getLooksBlocksForStage();
         assertEquals("should be equal", expected, actual);
@@ -706,9 +463,6 @@ public class SubmissionTest
     @Test
     public void testGetLooksBlocksForStageEmpty()
     {
-        setUpSubmission(submissions[2]);
-        submissions[2].countBlockCategoriesForStage();
-
         int expected = 0;
         int actual = submissions[2].getLooksBlocksForStage();
         assertEquals("should be equal", expected, actual);
@@ -720,9 +474,6 @@ public class SubmissionTest
     @Test
     public void testGetMoreBlocksBlocksForStage()
     {
-        setUpSubmission(submissions[1]);
-        submissions[1].countBlockCategoriesForStage();
-
         int expected = 2;
         int actual = submissions[1].getMoreBlocksBlocksForStage();
         assertEquals("should be equal", expected, actual);
@@ -734,9 +485,6 @@ public class SubmissionTest
     @Test
     public void testGetMoreBlocksBlocksForStageEmpty()
     {
-        setUpSubmission(submissions[2]);
-        submissions[2].countBlockCategoriesForStage();
-
         int expected = 0;
         int actual = submissions[2].getMoreBlocksBlocksForStage();
         assertEquals("should be equal", expected, actual);
@@ -748,9 +496,6 @@ public class SubmissionTest
     @Test
     public void testGetMotionBlocksForStageEmpty()
     {
-        setUpSubmission(submissions[1]);
-        submissions[1].countBlockCategoriesForStage();
-
         int expected = 0;
         int actual = submissions[1].getMotionBlocksForStage();
         assertEquals("should be equal", expected, actual);
@@ -762,9 +507,6 @@ public class SubmissionTest
     @Test
     public void testGetOperatorsBlocksForStage()
     {
-        setUpSubmission(submissions[1]);
-        submissions[1].countBlockCategoriesForStage();
-
         int expected = 1;
         int actual = submissions[1].getOperatorsBlocksForStage();
         assertEquals("should be equal", expected, actual);
@@ -776,9 +518,6 @@ public class SubmissionTest
     @Test
     public void testGetOperatorsBlocksForStageEmpty()
     {
-        setUpSubmission(submissions[2]);
-        submissions[2].countBlockCategoriesForStage();
-
         int expected = 0;
         int actual = submissions[2].getOperatorsBlocksForStage();
         assertEquals("should be equal", expected, actual);
@@ -790,9 +529,6 @@ public class SubmissionTest
     @Test
     public void testGetPenBlocksForStage()
     {
-        setUpSubmission(submissions[1]);
-        submissions[1].countBlockCategoriesForStage();
-
         int expected = 1;
         int actual = submissions[1].getPenBlocksForStage();
         assertEquals("should be equal", expected, actual);
@@ -804,9 +540,6 @@ public class SubmissionTest
     @Test
     public void testGetPenBlocksForStageEmpty()
     {
-        setUpSubmission(submissions[2]);
-        submissions[2].countBlockCategoriesForStage();
-
         int expected = 0;
         int actual = submissions[2].getPenBlocksForStage();
         assertEquals("should be equal", expected, actual);
@@ -818,9 +551,6 @@ public class SubmissionTest
     @Test
     public void testGetSensingBlocksForStage()
     {
-        setUpSubmission(submissions[1]);
-        submissions[1].countBlockCategoriesForStage();
-
         int expected = 1;
         int actual = submissions[1].getSensingBlocksForStage();
         assertEquals("should be equal", expected, actual);
@@ -832,9 +562,6 @@ public class SubmissionTest
     @Test
     public void testGetSensingBlocksForStageEmpty()
     {
-        setUpSubmission(submissions[2]);
-        submissions[2].countBlockCategoriesForStage();
-
         int expected = 0;
         int actual = submissions[2].getSensingBlocksForStage();
         assertEquals("should be equal", expected, actual);
@@ -846,9 +573,6 @@ public class SubmissionTest
     @Test
     public void testGetSoundBlocksForStage()
     {
-        setUpSubmission(submissions[1]);
-        submissions[1].countBlockCategoriesForStage();
-
         int expected = 2;
         int actual = submissions[1].getSoundBlocksForStage();
         assertEquals("should be equal", expected, actual);
@@ -860,24 +584,9 @@ public class SubmissionTest
     @Test
     public void testGetSoundBlocksForStageEmpty()
     {
-        setUpSubmission(submissions[2]);
-        submissions[2].countBlockCategoriesForStage();
-
         int expected = 0;
         int actual = submissions[2].getSoundBlocksForStage();
         assertEquals("should be equal", expected, actual);
-    }
-    
-    /**
-     * Set up submission for test.
-     *
-     * @param submission 
-     */
-    private void setUpSubmission(Submission submission)
-    {
-        submission.convertToZip();
-        submission.unZip();
-        submission.parseJSONFile();
     }
 
     /**

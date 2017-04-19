@@ -4,20 +4,15 @@ import java.io.FileNotFoundException;
 
 /**
  * Report.java
- *  
- * @author Kara Beason
- * @author Cydney Caldwell
- * @author Michelle Melton
- * @version Mar 2017
  */
 
 /**
  * Class for the Report. 
- * 
+ *
  * @author Kara Beason
  * @author Cydney Caldwell
  * @author Michelle Melton
- * @version Mar 2017
+ * @version Spr 2017
  */
 public class Report
 {
@@ -71,7 +66,7 @@ public class Report
      * @param printW - the PrintWriter to use.
      * @param i - the index of the submission to be printed.
      */
-    public void printTotalCounts(PrintWriter printW, int i)
+    private void printTotalCounts(PrintWriter printW, int i)
     {
         printW.println("File: " + submissions[i].getName());
         printW.println("---------------------------------");
@@ -90,7 +85,7 @@ public class Report
      * @param printW - the PrintWriter to use.
      * @param i - the index of the submission to be printed.
      */
-    public void printStageCounts(PrintWriter printW, int i)
+    private void printStageCounts(PrintWriter printW, int i)
     {
         printW.println("Stage Counts");
         printW.println("Scripts: " 
@@ -134,28 +129,19 @@ public class Report
      * @param printW - the PrintWriter to use.
      * @param i - the index of the submission to print counts for.
      */
-    public void printSpriteCounts(PrintWriter printW, int i)
+    private void printSpriteCounts(PrintWriter printW, int i)
     {
         printW.println("Sprite Counts");
-        String[] spriteNames = submissions[i].getSpriteNames();
-        for (int j = 0; j < spriteNames.length; j++)
+        Sprite[] sprites = submissions[i].getSprites();
+        for (int j = 0; j < sprites.length; j++)
         {
-            printW.println("Sprite: " + spriteNames[j]);
-            printW.println("Scripts: " 
-                + submissions[i].getScriptCountForSprite(
-                    spriteNames[j]));
-            printW.println("Variables: " 
-                + submissions[i].getVariableCountForSprite(
-                    spriteNames[j]));
+            printW.println("Sprite: " + sprites[j].getName());
+            printW.println("Scripts: " + sprites[j].getScriptCount());
+            printW.println("Variables: " + sprites[j].getVariableCount());
             printW.println("ScriptComments: " 
-                + submissions[i].getScriptCommentCountForSprite(
-                    spriteNames[j]));
-            printW.println("Sounds: " 
-                + submissions[i].getSoundCountForSprite(
-                    spriteNames[j]));
-            printW.println("Costumes: " 
-                + submissions[i].getCostumeCountForSprite(
-                    spriteNames[j]));
+                + sprites[j].getScriptCommentCount());
+            printW.println("Sounds: " + sprites[j].getSoundCount());
+            printW.println("Costumes: " + sprites[j].getCostumeCount());
             printW.println();
         }
     }   
