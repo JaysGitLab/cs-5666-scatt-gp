@@ -3,7 +3,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.File;
 import java.util.Arrays;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.After;
 
@@ -32,50 +32,27 @@ public class ReportTest
     public void setUp()
     {
         System.setOut(new PrintStream(outContent));
-        File directory = new File("submissions");
-        File[] sb2s = directory.listFiles();
-        Arrays.sort(sb2s);
-        Submission[] submissions = new Submission[sb2s.length];
-        for (int i = 0; i < submissions.length; i++)
+    	File directory = new File("submissions");  
+    	File[] sb2s = directory.listFiles();  
+    	Arrays.sort(sb2s);  
+    	Submission[] submissions = new Submission[sb2s.length];
+        for (int i = 0; i < submissions.length; i++)  
         {
             submissions[i] = new Submission(sb2s[i]);
-        }
+        }  
         scattReport = new Report(submissions);
     }
     
     /**
-    *  Test for the report passing.
-    */
+     *  Test for the report existing.
+     */
     @Test
     public void makeReportTest()
     {
         scattReport.makeReport();
-        String expected = "------------\n"
-                        + "SCATT Report\n"
-                        + "------------\n\n"
-                        + "File: Animate the Crab.sb2\n"
-                        + "---------------------------------\n"
-                        + "Script count: 3\n"
-                        + "Sprite count: 2\n\n"
-                        + "Sprite: Crab\n"
-                        + "Script count: 3\n\n"
-                        + "Sprite: Bananas\n"
-                        + "Script count: 3\n\n"
-                        + "File: Big Project.sb2\n"
-                        + "---------------------------------\n"
-                        + "Script count: 8\n"
-                        + "Sprite count: 2\n\n"
-                        + "Sprite: Sprite1\n"
-                        + "Script count: 2\n\n"
-                        + "Sprite: Butterfly3\n"
-                        + "Script count: 2\n\n"
-                        + "File: Empty.sb2\n"
-                        + "---------------------------------\n"
-                        + "Script count: 0\n"
-                        + "Sprite count: 0\n"
-                        + "\n";
-        assertEquals("should be equal", expected, outContent.toString());
-    }    
+        File reportFile = new File("Report.txt");
+        assertTrue(reportFile.exists());
+    }
 
     /**
      * Tear down after tests.
