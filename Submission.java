@@ -923,13 +923,23 @@ public class Submission
      */
     public String[] getScriptCommentsForProgram()
     {
+        int j = 0;
         String[] scriptComments;
-        JSONArray comments =
+        JSONArray commentsArray =
             FileUtils.getJSONArrayAttribute(jsonObj, "scriptComments");
-        scriptComments = new String[comments.size()];
-        for (int i = 0; i < comments.size(); i++)
+        JSONArray children = new JSONArray();
+        scriptComments = new String[commentsArray.size()];
+        for (int i = 0; i < commentsArray.size(); i++)
         {
-            scriptComments[i] = ((String)comments.get(i));
+            children = (JSONArray) commentsArray.get(i);
+        }
+        for (int i = 0; i < children.size(); i++)
+        {
+            if (children.get(i) instanceof String)
+            {
+                scriptComments[j] = (String) children.get(i);
+                j++;
+            }
         }
         return scriptComments;
     }
