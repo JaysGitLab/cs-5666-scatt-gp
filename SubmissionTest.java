@@ -824,6 +824,16 @@ public class SubmissionTest
         assertFalse("should be false", zipsDir.exists() && unzipsDir.exists());
     }
 
+    /** 
+     * Test getScriptCommentsForProgram method.
+     */
+    @Test
+    public void testScriptCommentsForProgram()
+    {
+        String expected = "add comment here...";
+        String actual = submissions[1].getScriptCommentsForProgram()[1];
+    }
+
     /**
      * Tear down after tests.
      */

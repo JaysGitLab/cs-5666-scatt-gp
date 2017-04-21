@@ -915,4 +915,22 @@ public class Submission
             unzipsDir.delete();
         }
     }
+
+    /**
+     * Get script comments for program.
+     *
+     * @return array of comments.
+     */
+    public String[] getScriptCommentsForProgram()
+    {
+        String[] scriptComments;
+        JSONArray comments =
+            FileUtils.getJSONArrayAttribute(jsonObj, "scriptComments");
+        scriptComments = new String[comments.size()];
+        for (int i = 0; i < comments.size(); i++)
+        {
+            scriptComments[i] = ((String)comments.get(i));
+        }
+        return scriptComments;
+    }
 }
