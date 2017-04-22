@@ -73,6 +73,8 @@ public class Report
             + submissions[i].getScriptCount());
         printW.println("Sprite Count Total: " 
             + submissions[i].getSpriteCount());
+        printW.println("Variable Count Total: " 
+            + submissions[i].getVariableCountForProgram());
         printW.println();
         printW.println("---------------------------------");
         printW.println();
