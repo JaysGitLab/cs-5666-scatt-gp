@@ -529,6 +529,24 @@ public class Submission
         }
         return count + getSoundCountForStage();
     }
+    
+    /**
+     * Get costume count for program.
+     *
+     * @return count
+     */
+    public int getCostumeCountForProgram()
+    {
+        int count = 0;
+        if (getSpriteCount() > 0)
+        {
+            for (int i = 0; i < sprites.length; i++)
+            {
+                count += sprites[i].getCostumeCount();
+            }
+        }
+        return count + getCostumeCountForStage();
+    }
 
     /**
      * Get control block count for program.

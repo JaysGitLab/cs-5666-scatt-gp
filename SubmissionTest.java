@@ -689,6 +689,17 @@ public class SubmissionTest
         int actual = submissions[2].getSoundCountForProgram();
         assertEquals("should be equal", expected, actual);
     }
+    
+    /**
+     * Test getCostumeCountForProgram method.
+     */
+    @Test
+    public void testGetCostumeCountForProgram()
+    {
+        int expected = 6;
+        int actual = submissions[1].getCostumeCountForProgram();
+        assertEquals("should be equal", expected, actual);
+    }
 
     /**
      * Test getControlBlocksForProgram method.
