@@ -603,6 +603,28 @@ public class SubmissionTest
     }
 
     /**
+     * Test getVariableCountForProgram method.
+     */
+    @Test
+    public void testGetVariableCountForProgram()
+    {
+        int expected = 5;
+        int actual = submissions[1].getVariableCountForProgram();
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getVariableCountForProgram method - empty.
+     */
+    @Test
+    public void testGetVariableCountForProgramEmpty()
+    {
+        int expected = 0;
+        int actual = submissions[2].getVariableCountForProgram();
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
      * Test getControlBlocksForProgram method.
      */
     @Test
