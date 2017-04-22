@@ -147,21 +147,15 @@ public class SubmissionTest
         
         // Get actual Submission filenames.
         File actualDir = new File("zips");
-        
-        // Make sure directory has not been deleted 
-        // by deleteZips test or application. 
-        if (actualDir.exists())
+        File[] actualZips = actualDir.listFiles();
+        Arrays.sort(actualZips);
+        String[] actual = new String[actualZips.length];
+        for (int i = 0; i < actual.length; i++)
         {
-            File[] actualZips = actualDir.listFiles();
-            Arrays.sort(actualZips);
-            String[] actual = new String[actualZips.length];
-            for (int i = 0; i < actual.length; i++)
-            {
-                actual[i] = actualZips[i].getName();
-            }
-
-            assertArrayEquals("should be same", expected, actual);
+            actual[i] = actualZips[i].getName();
         }
+
+        assertArrayEquals("should be same", expected, actual);
     }
 
     /**
@@ -186,27 +180,21 @@ public class SubmissionTest
 
         // Get list of new zip dirs.
         File zipsDir = new File("unzips");
-
-        // Make sure directory has not been deleted 
-        // by deleteZips test or application. 
-        if (zipsDir.exists())
+        File[] zipDirs = zipsDir.listFiles();
+        Arrays.sort(zipDirs);
+        String[] actual = new String[zipDirs.length];
+        for (int i = 0; i < actual.length; i++)
         {
-            File[] zipDirs = zipsDir.listFiles();
-            Arrays.sort(zipDirs);
-            String[] actual = new String[zipDirs.length];
-            for (int i = 0; i < actual.length; i++)
+            // Only track directories with more than one file.
+            // Tests more than original zip file exists (unzip success).
+            if (zipDirs[i].isDirectory() 
+                && zipDirs[i].listFiles().length > 1)
             {
-                // Only track directories with more than one file.
-                // Tests more than original zip file exists (unzip success).
-                if (zipDirs[i].isDirectory() 
-                    && zipDirs[i].listFiles().length > 1)
-                {
-                    actual[i] = zipDirs[i].getName();
-                }
+                actual[i] = zipDirs[i].getName();
             }
-
-            assertArrayEquals("should be same", expected, actual);
         }
+
+        assertArrayEquals("should be same", expected, actual);
     }
 
     /**
