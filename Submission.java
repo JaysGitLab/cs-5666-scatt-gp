@@ -511,6 +511,24 @@ public class Submission
         }
         return count + getScriptCommentCountForStage();
     }
+    
+    /**
+     * Get sound count for program.
+     *
+     * @return count
+     */
+    public int getSoundCountForProgram()
+    {
+        int count = 0;
+        if (getSpriteCount() > 0)
+        {
+            for (int i = 0; i < sprites.length; i++)
+            {
+                count += sprites[i].getSoundCount();
+            }
+        }
+        return count + getSoundCountForStage();
+    }
 
     /**
      * Get control block count for program.

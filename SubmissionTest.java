@@ -667,6 +667,28 @@ public class SubmissionTest
         int actual = submissions[2].getScriptCommentCountForProgram();
         assertEquals("should be equal", expected, actual);
     }
+    
+    /**
+     * Test getSoundCountForProgram method.
+     */
+    @Test
+    public void testGetSoundCountForProgram()
+    {
+        int expected = 3;
+        int actual = submissions[1].getSoundCountForProgram();
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getSoundCountForProgram method - empty.
+     */
+    @Test
+    public void testGetSoundCountForProgramEmpty()
+    {
+        int expected = 0;
+        int actual = submissions[2].getSoundCountForProgram();
+        assertEquals("should be equal", expected, actual);
+    }
 
     /**
      * Test getControlBlocksForProgram method.
