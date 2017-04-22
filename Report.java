@@ -75,6 +75,8 @@ public class Report
             + submissions[i].getSpriteCount());
         printW.println("Variable Count Total: " 
             + submissions[i].getVariableCountForProgram());
+        printW.println("List Count Total: " 
+            + submissions[i].getListCountForProgram());
         printW.println();
         printW.println("---------------------------------");
         printW.println();
