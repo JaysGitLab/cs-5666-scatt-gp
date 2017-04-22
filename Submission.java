@@ -493,6 +493,24 @@ public class Submission
         }
         return count + getListCountForStage();
     }
+    
+    /**
+     * Get script comment count for program.
+     *
+     * @return count
+     */
+    public int getScriptCommentCountForProgram()
+    {
+        int count = 0;
+        if (getSpriteCount() > 0)
+        {
+            for (int i = 0; i < sprites.length; i++)
+            {
+                count += sprites[i].getScriptCommentCount();
+            }
+        }
+        return count + getScriptCommentCountForStage();
+    }
 
     /**
      * Get control block count for program.

@@ -77,6 +77,8 @@ public class Report
             + submissions[i].getVariableCountForProgram());
         printW.println("List Count Total: " 
             + submissions[i].getListCountForProgram());
+        printW.println("Script Comment Count Total: " 
+            + submissions[i].getScriptCommentCountForProgram());
         printW.println();
         printW.println("---------------------------------");
         printW.println();
