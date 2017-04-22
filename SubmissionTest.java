@@ -5,7 +5,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.util.Arrays;
@@ -919,21 +918,6 @@ public class SubmissionTest
         int expected = 0;
         int actual = submissions[2].getSoundBlocksForProgram();
         assertEquals("should be equal", expected, actual);
-    }
-
-    /**
-     * Test deleteZips method.
-     */
-    @Test
-    public void testDeleteZips()
-    {
-        File zipsDir = new File("zips");
-        File unzipsDir = new File("unzips");
-        for (int i = 0; i < submissions.length; i++)
-        {
-            submissions[i].deleteZips();
-        }
-        assertFalse("should be false", zipsDir.exists() && unzipsDir.exists());
     }
 
     /**
