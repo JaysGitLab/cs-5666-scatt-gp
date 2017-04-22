@@ -475,6 +475,24 @@ public class Submission
         }
         return count + getVariableCountForStage();
     }
+    
+    /**
+     * Get list count for program.
+     *
+     * @return count
+     */
+    public int getListCountForProgram()
+    {
+        int count = 0;
+        if (getSpriteCount() > 0)
+        {
+            for (int i = 0; i < sprites.length; i++)
+            {
+                count += sprites[i].getListCount();
+            }
+        }
+        return count + getListCountForStage();
+    }
 
     /**
      * Get control block count for program.
