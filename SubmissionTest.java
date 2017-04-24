@@ -909,13 +909,24 @@ public class SubmissionTest
     }
 
     /**
-     * Test PopulateGlobalVariables.
+     * Test PopulateGlobalVariables - valid.
      */
     @Test
     public void testPopulateGlobalVariables()
     {
         String[] expected = {"name", "weather", "sprite1AllVariables"};
         String[] actual = submissions[1].getGlobalVariables();
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test PopulateGlobalVariables - empty.
+     */
+    @Test
+    public void testPopulateGlobalVariablesEmpty()
+    {
+        String[] expected = new String[0];
+        String[] actual = submissions[2].getGlobalVariables();
         assertEquals("should be equal", expected, actual);
     }
 
@@ -928,6 +939,18 @@ public class SubmissionTest
         int expected = 1;
         int actual = 
             submissions[1].getStageVariableUsageCount("sprite1AllVariables");
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getStageVariableUsageCount - empty.
+     */
+    @Test
+    public void testGetStageVariableUsageCountEmpty()
+    {
+        int expected = 0;
+        int actual =
+            submissions[2].getStageVariableUsageCount("sprite1AllVariables");
         assertEquals("should be equal", expected, actual);
     }
 
