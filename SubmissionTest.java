@@ -909,21 +909,21 @@ public class SubmissionTest
     }
 
     /**
-     * Test populateVariablesForProgram.
+     * Test PopulateGlobalVariables.
      */
     @Test
-    public void testPopulateVariables()
+    public void testPopulateGlobalVariables()
     {
         String[] expected = {"name", "weather", "sprite1AllVariables"};
-        String[] actual = submissions[1].getVariables();
+        String[] actual = submissions[1].getGlobalVariables();
         assertEquals("should be equal", expected, actual);
     }
 
     /**
-     * Test getVariableUsageForStage.
+     * Test getStageVariableUsageCount - valid.
      */
     @Test
-    public void testGetStageVariableUsageCounte()
+    public void testGetStageVariableUsageCount()
     {
         int expected = 1;
         int actual = 
