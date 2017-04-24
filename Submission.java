@@ -34,6 +34,7 @@ public class Submission
     private int penBlocksForStage;
     private int sensingBlocksForStage;
     private int soundBlocksForStage;
+    private String[] variables;
     
     /**
      * Submission constructor.
@@ -61,6 +62,7 @@ public class Submission
         addSoundCategoryMap();
         countBlockCategoriesForStage();
         createSprites();
+        populateVariablesForProgram();
     }
 
     /**
@@ -973,5 +975,33 @@ public class Submission
         categoryMap.put("changeTempoBy:", "sound");
         categoryMap.put("setTempoTo:", "sound");
         categoryMap.put("tempo", "sound");
+    }
+
+    /**
+     * Get the variables array.
+     *
+     * @return array of variables
+     */
+    public String[] getVariables()
+    {
+        return this.variables;
+    }
+
+    /**
+     * Populate the variables array.
+     */
+    private void populateVariablesForProgram()
+    {
+        JSONArray vars =
+            FileUtils.getJSONArrayAttribute(jsonObj, "variables");
+        variables = new String[vars.size()];
+        JSONObject children = new JSONObject();
+        int j = 0;
+        for (int i = 0; i < vars.size(); i++)
+        {
+            children = (JSONObject) vars.get(i);
+            variables[j] = (String) children.get("name");  
+            j++; 
+        }
     }
 }

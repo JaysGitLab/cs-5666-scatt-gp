@@ -909,6 +909,17 @@ public class SubmissionTest
     }
 
     /**
+     * Test populateVariablesForProgram.
+     */
+    @Test
+    public void testPopulateVariables()
+    {
+        String[] expected = {"name", "weather", "sprite1AllVariables"};
+        String[] actual = submissions[1].getVariables();
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
      * Tear down after tests.
      */
     @AfterClass
