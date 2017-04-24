@@ -920,6 +920,18 @@ public class SubmissionTest
     }
 
     /**
+     * Test getVariableUsageForStage.
+     */
+    @Test
+    public void testGetStageVariableUsageCounte()
+    {
+        int expected = 1;
+        int actual = 
+            submissions[1].getStageVariableUsageCount("sprite1AllVariables");
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
      * Tear down after tests.
      */
     @AfterClass

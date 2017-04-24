@@ -1004,4 +1004,27 @@ public class Submission
             j++; 
         }
     }
+
+    /**
+     * Get global variable usage count
+     *  from stage scripts.
+     *
+     *  @param var the variable being counted
+     *  @return number of times the variable is used
+     */
+    public int getStageVariableUsageCount(String var)
+    {
+        int count = 0;
+        JSONArray stageJSON =
+            FileUtils.getJSONArrayAttribute(jsonObj, "scripts"); 
+        String stage = stageJSON.toString();
+        int pos = stage.indexOf(var);
+        while (pos >= 0)
+        {
+            pos += 1;
+            count += 1;
+            pos = stage.indexOf(var, pos);
+        }
+        return count;
+    }
 }
