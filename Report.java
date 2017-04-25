@@ -172,7 +172,7 @@ public class Report
                 + sprites[j].getScriptCount());
             printW.println("Variables: \t\t\t\t" 
                 + sprites[j].getVariableCount());
-            printVariableUsageForSprite(printW, sprites[j]);
+            printVarUsageSprite(printW, i, sprites[j]);
             printW.println("Lists: \t\t\t\t\t" 
                 + sprites[j].getListCount());
             printW.println("ScriptComments: \t\t" 
@@ -209,10 +209,10 @@ public class Report
      * Print Variable name and usage count for Stage.
      *
      * @param printW - the printwriter to use
-     * @param i - the submissions to get count for
+     * @param i - the submission to get count for
      */
     public void printVariableUsageForStage(PrintWriter printW, int i)
-    {
+    {   
         String[] vars = submissions[i].getGlobalVariables();
         for (int j = 0; j < vars.length; j++)
         {
@@ -223,16 +223,25 @@ public class Report
     
     /**
      * Print Variable name and usage count for Sprite.
+     *  This includes both global and local variables.
+     *
+     *  @param printW - the printWriter to use
+     *  @param i - the submission to get count for
+     *  @param sprite - the sprite to get count for
      */
-    // Not implementer yet
-    public void printVariableUsageForSprite(PrintWriter printW, Sprite sprite)
+    public void printVarUsageSprite(PrintWriter printW, int i, Sprite sprite)
     {
-      /*  String[] vars = sprite.getVariables();
+        String[] globalVars = submissions[i].getGlobalVariables();
+        String[] vars = sprite.getVariables();
+        for (int k = 0; k < globalVars.length; k++)
+        {
+            printW.println("\t" + globalVars[k]
+                + ": " + sprite.getVariableUsageCount(globalVars[k]));
+        }
         for (int j = 0; j < vars.length; j++)
         {
             printW.println("\t" + vars[j]
-                + ": " + sprite.getVariableUsageCount);
-        } */            
+                + ": " + sprite.getVariableUsageCount(vars[j]));
+        }             
     }
-
 }

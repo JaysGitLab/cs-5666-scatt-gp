@@ -346,12 +346,12 @@ public class Sprite
     }
 
     /**
-     * Get Sprite variable usage count.
+     * Get variable usage count.
      *
      * @param var - the variable being counted
      * @return the number of times the variable is used
      */
-    public int getSpriteVariableUsageCount(String var)
+    public int getVariableUsageCount(String var)
     {
         int count = 0;
         JSONArray scripts =

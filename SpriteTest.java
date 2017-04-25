@@ -442,13 +442,14 @@ public class SpriteTest
     }
 
     /**
-     * Test getSpriteVariableUsageCount.
+     * Test getVariableUsageCount.
      */
     @Test
-    public void testGetSpriteVariableUsageCount()
+    public void testGetVariableUsageCount()
     {
         int expected = 1;
-        int actual = spritesBigProject[0].getSpriteVariableUsageCount("sprite1Variableb");
+        int actual = 
+            spritesBigProject[0].getVariableUsageCount("sprite1Variableb");
         assertEquals("should be equal", expected, actual);
     }
 
@@ -459,7 +460,8 @@ public class SpriteTest
     public void testGetSpriteVariableUsageCountEmpty()
     {
         int expected = 0;
-        int actual = spritesAnimateTheCrab[0].getSpriteVariableUsageCount("sprite1Variableb");
+        int actual = 
+            spritesAnimateTheCrab[0].getVariableUsageCount("sprite1Variableb");
         assertEquals("should be equal", expected, actual);
     }
     
