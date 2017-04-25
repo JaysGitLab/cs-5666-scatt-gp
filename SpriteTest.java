@@ -429,6 +429,17 @@ public class SpriteTest
         String[] actual = spritesBigProject[0].getVariables();
         assertEquals("should be equal", expected, actual);
     }
+
+    /**
+     * Test populateVariables - empty.
+     */
+    @Test
+    public void testPopulateVariablesEmpty()
+    {
+        String[] expected = new String[0];
+        String[] actual = spritesAnimateTheCrab[1].getVariables();
+        assertEquals("should be equal", expected, actual);
+    }
     
     /**
      * Tear down after tests.
