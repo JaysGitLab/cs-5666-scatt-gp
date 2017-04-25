@@ -1,6 +1,9 @@
 import java.io.PrintWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 
 /**
  * Report.java
@@ -33,7 +36,7 @@ public class Report
      */
     public void makeReport()
     {
-        File reportFile = new File("./Report.txt");
+        File reportFile = new File("./Report-" + getReportDateTime() + ".txt");
         PrintWriter printW;
         try
         {
@@ -202,4 +205,16 @@ public class Report
             printW.println();
         }
     }   
+
+    /**
+     * Method to get the current datetime for report.
+     *
+     * @return formatted datetime
+     */
+    public String getReportDateTime()
+    {
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
 }
