@@ -226,7 +226,7 @@ public class SpriteTest
     @Test
     public void testGetDataBlocksForSprite()
     {
-        int expected = 3;
+        int expected = 4;
         int actual = spritesBigProject[0].getDataBlocksForSprite();
         assertEquals("should be equal", expected, actual);
     }
@@ -447,7 +447,7 @@ public class SpriteTest
     @Test
     public void testGetSpriteVariableUsageCount()
     {
-        int expected = 0;
+        int expected = 1;
         int actual = spritesBigProject[0].getSpriteVariableUsageCount("sprite1Variableb");
         assertEquals("should be equal", expected, actual);
     }
