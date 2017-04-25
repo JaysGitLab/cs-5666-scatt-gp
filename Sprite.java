@@ -319,9 +319,9 @@ public class Sprite
     }
 
     /**
-     * Get list of variables.
+     * Get list of Variables.
      *
-     * @return variables.
+     * @return variables
      */
     public String[] getVariables()
     {
@@ -334,7 +334,7 @@ public class Sprite
      * @param jsonObj - the object to get the
      *  variables from.
      */
-    private void populateVariables(JSONObject jsonObj)
+    public void populateVariables(JSONObject jsonObj)
     {
         JSONArray vars = 
             FileUtils.getJSONArrayAttribute(jsonObj, "variables");
