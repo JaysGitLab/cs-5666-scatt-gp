@@ -417,6 +417,18 @@ public class SpriteTest
         int actual = spritesAnimateTheCrab[1].getSoundBlocksForSprite();
         assertEquals("should be equal", expected, actual);
     }
+
+    /**
+     * Test populateVariables method.
+     */
+    @Test
+    public void testPopulateVariables()
+    {
+        String[] expected = {"sprite1Variable",
+                             "sprite1Variableb"};
+        String[] actual = spritesBigProject[0].getVariables();
+        assertEquals("should be equal", expected, actual);
+    }
     
     /**
      * Tear down after tests.

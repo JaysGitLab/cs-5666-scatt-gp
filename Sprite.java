@@ -33,7 +33,8 @@ public class Sprite
     private int penBlocksForSprite;
     private int sensingBlocksForSprite;
     private int soundBlocksForSprite;
-    
+    private String[] variables;
+        
     /**
      * Sprite constructor.
      *
@@ -56,6 +57,7 @@ public class Sprite
         costumeCount = FileUtils.getJSONArrayAttribute(this.jsonObj, 
             "costumes").size();
         countBlockCategoriesForSprite();
+        populateVariables(this.jsonObj);
     }
 
     /**
@@ -314,5 +316,35 @@ public class Sprite
         }
 
         return;
+    }
+
+    /**
+     * Get list of variables.
+     *
+     * @return variables.
+     */
+    public String[] getVariables()
+    {
+        return variables;
+    }
+
+    /**
+     * Populate list of variables.
+     *
+     * @param jsonObj - the object to get the
+     *  variables from.
+     */
+    private void populateVariables(JSONObject jsonObj)
+    {
+        JSONArray vars = 
+            FileUtils.getJSONArrayAttribute(jsonObj, "variables");
+        variables = new String[vars.size()];
+        JSONObject children = new JSONObject();
+        for (int i = 0; i < vars.size(); i++)
+        {
+            children = (JSONObject) vars.get(i);
+            variables[i] = 
+                FileUtils.getJSONAttribute(children, "name");;
+        }
     }
 }

@@ -988,7 +988,7 @@ public class Submission
     }
 
     /**
-     * Populate the variables array.
+     * Populate the global variables array.
      */
     private void populateGlobalVariables()
     {
