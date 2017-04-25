@@ -57,7 +57,7 @@ public class Sprite
         costumeCount = FileUtils.getJSONArrayAttribute(this.jsonObj, 
             "costumes").size();
         countBlockCategoriesForSprite();
-        populateVariables(this.jsonObj);
+        populateVariables();
     }
 
     /**
@@ -330,14 +330,11 @@ public class Sprite
 
     /**
      * Populate list of variables.
-     *
-     * @param jsonObj - the object to get the
-     *  variables from.
      */
-    public void populateVariables(JSONObject jsonObj)
+    public void populateVariables()
     {
         JSONArray vars = 
-            FileUtils.getJSONArrayAttribute(jsonObj, "variables");
+            FileUtils.getJSONArrayAttribute(this.jsonObj, "variables");
         variables = new String[vars.size()];
         JSONObject children = new JSONObject();
         for (int i = 0; i < vars.size(); i++)
@@ -346,5 +343,27 @@ public class Sprite
             variables[i] = 
                 FileUtils.getJSONAttribute(children, "name");;
         }
+    }
+
+    /**
+     * Get Sprite variable usage count.
+     *
+     * @param var - the variable being counted
+     * @return the number of times the variable is used
+     */
+    public int getSpriteVariableUsageCount(String var)
+    {
+        int count = 0;
+        JSONArray scripts =
+            FileUtils.getJSONArrayAttribute(this.jsonObj, "scripts");
+        String spriteScript = scripts.toString();
+        int pos = spriteScript.indexOf(var);
+        while (pos >= 0)
+        {
+            pos += 1;
+            count += 1;
+            pos = spriteScript.indexOf(var, pos);
+        }
+        return count;
     }
 }
