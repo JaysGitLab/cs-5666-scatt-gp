@@ -1006,6 +1006,26 @@ public class Submission
     }
 
     /**
+     * Get total program variable usage counts.
+     *
+     * @param var - the variable to be counted
+     * @return number of times variable used total
+     */
+    public int getProgramVariableUsageCount(String var)
+    {
+        int count = this.getStageVariableUsageCount(var);
+        if (sprites == null)
+        {
+            return count;
+        }
+        for (int i = 0; i < sprites.length; i++)
+        {
+            count +=  sprites[i].getVariableUsageCount(var);
+        }
+        return count;
+    }
+    
+    /**
      * Get global variable usage count
      *  from stage scripts.
      *

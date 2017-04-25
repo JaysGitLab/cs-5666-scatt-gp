@@ -955,6 +955,31 @@ public class SubmissionTest
     }
 
     /**
+     * Test get total variable usage count.
+     */
+    @Test
+    public void testGetProgramVariableUsageCount()
+    {
+        int expected = 4;
+        int actual =
+            submissions[1].getProgramVariableUsageCount("name");
+        assertEquals("should be same", expected, actual);
+    }
+
+    /**
+     * Test get total variable usage count - empty.
+     */
+    @Test
+    public void testGetProgramVariableUsageCountEmpty()
+    {
+        int expected = 0;
+        int actual =
+            submissions[2].getProgramVariableUsageCount("name");
+        assertEquals("should be same", expected, actual);
+    }
+
+
+    /**
      * Tear down after tests.
      */
     @AfterClass
