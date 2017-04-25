@@ -122,6 +122,7 @@ public class Report
             + submissions[i].getScriptCountForStage());
         printW.println("Variables: \t\t\t\t" 
             + submissions[i].getVariableCountForStage());
+        printVariableUsageForStage(printW, i);
         printW.println("Lists: \t\t\t\t\t" 
                     + submissions[i].getListCountForStage());
         printW.println("ScriptComments: \t\t" 
@@ -171,6 +172,7 @@ public class Report
                 + sprites[j].getScriptCount());
             printW.println("Variables: \t\t\t\t" 
                 + sprites[j].getVariableCount());
+            printVariableUsageForSprite(printW, sprites[j]);
             printW.println("Lists: \t\t\t\t\t" 
                 + sprites[j].getListCount());
             printW.println("ScriptComments: \t\t" 
@@ -201,5 +203,36 @@ public class Report
                 + sprites[j].getSoundBlocksForSprite());
             printW.println();
         }
-    }   
+    }
+    
+    /**
+     * Print Variable name and usage count for Stage.
+     *
+     * @param printW - the printwriter to use
+     * @param i - the submissions to get count for
+     */
+    public void printVariableUsageForStage(PrintWriter printW, int i)
+    {
+        String[] vars = submissions[i].getGlobalVariables();
+        for (int j = 0; j < vars.length; j++)
+        {
+            printW.println("\t" + vars[j]
+                + ": " + submissions[i].getStageVariableUsageCount(vars[j]));
+        }            
+    }
+    
+    /**
+     * Print Variable name and usage count for Sprite.
+     */
+    // Not implementer yet
+    public void printVariableUsageForSprite(PrintWriter printW, Sprite sprite)
+    {
+      /*  String[] vars = sprite.getVariables();
+        for (int j = 0; j < vars.length; j++)
+        {
+            printW.println("\t" + vars[j]
+                + ": " + sprite.getVariableUsageCount);
+        } */            
+    }
+
 }
