@@ -1,6 +1,9 @@
 import java.io.PrintWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 
 /**
  * Report.java
@@ -38,7 +41,8 @@ public class Report
         try
         {
             printW = new PrintWriter(reportFile);
-            printW.println("SCATT Report\n");
+            printW.println("SCATT Report " 
+                + getReportDateTimeForHeader() + "\n");
             for (int i = 0; i < submissions.length; i++)
             {
                 if (submissions[i].isValid())
@@ -54,10 +58,13 @@ public class Report
                 printW.println();
             }
             printW.close();
+            System.out.println("Report finished. " 
+                + "Report located in current directory.");
         }
         catch (FileNotFoundException ex)
         {
             ex.printStackTrace();
+            System.out.println("Error. Report not made.");
         }
     }
 
@@ -282,5 +289,17 @@ public class Report
                     + " time(s)");
             }
         }             
+    }   
+
+    /**
+     * Method to get the current datetime for the report's header.
+     *
+     * @return formatted datetime
+     */
+    public String getReportDateTimeForHeader()
+    {
+        DateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy h:mm:ss a");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }
