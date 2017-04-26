@@ -215,13 +215,16 @@ public class Report
     public void printVariableUsageForProgram(PrintWriter printW, int i)
     {
         String[] vars = submissions[i].getGlobalVariables();
-        printW.println("\tGlobal Variables:");
-        for (int j = 0; j < vars.length; j++)
+        if (vars.length > 0)
         {
-            printW.println("\t\t" + vars[j]
-                + " used "
-                + submissions[i].getProgramVariableUsageCount(vars[j])
-                + " time(s)");
+            printW.println("\tGlobal Variables:");
+            for (int j = 0; j < vars.length; j++)
+            {
+                printW.println("\t\t" + vars[j]
+                    + " used "
+                    + submissions[i].getProgramVariableUsageCount(vars[j])
+                    + " time(s)");
+            }
         }
     }
     
@@ -234,12 +237,17 @@ public class Report
     public void printVariableUsageForStage(PrintWriter printW, int i)
     {   
         String[] vars = submissions[i].getGlobalVariables();
-        for (int j = 0; j < vars.length; j++)
+        if (vars.length > 0)
         {
-            printW.println("\t" + vars[j]
-                + " used " + submissions[i].getStageVariableUsageCount(vars[j])
-                + " time(s)");
-        }            
+            printW.println("\tGlobal Variables:");
+            for (int j = 0; j < vars.length; j++)
+            {
+                printW.println("\t" + vars[j]
+                    + " used " 
+                    + submissions[i].getStageVariableUsageCount(vars[j])
+                    + " time(s)");
+            }
+        }
     }
     
     /**
@@ -254,19 +262,25 @@ public class Report
     {
         String[] globalVars = submissions[i].getGlobalVariables();
         String[] vars = sprite.getVariables();
-        printW.println("\tGlobal Variables:");
-        for (int k = 0; k < globalVars.length; k++)
+        if (globalVars.length > 0)
         {
-            printW.println("\t\t" + globalVars[k]
-                + " used " + sprite.getVariableUsageCount(globalVars[k])
-                + " time(s)");
+            printW.println("\tGlobal Variables:");
+            for (int k = 0; k < globalVars.length; k++)
+            {
+                printW.println("\t\t" + globalVars[k]
+                    + " used " + sprite.getVariableUsageCount(globalVars[k])
+                    + " time(s)");
+            }
         }
-        printW.println("\tSprite Variables:");
-        for (int j = 0; j < vars.length; j++)
+        if (vars.length > 0)
         {
-            printW.println("\t\t" + vars[j]
-                + " used " + sprite.getVariableUsageCount(vars[j])
-                + " time(s)");
+            printW.println("\tSprite Variables:");
+            for (int j = 0; j < vars.length; j++)
+            {
+                printW.println("\t\t" + vars[j]
+                    + " used " + sprite.getVariableUsageCount(vars[j])
+                    + " time(s)");
+            }
         }             
     }
 }

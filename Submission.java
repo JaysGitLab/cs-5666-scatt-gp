@@ -122,7 +122,7 @@ public class Submission
      */
     public JSONObject getJSONObject()
     {
-        return this.jsonObj;
+        return jsonObj;
     }
 
     /**
