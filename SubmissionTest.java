@@ -909,7 +909,7 @@ public class SubmissionTest
     }
 
     /**
-     * Test PopulateGlobalVariables - valid.
+     * Test populateGlobalVariables method - valid.
      */
     @Test
     public void testPopulateGlobalVariables()
@@ -920,13 +920,24 @@ public class SubmissionTest
     }
 
     /**
-     * Test PopulateGlobalVariables - empty.
+     * Test populateGlobalVariables - empty.
      */
     @Test
     public void testPopulateGlobalVariablesEmpty()
     {
         String[] expected = new String[0];
         String[] actual = submissions[2].getGlobalVariables();
+        assertArrayEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test populateGlobalLists method - valid.
+     */
+    @Test
+    public void testPopulateGlobalLists()
+    {
+        String[] expected = {"listStage"};
+        String[] actual = submissions[1].getGlobalLists();
         assertArrayEquals("should be equal", expected, actual);
     }
 

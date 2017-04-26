@@ -35,6 +35,7 @@ public class Submission
     private int sensingBlocksForStage;
     private int soundBlocksForStage;
     private String[] globalVariables;
+    private String[] globalLists;
     
     /**
      * Submission constructor.
@@ -63,6 +64,7 @@ public class Submission
         countBlockCategoriesForStage();
         createSprites();
         populateGlobalVariables();
+        populateGlobalLists();
     }
 
     /**
@@ -988,6 +990,16 @@ public class Submission
     }
 
     /**
+     * Get the list array.
+     *
+     * @return global list array
+     */
+    public String[] getGlobalLists()
+    {
+        return globalLists;
+    }
+
+    /**
      * Populate the global variables array.
      */
     private void populateGlobalVariables()
@@ -1002,6 +1014,24 @@ public class Submission
             children = (JSONObject) vars.get(i);
             globalVariables[j] = (String) children.get("name");  
             j++; 
+        }
+    }
+
+    /**
+     * Populate the global lists array.
+     */
+    private void populateGlobalLists()
+    {
+        JSONArray lists =
+            FileUtils.getJSONArrayAttribute(jsonObj, "lists");
+        globalLists = new String[lists.size()];
+        JSONObject children = new JSONObject();
+        int j = 0;
+        for (int i = 0; i < lists.size(); i++)
+        {
+            children = (JSONObject) lists.get(i);
+            globalLists[j] = (String) children.get("listName");
+            j++;
         }
     }
 
@@ -1048,3 +1078,4 @@ public class Submission
         return count;
     }
 }
+
