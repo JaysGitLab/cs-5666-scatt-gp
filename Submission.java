@@ -984,7 +984,7 @@ public class Submission
      */
     public String[] getGlobalVariables()
     {
-        return this.globalVariables;
+        return globalVariables;
     }
 
     /**
@@ -1013,14 +1013,14 @@ public class Submission
      */
     public int getProgramVariableUsageCount(String var)
     {
-        int count = this.getStageVariableUsageCount(var);
+        int count = getStageVariableUsageCount(var);
         if (sprites == null)
         {
             return count;
         }
         for (int i = 0; i < sprites.length; i++)
         {
-            count +=  sprites[i].getVariableUsageCount(var);
+            count += sprites[i].getVariableUsageCount(var);
         }
         return count;
     }

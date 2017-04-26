@@ -916,7 +916,7 @@ public class SubmissionTest
     {
         String[] expected = {"name", "weather", "sprite1AllVariables"};
         String[] actual = submissions[1].getGlobalVariables();
-        assertEquals("should be equal", expected, actual);
+        assertArrayEquals("should be equal", expected, actual);
     }
 
     /**
@@ -927,7 +927,7 @@ public class SubmissionTest
     {
         String[] expected = new String[0];
         String[] actual = submissions[2].getGlobalVariables();
-        assertEquals("should be equal", expected, actual);
+        assertArrayEquals("should be equal", expected, actual);
     }
 
     /**

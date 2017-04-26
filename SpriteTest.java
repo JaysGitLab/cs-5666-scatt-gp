@@ -4,6 +4,7 @@ import org.junit.AfterClass;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 import java.io.File;
 import java.util.Arrays;
 
@@ -427,7 +428,7 @@ public class SpriteTest
         String[] expected = {"sprite1Variable",
                              "sprite1Variableb"};
         String[] actual = spritesBigProject[0].getVariables();
-        assertEquals("should be equal", expected, actual);
+        assertArrayEquals("should be equal", expected, actual);
     }
 
     /**
@@ -438,7 +439,7 @@ public class SpriteTest
     {
         String[] expected = new String[0];
         String[] actual = spritesAnimateTheCrab[1].getVariables();
-        assertEquals("should be equal", expected, actual);
+        assertArrayEquals("should be equal", expected, actual);
     }
 
     /**

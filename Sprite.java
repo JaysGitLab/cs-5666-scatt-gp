@@ -43,18 +43,18 @@ public class Sprite
     public Sprite(JSONObject jsonObj)
     {
         this.jsonObj = jsonObj;
-        name = FileUtils.getJSONAttribute(this.jsonObj, "objName");
-        scriptCount = FileUtils.getJSONArrayAttribute(this.jsonObj, 
+        name = FileUtils.getJSONAttribute(jsonObj, "objName");
+        scriptCount = FileUtils.getJSONArrayAttribute(jsonObj, 
             "scripts").size();
-        variableCount = FileUtils.getJSONArrayAttribute(this.jsonObj, 
+        variableCount = FileUtils.getJSONArrayAttribute(jsonObj, 
             "variables").size();
-        listCount = FileUtils.getJSONArrayAttribute(this.jsonObj, 
+        listCount = FileUtils.getJSONArrayAttribute(jsonObj, 
             "lists").size();
-        scriptCommentCount = FileUtils.getJSONArrayAttribute(this.jsonObj, 
+        scriptCommentCount = FileUtils.getJSONArrayAttribute(jsonObj, 
             "scriptComments").size();
-        soundCount = FileUtils.getJSONArrayAttribute(this.jsonObj, 
+        soundCount = FileUtils.getJSONArrayAttribute(jsonObj, 
             "sounds").size();
-        costumeCount = FileUtils.getJSONArrayAttribute(this.jsonObj, 
+        costumeCount = FileUtils.getJSONArrayAttribute(jsonObj, 
             "costumes").size();
         countBlockCategoriesForSprite();
         populateVariables();
@@ -334,7 +334,7 @@ public class Sprite
     public void populateVariables()
     {
         JSONArray vars = 
-            FileUtils.getJSONArrayAttribute(this.jsonObj, "variables");
+            FileUtils.getJSONArrayAttribute(jsonObj, "variables");
         variables = new String[vars.size()];
         JSONObject children = new JSONObject();
         for (int i = 0; i < vars.size(); i++)
@@ -355,7 +355,7 @@ public class Sprite
     {
         int count = 0;
         JSONArray scripts =
-            FileUtils.getJSONArrayAttribute(this.jsonObj, "scripts");
+            FileUtils.getJSONArrayAttribute(jsonObj, "scripts");
         String spriteScript = scripts.toString();
         int pos = spriteScript.indexOf(var);
         while (pos >= 0)
