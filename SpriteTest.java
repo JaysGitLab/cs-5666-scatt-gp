@@ -454,6 +454,17 @@ public class SpriteTest
     }
 
     /**
+     * Test populateLists method - empty.
+     */
+    @Test
+    public void testPopulateListsEmpty()
+    {
+        String[] expected = new String[0];
+        String[] actual = spritesAnimateTheCrab[1].getVariables();
+        assertArrayEquals("should be equal", expected, actual);
+    }
+
+    /**
      * Test getVariableUsageCount method - valid.
      */
     @Test
@@ -474,6 +485,18 @@ public class SpriteTest
         int expected = 0;
         int actual = 
             spritesAnimateTheCrab[0].getVariableUsageCount("sprite1Variableb");
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getListUsageCount method - valid.
+     */
+    @Test
+    public void testGetListUsageCount()
+    {
+        int expected = 1;
+        int actual =
+            spritesBigProject[0].getListUsageCount("listSprite1");
         assertEquals("should be equal", expected, actual);
     }
     

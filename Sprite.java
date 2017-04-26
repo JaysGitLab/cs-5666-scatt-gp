@@ -395,4 +395,26 @@ public class Sprite
         }
         return count;
     }
+
+    /**
+     * Get list usage count.
+     *
+     * @param list - the list being counted
+     * @return the number of times the list is used
+     */
+    public int getListUsageCount(String list)
+    {
+        int count = 0;
+        JSONArray scripts =
+            FileUtils.getJSONArrayAttribute(jsonObj, "scripts");
+        String spriteScript = scripts.toString();
+        int pos = spriteScript.indexOf(list);
+        while (pos >= 0)
+        {
+            pos += 1;
+            count += 1;
+            pos = spriteScript.indexOf(list, pos);
+        }
+        return count;
+    }
 }
