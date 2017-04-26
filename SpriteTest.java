@@ -4,6 +4,7 @@ import org.junit.AfterClass;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 import java.io.File;
 import java.util.Arrays;
 
@@ -226,7 +227,7 @@ public class SpriteTest
     @Test
     public void testGetDataBlocksForSprite()
     {
-        int expected = 3;
+        int expected = 4;
         int actual = spritesBigProject[0].getDataBlocksForSprite();
         assertEquals("should be equal", expected, actual);
     }
@@ -415,6 +416,53 @@ public class SpriteTest
     {
         int expected = 0;
         int actual = spritesAnimateTheCrab[1].getSoundBlocksForSprite();
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test populateVariables method.
+     */
+    @Test
+    public void testPopulateVariables()
+    {
+        String[] expected = {"sprite1Variable",
+                             "sprite1Variableb"};
+        String[] actual = spritesBigProject[0].getVariables();
+        assertArrayEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test populateVariables - empty.
+     */
+    @Test
+    public void testPopulateVariablesEmpty()
+    {
+        String[] expected = new String[0];
+        String[] actual = spritesAnimateTheCrab[1].getVariables();
+        assertArrayEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getVariableUsageCount.
+     */
+    @Test
+    public void testGetVariableUsageCount()
+    {
+        int expected = 1;
+        int actual = 
+            spritesBigProject[0].getVariableUsageCount("sprite1Variableb");
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getSpriteVariableUsageCount - empty.
+     */
+    @Test
+    public void testGetSpriteVariableUsageCountEmpty()
+    {
+        int expected = 0;
+        int actual = 
+            spritesAnimateTheCrab[0].getVariableUsageCount("sprite1Variableb");
         assertEquals("should be equal", expected, actual);
     }
     

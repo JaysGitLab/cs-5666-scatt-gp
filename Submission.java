@@ -34,6 +34,7 @@ public class Submission
     private int penBlocksForStage;
     private int sensingBlocksForStage;
     private int soundBlocksForStage;
+    private String[] globalVariables;
     
     /**
      * Submission constructor.
@@ -61,6 +62,7 @@ public class Submission
         addSoundCategoryMap();
         countBlockCategoriesForStage();
         createSprites();
+        populateGlobalVariables();
     }
 
     /**
@@ -120,7 +122,7 @@ public class Submission
      */
     public JSONObject getJSONObject()
     {
-        return this.jsonObj;
+        return jsonObj;
     }
 
     /**
@@ -973,5 +975,76 @@ public class Submission
         categoryMap.put("changeTempoBy:", "sound");
         categoryMap.put("setTempoTo:", "sound");
         categoryMap.put("tempo", "sound");
+    }
+
+    /**
+     * Get the variables array.
+     *
+     * @return array of variables
+     */
+    public String[] getGlobalVariables()
+    {
+        return globalVariables;
+    }
+
+    /**
+     * Populate the global variables array.
+     */
+    private void populateGlobalVariables()
+    {
+        JSONArray vars =
+            FileUtils.getJSONArrayAttribute(jsonObj, "variables");
+        globalVariables = new String[vars.size()];
+        JSONObject children = new JSONObject();
+        int j = 0;
+        for (int i = 0; i < vars.size(); i++)
+        {
+            children = (JSONObject) vars.get(i);
+            globalVariables[j] = (String) children.get("name");  
+            j++; 
+        }
+    }
+
+    /**
+     * Get total program variable usage counts.
+     *
+     * @param var - the variable to be counted
+     * @return number of times variable used total
+     */
+    public int getProgramVariableUsageCount(String var)
+    {
+        int count = getStageVariableUsageCount(var);
+        if (sprites == null)
+        {
+            return count;
+        }
+        for (int i = 0; i < sprites.length; i++)
+        {
+            count += sprites[i].getVariableUsageCount(var);
+        }
+        return count;
+    }
+    
+    /**
+     * Get global variable usage count
+     *  from stage scripts.
+     *
+     *  @param var the variable being counted
+     *  @return number of times the variable is used
+     */
+    public int getStageVariableUsageCount(String var)
+    {
+        int count = 0;
+        JSONArray stageJSON =
+            FileUtils.getJSONArrayAttribute(jsonObj, "scripts"); 
+        String stage = stageJSON.toString();
+        int pos = stage.indexOf(var);
+        while (pos >= 0)
+        {
+            pos += 1;
+            count += 1;
+            pos = stage.indexOf(var, pos);
+        }
+        return count;
     }
 }

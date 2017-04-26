@@ -716,7 +716,7 @@ public class SubmissionTest
     @Test
     public void testGetDataBlocksForProgram()
     {
-        int expected = 6;
+        int expected = 7;
         int actual = submissions[1].getDataBlocksForProgram();
         assertEquals("should be equal", expected, actual);
     }
@@ -907,6 +907,77 @@ public class SubmissionTest
         int actual = submissions[2].getSoundBlocksForProgram();
         assertEquals("should be equal", expected, actual);
     }
+
+    /**
+     * Test PopulateGlobalVariables - valid.
+     */
+    @Test
+    public void testPopulateGlobalVariables()
+    {
+        String[] expected = {"name", "weather", "sprite1AllVariables"};
+        String[] actual = submissions[1].getGlobalVariables();
+        assertArrayEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test PopulateGlobalVariables - empty.
+     */
+    @Test
+    public void testPopulateGlobalVariablesEmpty()
+    {
+        String[] expected = new String[0];
+        String[] actual = submissions[2].getGlobalVariables();
+        assertArrayEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getStageVariableUsageCount - valid.
+     */
+    @Test
+    public void testGetStageVariableUsageCount()
+    {
+        int expected = 1;
+        int actual = 
+            submissions[1].getStageVariableUsageCount("sprite1AllVariables");
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getStageVariableUsageCount - empty.
+     */
+    @Test
+    public void testGetStageVariableUsageCountEmpty()
+    {
+        int expected = 0;
+        int actual =
+            submissions[2].getStageVariableUsageCount("sprite1AllVariables");
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test get total variable usage count.
+     */
+    @Test
+    public void testGetProgramVariableUsageCount()
+    {
+        int expected = 4;
+        int actual =
+            submissions[1].getProgramVariableUsageCount("name");
+        assertEquals("should be same", expected, actual);
+    }
+
+    /**
+     * Test get total variable usage count - empty.
+     */
+    @Test
+    public void testGetProgramVariableUsageCountEmpty()
+    {
+        int expected = 0;
+        int actual =
+            submissions[2].getProgramVariableUsageCount("name");
+        assertEquals("should be same", expected, actual);
+    }
+
 
     /**
      * Tear down after tests.

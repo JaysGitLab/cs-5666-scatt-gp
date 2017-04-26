@@ -33,7 +33,8 @@ public class Sprite
     private int penBlocksForSprite;
     private int sensingBlocksForSprite;
     private int soundBlocksForSprite;
-    
+    private String[] variables;
+        
     /**
      * Sprite constructor.
      *
@@ -42,20 +43,21 @@ public class Sprite
     public Sprite(JSONObject jsonObj)
     {
         this.jsonObj = jsonObj;
-        name = FileUtils.getJSONAttribute(this.jsonObj, "objName");
-        scriptCount = FileUtils.getJSONArrayAttribute(this.jsonObj, 
+        name = FileUtils.getJSONAttribute(jsonObj, "objName");
+        scriptCount = FileUtils.getJSONArrayAttribute(jsonObj, 
             "scripts").size();
-        variableCount = FileUtils.getJSONArrayAttribute(this.jsonObj, 
+        variableCount = FileUtils.getJSONArrayAttribute(jsonObj, 
             "variables").size();
-        listCount = FileUtils.getJSONArrayAttribute(this.jsonObj, 
+        listCount = FileUtils.getJSONArrayAttribute(jsonObj, 
             "lists").size();
-        scriptCommentCount = FileUtils.getJSONArrayAttribute(this.jsonObj, 
+        scriptCommentCount = FileUtils.getJSONArrayAttribute(jsonObj, 
             "scriptComments").size();
-        soundCount = FileUtils.getJSONArrayAttribute(this.jsonObj, 
+        soundCount = FileUtils.getJSONArrayAttribute(jsonObj, 
             "sounds").size();
-        costumeCount = FileUtils.getJSONArrayAttribute(this.jsonObj, 
+        costumeCount = FileUtils.getJSONArrayAttribute(jsonObj, 
             "costumes").size();
         countBlockCategoriesForSprite();
+        populateVariables();
     }
 
     /**
@@ -314,5 +316,54 @@ public class Sprite
         }
 
         return;
+    }
+
+    /**
+     * Get list of Variables.
+     *
+     * @return variables
+     */
+    public String[] getVariables()
+    {
+        return variables;
+    }
+
+    /**
+     * Populate list of variables.
+     */
+    public void populateVariables()
+    {
+        JSONArray vars = 
+            FileUtils.getJSONArrayAttribute(jsonObj, "variables");
+        variables = new String[vars.size()];
+        JSONObject children = new JSONObject();
+        for (int i = 0; i < vars.size(); i++)
+        {
+            children = (JSONObject) vars.get(i);
+            variables[i] = 
+                FileUtils.getJSONAttribute(children, "name");;
+        }
+    }
+
+    /**
+     * Get variable usage count.
+     *
+     * @param var - the variable being counted
+     * @return the number of times the variable is used
+     */
+    public int getVariableUsageCount(String var)
+    {
+        int count = 0;
+        JSONArray scripts =
+            FileUtils.getJSONArrayAttribute(jsonObj, "scripts");
+        String spriteScript = scripts.toString();
+        int pos = spriteScript.indexOf(var);
+        while (pos >= 0)
+        {
+            pos += 1;
+            count += 1;
+            pos = spriteScript.indexOf(var, pos);
+        }
+        return count;
     }
 }
