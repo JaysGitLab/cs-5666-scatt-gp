@@ -716,7 +716,7 @@ public class SubmissionTest
     @Test
     public void testGetDataBlocksForProgram()
     {
-        int expected = 7;
+        int expected = 8;
         int actual = submissions[1].getDataBlocksForProgram();
         assertEquals("should be equal", expected, actual);
     }

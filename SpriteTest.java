@@ -227,7 +227,7 @@ public class SpriteTest
     @Test
     public void testGetDataBlocksForSprite()
     {
-        int expected = 4;
+        int expected = 5;
         int actual = spritesBigProject[0].getDataBlocksForSprite();
         assertEquals("should be equal", expected, actual);
     }
