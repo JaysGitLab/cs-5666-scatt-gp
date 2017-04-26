@@ -942,7 +942,18 @@ public class SubmissionTest
     }
 
     /**
-     * Test getStageVariableUsageCount - valid.
+     * Test populateGlobalLists - empty.
+     */
+    @Test
+    public void testPopulateGlobalListsEmpty()
+    {
+        String[] expected = new String[0];
+        String[] actual = submissions[2].getGlobalLists();
+        assertArrayEquals("should be same", expected, actual);
+    }
+
+    /**
+     * Test getStageVariableUsageCount method - valid.
      */
     @Test
     public void testGetStageVariableUsageCount()
@@ -963,6 +974,30 @@ public class SubmissionTest
         int actual =
             submissions[2].getStageVariableUsageCount("sprite1AllVariables");
         assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getStageListUsageCount method - valid.
+     */
+    @Test
+    public void testGetStageListUsageCount()
+    {
+        int expected = 1;
+        int actual =
+            submissions[1].getStageListUsageCount("listStage");
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getStageListUsageCount - empty.
+     */
+    @Test
+    public void testGetStageListUsageEmpty()
+    {
+        int expected = 0;
+        int actual =
+            submissions[2].getStageListUsageCount("listStage");
+        assertEquals("should be same", expected, actual);
     }
 
     /**
