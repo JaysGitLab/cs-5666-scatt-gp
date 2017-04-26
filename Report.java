@@ -242,7 +242,7 @@ public class Report
             printW.println("\tGlobal Variables:");
             for (int j = 0; j < vars.length; j++)
             {
-                printW.println("\t" + vars[j]
+                printW.println("\t\t" + vars[j]
                     + " used " 
                     + submissions[i].getStageVariableUsageCount(vars[j])
                     + " time(s)");
