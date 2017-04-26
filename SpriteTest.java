@@ -420,7 +420,7 @@ public class SpriteTest
     }
 
     /**
-     * Test populateVariables method.
+     * Test populateVariables method - valid.
      */
     @Test
     public void testPopulateVariables()
@@ -443,7 +443,18 @@ public class SpriteTest
     }
 
     /**
-     * Test getVariableUsageCount.
+     * Test populateLists method - valid.
+     */
+    @Test
+    public void testPopulateLists()
+    {
+        String[] expected = {"listSprite1"};
+        String[] actual = spritesBigProject[0].getLists();
+        assertArrayEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getVariableUsageCount method - valid.
      */
     @Test
     public void testGetVariableUsageCount()
