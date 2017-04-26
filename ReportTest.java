@@ -50,7 +50,8 @@ public class ReportTest
     public void makeReportTest()
     {
         scattReport.makeReport();
-        File reportFile = new File("Report.txt");
+        String datetime = scattReport.getReportDateTime();
+        File reportFile = new File("Report-" + datetime + ".txt");
         assertTrue(reportFile.exists());
     }
 

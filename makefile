@@ -51,4 +51,4 @@ clean:
 	rm -rf expected
 	rm -rf zips 
 	rm -rf unzips
-	rm -f Report.txt
+	rm -f Report*.txt

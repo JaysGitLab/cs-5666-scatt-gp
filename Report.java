@@ -36,7 +36,7 @@ public class Report
      */
     public void makeReport()
     {
-        File reportFile = new File("./Report.txt");
+        File reportFile = new File("./Report-" + getReportDateTime() + ".txt");
         PrintWriter printW;
         try
         {
@@ -290,6 +290,18 @@ public class Report
             }
         }             
     }   
+
+    /**
+     * Method to get the current datetime for report.
+     *
+     * @return formatted datetime
+     */
+    public String getReportDateTime()
+    {
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
 
     /**
      * Method to get the current datetime for the report's header.
