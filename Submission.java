@@ -1054,7 +1054,27 @@ public class Submission
         }
         return count;
     }
-    
+
+    /**
+     * Get total program list usage count.
+     *
+     * @param list - the list to be counted
+     * @return number of times list used in total
+     */
+    public int getProgramListUsageCount(String list)
+    {
+        int count = getStageListUsageCount(list);
+        if (sprites == null)
+        {
+            return count;
+        }
+        for (int i = 0; i < sprites.length; i++)
+        {
+            count += sprites[i].getListUsageCount(list);
+        }
+        return count;
+    }
+
     /**
      * Get global variable usage count
      *  from stage scripts.

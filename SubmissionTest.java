@@ -716,7 +716,7 @@ public class SubmissionTest
     @Test
     public void testGetDataBlocksForProgram()
     {
-        int expected = 8;
+        int expected = 9;
         int actual = submissions[1].getDataBlocksForProgram();
         assertEquals("should be equal", expected, actual);
     }
@@ -1001,7 +1001,7 @@ public class SubmissionTest
     }
 
     /**
-     * Test get total variable usage count.
+     * Test get total variable usage count method - valid.
      */
     @Test
     public void testGetProgramVariableUsageCount()
@@ -1024,6 +1024,29 @@ public class SubmissionTest
         assertEquals("should be same", expected, actual);
     }
 
+    /**
+     * Test get total list usage count method - valid.
+     */
+    @Test
+    public void testGetProgramListUsageCount()
+    {
+        int expected = 2;
+        int actual = 
+            submissions[1].getProgramListUsageCount("listStage");
+        assertEquals("should be same", expected, actual);
+    }
+
+    /**
+     * Test get total list usage count - empty.
+     */
+    @Test
+    public void testGetProgramListUsageCountEmpty()
+    {
+        int expected = 0;
+        int actual =
+            submissions[2].getProgramListUsageCount("listStage");
+        assertEquals("shoudl be same", expected, actual);
+    }
 
     /**
      * Tear down after tests.

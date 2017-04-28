@@ -227,7 +227,7 @@ public class SpriteTest
     @Test
     public void testGetDataBlocksForSprite()
     {
-        int expected = 5;
+        int expected = 6;
         int actual = spritesBigProject[0].getDataBlocksForSprite();
         assertEquals("should be equal", expected, actual);
     }
@@ -497,6 +497,18 @@ public class SpriteTest
         int expected = 1;
         int actual =
             spritesBigProject[0].getListUsageCount("listSprite1");
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getListUsageCount - empty.
+     */
+    @Test
+    public void testGetListUsageCountEmpty()
+    {
+        int expected = 0;
+        int actual =
+            spritesAnimateTheCrab[0].getListUsageCount("listSprite1");
         assertEquals("should be equal", expected, actual);
     }
     
