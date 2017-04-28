@@ -87,6 +87,7 @@ public class Report
         printVariableUsageForProgram(printW, i);
         printW.println("Lists Total: \t\t\t" 
             + submissions[i].getListCountForProgram());
+        printListUsageForProgram(printW, i);
         printW.println("ScriptComments Total: \t" 
             + submissions[i].getScriptCommentCountForProgram());
         printW.println("Sounds Total: \t\t\t" 
@@ -133,6 +134,7 @@ public class Report
         printVariableUsageForStage(printW, i);
         printW.println("Lists: \t\t\t\t\t" 
                     + submissions[i].getListCountForStage());
+        printListUsageForStage(printW, i);
         printW.println("ScriptComments: \t\t" 
             + submissions[i].getScriptCommentCountForStage());
         printW.println("Sounds: \t\t\t\t" 
@@ -183,6 +185,7 @@ public class Report
             printVariableUsage(printW, i, sprites[j]);
             printW.println("Lists: \t\t\t\t\t" 
                 + sprites[j].getListCount());
+            printListUsage(printW, i, sprites[j]);
             printW.println("ScriptComments: \t\t" 
                 + sprites[j].getScriptCommentCount());
             printW.println("Sounds: \t\t\t\t" 
@@ -234,6 +237,29 @@ public class Report
             }
         }
     }
+
+    /**
+     * Print toal list usage counts.
+     *
+     * @param printW - the printWriter to use
+     * @param i - the submission to get count for
+     */
+    public void printListUsageForProgram(PrintWriter printW, int i)
+    {
+        String [] lists = submissions[i].getGlobalLists();
+        if (lists.length > 0)
+        {
+            printW.println("\tGlobal Lists:");
+            for (int j = 0; j < lists.length; j++)
+            {
+                printW.println("\t\t" + lists[j]
+                    + " used "
+                    + submissions[i].getProgramListUsageCount(lists[j])
+                    + " time(s)");
+            }
+        }
+    }
+
     
     /**
      * Print Variable name and usage count for Stage.
@@ -252,6 +278,28 @@ public class Report
                 printW.println("\t\t" + vars[j]
                     + " used " 
                     + submissions[i].getStageVariableUsageCount(vars[j])
+                    + " time(s)");
+            }
+        }
+    }
+   
+    /**
+     * Print list name and usage count for Stage.
+     *
+     * @param printW - the printwriter to use
+     * @param i - the submission to get count for
+     */
+    public void printListUsageForStage(PrintWriter printW, int i)
+    {   
+        String[] lists = submissions[i].getGlobalLists();
+        if (lists.length > 0)
+        {
+            printW.println("\tGlobal Lists:");
+            for (int j = 0; j < lists.length; j++)
+            {
+                printW.println("\t\t" + lists[j]
+                    + " used " 
+                    + submissions[i].getStageListUsageCount(lists[j])
                     + " time(s)");
             }
         }
@@ -286,6 +334,40 @@ public class Report
             {
                 printW.println("\t\t" + vars[j]
                     + " used " + sprite.getVariableUsageCount(vars[j])
+                    + " time(s)");
+            }
+        }             
+    }   
+
+    /**
+     * Print List name and usage count for Sprite.
+     *  This includes both global and local lists.
+     *
+     *  @param printW - the printWriter to use
+     *  @param i - the submission to get count for
+     *  @param sprite - the sprite to get count for
+     */
+    public void printListUsage(PrintWriter printW, int i, Sprite sprite)
+    {
+        String[] globalLists = submissions[i].getGlobalLists();
+        String[] lists = sprite.getLists();
+        if (globalLists.length > 0)
+        {
+            printW.println("\tGlobal Lists:");
+            for (int k = 0; k < globalLists.length; k++)
+            {
+                printW.println("\t\t" + globalLists[k]
+                    + " used " + sprite.getListUsageCount(globalLists[k])
+                    + " time(s)");
+            }
+        }
+        if (lists.length > 0)
+        {
+            printW.println("\tSprite Lists:");
+            for (int j = 0; j < lists.length; j++)
+            {
+                printW.println("\t\t" + lists[j]
+                    + " used " + sprite.getListUsageCount(lists[j])
                     + " time(s)");
             }
         }             
