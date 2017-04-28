@@ -35,6 +35,7 @@ public class Submission
     private int sensingBlocksForStage;
     private int soundBlocksForStage;
     private String[] globalVariables;
+    private String[] globalLists;
     
     /**
      * Submission constructor.
@@ -63,6 +64,7 @@ public class Submission
         countBlockCategoriesForStage();
         createSprites();
         populateGlobalVariables();
+        populateGlobalLists();
     }
 
     /**
@@ -988,6 +990,16 @@ public class Submission
     }
 
     /**
+     * Get the list array.
+     *
+     * @return global list array
+     */
+    public String[] getGlobalLists()
+    {
+        return globalLists;
+    }
+
+    /**
      * Populate the global variables array.
      */
     private void populateGlobalVariables()
@@ -1002,6 +1014,24 @@ public class Submission
             children = (JSONObject) vars.get(i);
             globalVariables[j] = (String) children.get("name");  
             j++; 
+        }
+    }
+
+    /**
+     * Populate the global lists array.
+     */
+    private void populateGlobalLists()
+    {
+        JSONArray lists =
+            FileUtils.getJSONArrayAttribute(jsonObj, "lists");
+        globalLists = new String[lists.size()];
+        JSONObject children = new JSONObject();
+        int j = 0;
+        for (int i = 0; i < lists.size(); i++)
+        {
+            children = (JSONObject) lists.get(i);
+            globalLists[j] = (String) children.get("listName");
+            j++;
         }
     }
 
@@ -1024,13 +1054,33 @@ public class Submission
         }
         return count;
     }
-    
+
+    /**
+     * Get total program list usage count.
+     *
+     * @param list - the list to be counted
+     * @return number of times list used in total
+     */
+    public int getProgramListUsageCount(String list)
+    {
+        int count = getStageListUsageCount(list);
+        if (sprites == null)
+        {
+            return count;
+        }
+        for (int i = 0; i < sprites.length; i++)
+        {
+            count += sprites[i].getListUsageCount(list);
+        }
+        return count;
+    }
+
     /**
      * Get global variable usage count
      *  from stage scripts.
      *
      *  @param var the variable being counted
-     *  @return number of times the variable is used
+     *  @return number of times the variable is used in Stage
      */
     public int getStageVariableUsageCount(String var)
     {
@@ -1047,4 +1097,27 @@ public class Submission
         }
         return count;
     }
+
+    /**
+     * Get global list usage count.
+     *
+     * @param list the list being counted
+     * @return number of times the list is used in Stage
+     */
+    public int getStageListUsageCount(String list)
+    {
+        int count = 0;
+        JSONArray stageJSON =
+            FileUtils.getJSONArrayAttribute(jsonObj, "scripts");
+        String stage = stageJSON.toString();
+        int pos = stage.indexOf(list);
+        while (pos >= 0)
+        {
+            pos += 1;
+            count += 1;
+            pos = stage.indexOf(list, pos);
+        }
+        return count;
+    }
 }
+

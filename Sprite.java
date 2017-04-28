@@ -34,7 +34,8 @@ public class Sprite
     private int sensingBlocksForSprite;
     private int soundBlocksForSprite;
     private String[] variables;
-        
+    private String[] lists;       
+    
     /**
      * Sprite constructor.
      *
@@ -58,6 +59,7 @@ public class Sprite
             "costumes").size();
         countBlockCategoriesForSprite();
         populateVariables();
+        populateLists();
     }
 
     /**
@@ -329,9 +331,19 @@ public class Sprite
     }
 
     /**
+     * Get list of list names.
+     *
+     * @return array of lists.
+     */
+    public String[] getLists()
+    {
+        return lists;
+    }
+
+    /**
      * Populate list of variables.
      */
-    public void populateVariables()
+    private void populateVariables()
     {
         JSONArray vars = 
             FileUtils.getJSONArrayAttribute(jsonObj, "variables");
@@ -342,6 +354,23 @@ public class Sprite
             children = (JSONObject) vars.get(i);
             variables[i] = 
                 FileUtils.getJSONAttribute(children, "name");;
+        }
+    }
+
+    /**
+     * Populate lists.
+     */
+    private void populateLists()
+    {
+        JSONArray listArray =
+            FileUtils.getJSONArrayAttribute(jsonObj, "lists");
+        lists = new String[listArray.size()];
+        JSONObject children = new JSONObject();
+        for (int i = 0; i < listArray.size(); i++)
+        {
+            children = (JSONObject) listArray.get(i);
+            lists[i] =
+                FileUtils.getJSONAttribute(children, "listName");
         }
     }
 
@@ -363,6 +392,28 @@ public class Sprite
             pos += 1;
             count += 1;
             pos = spriteScript.indexOf(var, pos);
+        }
+        return count;
+    }
+
+    /**
+     * Get list usage count.
+     *
+     * @param list - the list being counted
+     * @return the number of times the list is used
+     */
+    public int getListUsageCount(String list)
+    {
+        int count = 0;
+        JSONArray scripts =
+            FileUtils.getJSONArrayAttribute(jsonObj, "scripts");
+        String spriteScript = scripts.toString();
+        int pos = spriteScript.indexOf(list);
+        while (pos >= 0)
+        {
+            pos += 1;
+            count += 1;
+            pos = spriteScript.indexOf(list, pos);
         }
         return count;
     }

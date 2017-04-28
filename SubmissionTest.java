@@ -716,7 +716,7 @@ public class SubmissionTest
     @Test
     public void testGetDataBlocksForProgram()
     {
-        int expected = 7;
+        int expected = 9;
         int actual = submissions[1].getDataBlocksForProgram();
         assertEquals("should be equal", expected, actual);
     }
@@ -909,7 +909,7 @@ public class SubmissionTest
     }
 
     /**
-     * Test PopulateGlobalVariables - valid.
+     * Test populateGlobalVariables method - valid.
      */
     @Test
     public void testPopulateGlobalVariables()
@@ -920,7 +920,7 @@ public class SubmissionTest
     }
 
     /**
-     * Test PopulateGlobalVariables - empty.
+     * Test populateGlobalVariables - empty.
      */
     @Test
     public void testPopulateGlobalVariablesEmpty()
@@ -931,7 +931,29 @@ public class SubmissionTest
     }
 
     /**
-     * Test getStageVariableUsageCount - valid.
+     * Test populateGlobalLists method - valid.
+     */
+    @Test
+    public void testPopulateGlobalLists()
+    {
+        String[] expected = {"listStage"};
+        String[] actual = submissions[1].getGlobalLists();
+        assertArrayEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test populateGlobalLists - empty.
+     */
+    @Test
+    public void testPopulateGlobalListsEmpty()
+    {
+        String[] expected = new String[0];
+        String[] actual = submissions[2].getGlobalLists();
+        assertArrayEquals("should be same", expected, actual);
+    }
+
+    /**
+     * Test getStageVariableUsageCount method - valid.
      */
     @Test
     public void testGetStageVariableUsageCount()
@@ -955,7 +977,31 @@ public class SubmissionTest
     }
 
     /**
-     * Test get total variable usage count.
+     * Test getStageListUsageCount method - valid.
+     */
+    @Test
+    public void testGetStageListUsageCount()
+    {
+        int expected = 1;
+        int actual =
+            submissions[1].getStageListUsageCount("listStage");
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getStageListUsageCount - empty.
+     */
+    @Test
+    public void testGetStageListUsageEmpty()
+    {
+        int expected = 0;
+        int actual =
+            submissions[2].getStageListUsageCount("listStage");
+        assertEquals("should be same", expected, actual);
+    }
+
+    /**
+     * Test get total variable usage count method - valid.
      */
     @Test
     public void testGetProgramVariableUsageCount()
@@ -978,6 +1024,29 @@ public class SubmissionTest
         assertEquals("should be same", expected, actual);
     }
 
+    /**
+     * Test get total list usage count method - valid.
+     */
+    @Test
+    public void testGetProgramListUsageCount()
+    {
+        int expected = 2;
+        int actual = 
+            submissions[1].getProgramListUsageCount("listStage");
+        assertEquals("should be same", expected, actual);
+    }
+
+    /**
+     * Test get total list usage count - empty.
+     */
+    @Test
+    public void testGetProgramListUsageCountEmpty()
+    {
+        int expected = 0;
+        int actual =
+            submissions[2].getProgramListUsageCount("listStage");
+        assertEquals("shoudl be same", expected, actual);
+    }
 
     /**
      * Tear down after tests.

@@ -227,7 +227,7 @@ public class SpriteTest
     @Test
     public void testGetDataBlocksForSprite()
     {
-        int expected = 4;
+        int expected = 6;
         int actual = spritesBigProject[0].getDataBlocksForSprite();
         assertEquals("should be equal", expected, actual);
     }
@@ -420,7 +420,7 @@ public class SpriteTest
     }
 
     /**
-     * Test populateVariables method.
+     * Test populateVariables method - valid.
      */
     @Test
     public void testPopulateVariables()
@@ -443,7 +443,29 @@ public class SpriteTest
     }
 
     /**
-     * Test getVariableUsageCount.
+     * Test populateLists method - valid.
+     */
+    @Test
+    public void testPopulateLists()
+    {
+        String[] expected = {"listSprite1"};
+        String[] actual = spritesBigProject[0].getLists();
+        assertArrayEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test populateLists method - empty.
+     */
+    @Test
+    public void testPopulateListsEmpty()
+    {
+        String[] expected = new String[0];
+        String[] actual = spritesAnimateTheCrab[1].getVariables();
+        assertArrayEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getVariableUsageCount method - valid.
      */
     @Test
     public void testGetVariableUsageCount()
@@ -463,6 +485,30 @@ public class SpriteTest
         int expected = 0;
         int actual = 
             spritesAnimateTheCrab[0].getVariableUsageCount("sprite1Variableb");
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getListUsageCount method - valid.
+     */
+    @Test
+    public void testGetListUsageCount()
+    {
+        int expected = 1;
+        int actual =
+            spritesBigProject[0].getListUsageCount("listSprite1");
+        assertEquals("should be equal", expected, actual);
+    }
+
+    /**
+     * Test getListUsageCount - empty.
+     */
+    @Test
+    public void testGetListUsageCountEmpty()
+    {
+        int expected = 0;
+        int actual =
+            spritesAnimateTheCrab[0].getListUsageCount("listSprite1");
         assertEquals("should be equal", expected, actual);
     }
     
